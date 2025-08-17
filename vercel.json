@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "soberano-santuario",
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "assets/**", "use": "@vercel/static" },
+    { "src": "pages/**", "use": "@vercel/static" },
+    { "src": "imágenes/**", "use": "@vercel/static" },
+    { "src": "js/**", "use": "@vercel/static" }
+  ]
+}
