@@ -1,0 +1,5 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#14213D"/>
+  <rect x="40" y="40" width="120" height="120" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+  <text x="100" y="110" font-family="Arial" font-size="18" fill="#FFFFFF" text-anchor="middle">Gran Logia</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+  <rect width="150" height="150" fill="#FFFFFF"/>
+  <circle cx="75" cy="75" r="60" fill="none" stroke="#D4AF37" stroke-width="2"/>
+  <text x="75" y="80" font-family="Arial" font-size="16" fill="#14213D" text-anchor="middle">Thot Nº 3</text>
+</svg>

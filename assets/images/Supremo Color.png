@@ -1,0 +1,5 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#FFFFFF"/>
+  <polygon points="100,30 170,170 30,170" fill="none" stroke="#D4AF37" stroke-width="3"/>
+  <text x="100" y="110" font-family="Arial" font-size="20" fill="#14213D" text-anchor="middle">Supremo</text>
+</svg>
