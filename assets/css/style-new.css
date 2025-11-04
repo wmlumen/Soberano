@@ -10,7 +10,33 @@
     --secondary-color: #D4AF37;  /* Dorado real */
     --accent-color: #966B19;     /* Dorado oscuro */
     --dark-color: #2F3333;       /* Gris grafito */
-    --light-colo.formulario {
+    --light-color: #FFFFFF;      /* Blanco puro */
+    --gray: #E5E5E5;            /* Gris claro */
+    --text-color: #1A1A1A;      /* Negro suave para texto */
+    
+    /* Sistema de sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
+    
+    /* Sistema de bordes */
+    --radius-sm: 4px;
+    --radius: 8px;
+    --radius-lg: 12px;
+    
+    /* Animaciones */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Layout */
+    --container-width: 1200px;
+    --header-height: 70px;
+    --section-spacing: 100px;
+}
+
+/* Formulario */
+.formulario {
     background: var(--light-color);
     padding: 20px;
     max-width: 600px;
@@ -58,29 +84,6 @@ footer {
     margin-top: 30px;
     border-top: 3px solid var(--secondary-color);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-} /* Blanco puro */
-    --gray: #E5E5E5;            /* Gris claro */
-    --text-color: #1A1A1A;      /* Negro suave para texto */
-    
-    /* Sistema de sombras */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
-    
-    /* Sistema de bordes */
-    --radius-sm: 4px;
-    --radius: 8px;
-    --radius-lg: 12px;
-    
-    /* Animaciones */
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Layout */
-    --container-width: 1200px;
-    --header-height: 70px;
-    --section-spacing: 100px;
 }
 
 /* Reset y Estilos Base */
