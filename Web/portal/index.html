@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Institucional - Memphis Misraim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #050b14;
+            --secondary: #121c2d;
+            --accent-gold: #d4af37;
+            --accent-glow: rgba(212, 175, 55, 0.4);
+            --text-light: #f4f4f9;
+            --text-muted: #a0aabf;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(5, 11, 20, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .btn-outline {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--accent-gold);
+            border-radius: 4px;
+            color: var(--accent-gold) !important;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .btn-filled {
+            padding: 0.6rem 1.5rem;
+            background: var(--accent-gold);
+            border-radius: 4px;
+            color: var(--primary) !important;
+            font-weight: 700 !important;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-filled:hover {
+            background: #f3e5ab;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, var(--secondary) 0%, var(--primary) 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150' opacity='0.08' fill='%23d4af37'><path d='M30 20c-5.5 0-10 4.5-10 10s4.5 10 10 10v5h-10v5h10v15h5v-15h10v-5h-10v-5c5.5 0 10-4.5 10-10s-4.5-10-10-10zm0 5c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z'/><path d='M100 30c-15 0-25 10-25 10s10 10 25 10 25-10 25-10-10-10-25-10zm0 5c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z'/><path d='M100 45v10c0 2-2 5-5 5M110 45l5 15' fill='none' stroke='%23d4af37' stroke-width='3'/><path d='M30 130l-20 15h40zM30 135c-2 0-3 1-3 2s1 2 3 2 3-1 3-2-1-2-3-2z'/><path d='M70 100l5-5 5 5 5-5 5 5 5-5 5 5 5-5 5 5M70 110l5-5 5 5 5-5 5 5 5-5 5 5 5-5 5 5' fill='none' stroke='%23d4af37' stroke-width='3'/><path d='M120 90h10v30h-10z'/><path d='M115 95h20v3h-20zM115 100h20v3h-20zM115 105h20v3h-20zM115 110h20v3h-20z'/></svg>") repeat;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        /* Estamentos Section */
+        .estamentos-section {
+            padding: 8rem 5%;
+            background: var(--primary);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 4rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(18, 28, 45, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #03060a;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom p {
+            color: rgba(160, 170, 191, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* En móvil se ocultaría o se haría un menú hamburguesa */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">MEMPHIS MISRAIM</a>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#estamentos" style="display: flex; gap: 0.5rem; align-items: center;" title="Los 3 Estamentos">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4a2 2 0 0 1 4 0v4"/></svg>
+            </a>
+            <a href="auth.html" class="btn-outline">Iniciar Sesión</a>
+            <a href="auth.html?mode=register" class="btn-filled">Tocar la Puerta</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Antiguo y Primitivo Rito de Memphis Misraim</h1>
+            <p>Un portal institucional dedicado a la gestión, registro y administración de los obreros, preservando la luz y la tradición masónica a través de la tecnología.</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
+                <a href="auth.html" class="btn-filled" style="text-decoration: none; padding: 1rem 2rem; font-size: 1.1rem;">Acceder al Registro</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="estamentos" class="estamentos-section">
+        <h2 class="section-title">La Estructura de Nuestra Institución</h2>
+        <div class="cards-container">
+            
+            <!-- Estamento 1: Soberano Santuario -->
+            <a href="estamento_soberano_santuario.html" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="logo-placeholder">
+                        <!-- Aquí irá el logo del Soberano Santuario -->
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Soberano Santuario de Memphis Mizraim</h3>
+                    <p>El órgano supremo del Rito, custodio de la tradición, la pureza y la dirección institucional a nivel nacional e internacional.</p>
+                </div>
+            </a>
+
+            <!-- Estamento 2: Supremo Consejo -->
+            <a href="estamento_supremo_consejo.html" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="logo-placeholder">
+                        <!-- Aquí irá el logo del Supremo Consejo -->
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Supremo Consejo Grado 33 de Memphis Mizraim</h3>
+                    <p>El cuerpo rector de los grados filosóficos y capitulares, donde el obrero profundiza en el esoterismo y la filosofía hermética.</p>
+                </div>
+            </a>
+
+            <!-- Estamento 3: Gran Logia -->
+            <a href="estamento_gran_logia.html" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="logo-placeholder">
+                        <!-- Aquí irá el logo de la Gran Logia -->
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4a2 2 0 0 1 4 0v4"/></svg>
+                    </div>
+                    <h3>Gran Logia de Memphis Mizraim</h3>
+                    <p>Las Logias Simbólicas, donde se forjan las bases del conocimiento y se trabaja la piedra bruta. Comprende los grados fundamentales del Rito.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Soberano Santuario</h4>
+                <p>Antiguo y Primitivo Rito<br>de Memphis Misraim</p>
+                <p style="margin-top: 1rem;">Custodios de la Tradición y la Luz Masónica Egipcia.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Datos Institucionales</h4>
+                <p><strong>Sede Central:</strong> Oriente de Asunción, Paraguay</p>
+                <p><strong>Teléfono:</strong> +595 (Secretaría)</p>
+                <p><strong>Correo:</strong> secretaria@memphismisraim.org.py</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces de Interés</h4>
+                <a href="#estamentos">Estructura Institucional</a>
+                <a href="auth.html?mode=register">Tocar la Puerta (Admisión)</a>
+                <a href="auth.html">Portal de Obreros</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Antiguo y Primitivo Rito de Memphis Misraim. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Logia - Memphis Mizraim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #050b14;
+            --secondary: #121c2d;
+            --accent-gold: #d4af37;
+            --text-light: #f4f4f9;
+            --text-muted: #a0aabf;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--primary); color: var(--text-light); line-height: 1.6; }
+        nav { position: fixed; width: 100%; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: rgba(5, 11, 20, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212, 175, 55, 0.1); z-index: 1000;}
+        .logo { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700; color: var(--accent-gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-gold); }
+        .header-banner { margin-top: 80px; padding: 6rem 5%; text-align: center; background: radial-gradient(circle, var(--secondary) 0%, var(--primary) 100%); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .header-banner h1 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--accent-gold); margin-bottom: 1rem; }
+        .content { max-width: 900px; margin: 4rem auto; padding: 0 5%; }
+        .content h2 { font-family: 'Cinzel', serif; color: var(--accent-gold); margin-bottom: 1.5rem; }
+        .content p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        footer { background: #03060a; padding: 3rem 5%; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); margin-top: 4rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">MEMPHIS MIZRAIM</a>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#estamentos">Estamentos</a>
+        </div>
+    </nav>
+
+    <header class="header-banner">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1.5rem;"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4a2 2 0 0 1 4 0v4"/></svg>
+        <h1>Gran Logia de Memphis Mizraim</h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem;">Centro del simbolismo y la docencia masónica.</p>
+    </header>
+
+    <main class="content">
+        <h2>Acerca de la Gran Logia</h2>
+        <p>La Gran Logia es el estamento responsable de gobernar las Logias Simbólicas. Es aquí donde se inicia el camino masónico, trabajando la piedra bruta a través de los tres grados fundamentales: Aprendiz, Compañero y Maestro Masón.</p>
+        <p>A través del estudio de los símbolos y las herramientas de construcción, la Gran Logia forja el carácter moral, ético y fraternal de sus miembros, preparándolos para la construcción del templo interior y el beneficio de la humanidad.</p>
+
+        <h2 style="margin-top: 3rem;">Dignidades y Cargos</h2>
+        <p>La estructura de gobierno de la Gran Logia (así como de las Logias Simbólicas que la componen) se organiza bajo los siguientes cargos principales:</p>
+        <ul style="list-style-type: none; margin-top: 1rem; color: var(--text-light);">
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                <span style="position: absolute; left: 0; color: var(--accent-gold);">✧</span>
+                <strong>Gran Maestro:</strong> La primera luz, encargado de dirigir, orientar e inspirar los trabajos de la Gran Logia.
+            </li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                <span style="position: absolute; left: 0; color: var(--accent-gold);">✧</span>
+                <strong>Gran Primer y Segundo Vigilante:</strong> Las columnas que sostienen la logia, encargados de la instrucción de los Compañeros y Aprendices respectivamente.
+            </li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                <span style="position: absolute; left: 0; color: var(--accent-gold);">✧</span>
+                <strong>Gran Orador:</strong> El guardián de la constitución, los reglamentos y las conclusiones de los trabajos.
+            </li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                <span style="position: absolute; left: 0; color: var(--accent-gold);">✧</span>
+                <strong>Gran Secretario:</strong> Responsable de trazar los trabajos (actas), citaciones y la memoria escrita de la logia.
+            </li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                <span style="position: absolute; left: 0; color: var(--accent-gold);">✧</span>
+                <strong>Gran Tesorero y Gran Hospitalario:</strong> Encargados de las finanzas y de la ayuda fraternal/caridad, respectivamente.
+            </li>
+            <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+                <span style="position: absolute; left: 0; color: var(--accent-gold);">✧</span>
+                <strong>Gran Experto y Gran Maestro de Ceremonias:</strong> Velan por el cumplimiento estricto del ritual y el orden físico del templo.
+            </li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Antiguo y Primitivo Rito de Memphis Misraim. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

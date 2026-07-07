@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Matriz de Auditoría: Decretos, Actas de Incumplimiento y Salida Ordenada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #07080c;
+            --bg-panel: rgba(16, 20, 30, 0.8);
+            --bg-hover: rgba(24, 30, 45, 0.9);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-glow: rgba(212, 175, 55, 0.3);
+            --cyan: #00f0ff;
+            --purple: #9d4edd;
+            --green: #00ff88;
+            --crimson: #ff4d4d;
+            --crimson-glow: rgba(255, 77, 77, 0.25);
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
+            --border: rgba(212, 175, 55, 0.3);
+            --border-strong: rgba(212, 175, 55, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 78, 221, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, #040507 0%, #0a0d14 100%);
+            background-attachment: fixed;
+            padding: 40px 20px 80px;
+        }
+
+        .header-box {
+            max-width: 1380px;
+            margin: 0 auto 35px;
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 30px;
+        }
+
+        .emblem {
+            font-size: 44px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 20px var(--gold));
+            animation: pulse 3s infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.98); filter: drop-shadow(0 0 10px var(--gold)); }
+            100% { transform: scale(1.05); filter: drop-shadow(0 0 25px var(--gold-light)); }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .subtitle {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* ── Tarjetas de Estadísticas ── */
+        .stats-grid {
+            max-width: 1380px;
+            margin: 0 auto 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.8), 0 0 15px var(--gold-glow);
+        }
+
+        .stat-icon {
+            font-size: 34px;
+            background: rgba(212, 175, 55, 0.12);
+            width: 60px; height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            flex-shrink: 0;
+        }
+
+        .stat-info h3 {
+            font-size: 1.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .stat-info p {
+            font-size: 0.82rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* ── Pestañas Maestras ── */
+        .nav-tabs {
+            max-width: 1380px;
+            margin: 0 auto 30px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: rgba(18, 22, 32, 0.6);
+            border: 1px solid var(--border);
+            color: var(--text-sub);
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg-hover);
+            color: var(--gold-light);
+            border-color: var(--gold);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(157, 78, 221, 0.25) 100%);
+            color: var(--gold-light);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+
+        /* ── Barra de Filtro ── */
+        .filter-section {
+            max-width: 1380px;
+            margin: 0 auto 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: rgba(13, 16, 23, 0.85);
+            padding: 18px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .search-input {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 8px;
+            color: #fff;
+            width: 340px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 12px var(--gold-glow);
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-sub);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .pill.active, .pill:hover {
+            background: var(--gold);
+            color: #000;
+            font-weight: 700;
+            border-color: var(--gold-light);
+        }
+
+        /* ── Secciones de Tabla ── */
+        .tab-content {
+            display: none;
+            max-width: 1380px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .table-container {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            backdrop-filter: blur(15px);
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead {
+            background: rgba(0, 0, 0, 0.75);
+            border-bottom: 2px solid var(--border);
+        }
+
+        th {
+            padding: 18px 24px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: rgba(212, 175, 55, 0.08);
+        }
+
+        td {
+            padding: 20px 24px;
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+
+        .num-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            display: inline-block;
+        }
+
+        .num-badge.alert {
+            background: rgba(255, 77, 77, 0.18);
+            color: #ff8080;
+            border-color: rgba(255, 77, 77, 0.5);
+        }
+
+        .num-badge.exit {
+            background: rgba(0, 240, 255, 0.18);
+            color: #80ffdb;
+            border-color: rgba(0, 240, 255, 0.5);
+        }
+
+        .title-cell {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+            font-size: 1.08rem;
+        }
+
+        .desc-cell {
+            font-size: 0.84rem;
+            color: var(--text-sub);
+            max-width: 350px;
+            line-height: 1.45;
+        }
+
+        /* Chips */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .chip-fazio { background: rgba(212, 175, 55, 0.15); color: #f3e5ab; border: 1px solid rgba(212, 175, 55, 0.5); }
+        .chip-santuario { background: rgba(157, 78, 221, 0.18); color: #e0aaff; border: 1px solid rgba(157, 78, 221, 0.4); }
+        .chip-logia { background: rgba(0, 240, 255, 0.12); color: #80ffdb; border: 1px solid rgba(0, 240, 255, 0.4); }
+        .chip-sgm { background: rgba(0, 255, 136, 0.15); color: #69ffbe; border: 1px solid rgba(0, 255, 136, 0.4); }
+        .chip-alert { background: rgba(255, 77, 77, 0.18); color: #ff9999; border: 1px solid rgba(255, 77, 77, 0.5); }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .status-vigente { background: var(--green); box-shadow: 0 0 8px var(--green); }
+        .status-historico { background: var(--gold); }
+        .status-alerta { background: var(--crimson); box-shadow: 0 0 8px var(--crimson); }
+        .status-cyan { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+
+        .btn-view {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--border);
+            color: var(--gold-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-view:hover {
+            background: var(--gold);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        /* ── Modal de Vista Completa del Acta ── */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-box {
+            background: #0d1017;
+            border: 1px solid var(--border-strong);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 950px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 40px clamp(20px, 4vw, 50px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.2);
+            position: relative;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.22rem;
+            line-height: 1.75;
+            color: #e2e8f0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 25px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 1.4rem;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modal-close:hover {
+            background: var(--gold);
+            color: #000;
+            transform: rotate(90deg);
+        }
+
+        .modal-box h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            text-align: center;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .modal-box h3, .modal-box h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin: 25px 0 10px;
+        }
+
+        .modal-box p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .modal-box ul, .modal-box ol {
+            margin: 10px 0 20px 30px;
+        }
+
+        .modal-box li {
+            margin-bottom: 8px;
+        }
+
+        .modal-meta-box {
+            background: rgba(212,175,55,0.08);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .modal-meta-box strong { color: var(--gold-light); }
+
+        @media (max-width: 900px) {
+            table, thead, tbody, th, td, tr { display: block; }
+            thead { display: none; }
+            tbody tr { padding: 20px; margin-bottom: 15px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 10px; }
+            td { padding: 8px 0; display: flex; justify-content: space-between; align-items: center; }
+            td::before { content: attr(data-label); font-weight: 700; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; }
+            .desc-cell { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-box">
+        <div class="emblem">🏛️ 👁️ 🔱</div>
+        <h1>Gran Matriz de Auditoría y Actas Oficiales</h1>
+        <p class="subtitle">Registro Oficial del Rito Antiguo y Primitivo de Memphis-Misraïm — Trazabilidad Completa con Fechas, Creadores, Autoridades y Texto Íntegro de las Actas de Incumplimiento y Salida Ordenada</p>
+    </div>
+
+    <!-- BANNER SOBERANÍA ÚNICA DESDE EL 9 DE JULIO DE 2026 -->
+    <div style="max-width:1400px; margin: 0 auto 25px auto; background: linear-gradient(135deg, rgba(0, 245, 212, 0.15), rgba(212, 175, 55, 0.15)); border: 2px solid #00f5d4; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 0 20px rgba(0,245,212,0.2);">
+        <h2 style="color: #00f5d4; margin: 0 0 10px 0; font-size: 1.4rem; text-shadow: 0 0 10px rgba(0,245,212,0.5);">🏛️ DESPUÉS DEL 9 DE JULIO DE 2026: SOBERANÍA ÚNICA E IRREVERSIBLE 🏛️</h2>
+        <p style="color: #fff; font-size: 1.05rem; margin: 0 0 15px 0; line-height: 1.6;">
+            Consumada la depuración de elementos espurios e impuros, se decreta que todo es <strong>SOBERANA ORDEN DEL RITO ANTIGUO Y PRIMITIVO DE MEMFIS MISRAIM DE LA REPÚBLICA DEL PARAGUAY</strong>, bajo el gobierno regular del SGM <strong>MSH Deyhut (96º)</strong>, el Gran Conservador <strong>MSH Edgar Fazio (95º)</strong> bajo <strong>Soberanía Autocéfala y cese de jurisdicción externa de MSH Luis León Pizarro (Grado 99º)</strong> ante el Hierofante de la Gran Logia Simbólica del Paraguay.
+        </p>
+        <button class="btn-view" style="background: #00f5d4; color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px #00f5d4; margin: 5px;" onclick="openModal('soberaniaUnica9799')">📜 Ver Decreto de Cúspide (Grados 97º al 99º) y Soberanía Única</button>
+        <button class="btn-view" style="background: #ff4d6d; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(255,77,109,0.4); margin: 5px;" onclick="openModal('ritualesDudososRojas')">🛡️ Advertencia: Rituales "Dudosos" y Apócrifos</button>
+        <button class="btn-view" style="background: var(--gold); color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px var(--gold); margin: 5px;" onclick="openModal('nomenclator1a100')">👑 Nomenclátor Grados 1º al 100º (Pilares 33º, 95º y 96º)</button>
+        <button class="btn-view" style="background: #9b5de5; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(155,93,229,0.4); margin: 5px;" onclick="openModal('hijosLuzLibroNegro')">☀️ Doctrinal: Hijos de la Luz vs. Libro Negro</button>
+        <button class="btn-view" style="background: #00f5d4; color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px #00f5d4; margin: 5px;" onclick="openModal('livreMMMichel')">🐍 Gnosis Egipcia: Livre MM (Michel) y Hermes Trismegisto</button>
+        <button class="btn-view" style="background: #ff0055; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(255,0,85,0.4); margin: 5px;" onclick="openModal('alianzaRosacruz058')">🌹 Alianza Rosacruz y Gnosis: Retales de Masonería Nº 058</button>
+        <button class="btn-view" style="background: #3a86ff; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(58,134,255,0.4); margin: 5px;" onclick="openModal('canonAkalMariel')">📚 Canon Académico: Diccionario Akal, Mariel y Cultura Masónica Nº 60</button>
+        <button class="btn-view" style="background: var(--gold); color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px var(--gold); margin: 5px;" onclick="openModal('liturgiaR16')">⚔️ Liturgia R-16: Príncipe de Jerusalén y Vértices 33º, 95º y 96º</button>
+        <button class="btn-view" style="background: #9b5de5; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(155,93,229,0.4); margin: 5px;" onclick="openModal('regaliaPanelesFinal')">🎨 Regalía y Liturgia: Delantales, Paneles y Ritual Final (1º al 99º)</button>
+        <button class="btn-view" style="background: #00f5d4; color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px #00f5d4; margin: 5px;" onclick="openModal('archivoMaestroPDF')">📂 Archivo Maestro y Biblioteca Canónica: Catálogo de Fuentes PDF</button>
+        <button class="btn-view" style="background: #ffb703; color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px #ffb703; margin: 5px;" onclick="openModal('raigonEgiptologico')">☀️ Raigón Egiptológico y Liturgia Solar (Mito de Isis y Kemet)</button>
+        <button class="btn-view" style="background: #ff0055; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(255,0,85,0.4); margin: 5px;" onclick="openModal('autocefaliaNacional')">🛡️ Matriz Primigenia: La Orden Nunca Estuvo Bajo Jurisdicción Externa</button>
+        <button class="btn-view" style="background: #00f5d4; color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px #00f5d4; margin: 5px;" onclick="openModal('ceremonialJueves9Julio')">👑 Ceremonial Jueves 9 de Julio: Instalación Cúspide, Templo y Diplomas</button>
+        <button class="btn-view" style="background: #9b5de5; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(155,93,229,0.4); margin: 5px;" onclick="openModal('declaracionesGrados')">📜 Declaraciones de Cada Grado (33º, 95º y 96º): Alocuciones y Juramentos</button>
+        <button class="btn-view" style="background: #ff0055; color: #fff; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px rgba(255,0,85,0.4); margin: 5px;" onclick="openModal('marcasDINAPI')">⚖️ DINAPI Exp. 2623155: Reivindicación de Marcas y Desvinculación de Alejandra Aguilera</button>
+        <button class="btn-view" style="background: #00f5d4; color: #000; font-weight: bold; border: none; padding: 10px 25px; font-size: 1rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 10px #00f5d4; margin: 5px;" onclick="openModal('nuevoNombreOrden')">🛡️ Nueva Denominación Oficial (Decreto 09-2026): Nombres Blindados de Cúspide</button>
+        <button class="btn-view" style="background: var(--gold-gradient, linear-gradient(135deg, #ffe885 0%, #ffcf40 50%, #b8860b 100%)); color: #000; font-weight: 900; border: none; padding: 12px 28px; font-size: 1.05rem; cursor: pointer; border-radius: 6px; box-shadow: 0 0 20px rgba(255, 207, 64, 0.7); margin: 5px;" onclick="window.open('tenida_solemne_9_julio_2026.html', '_blank')">☀️ ¡ABRIR APP WEB EN VIVO: TENIDA SOLEMNE 9 DE JULIO 2026!</button>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">📜</div>
+            <div class="stat-info">
+                <h3>8</h3>
+                <p>Decretos Auditados</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🚨</div>
+            <div class="stat-info">
+                <h3>6</h3>
+                <p>Actas de Incumplimiento</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">⚖️</div>
+            <div class="stat-info">
+                <h3>100%</h3>
+                <p>Fechas y Trazabilidad</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🛡️</div>
+            <div class="stat-info">
+                <h3>8</h3>
+                <p>Documentos Salida Ordenada</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pestañas Maestras -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchMainTab('actas', this)">🚨 Actas de Incumplimiento (N.º 01 al 06 + Balustre)</button>
+        <button class="tab-btn" onclick="switchMainTab('salida', this)">🛡️ Expediente Salida Ordenada y Reactivación Antigua (9 de Julio 2026)</button>
+        <button class="tab-btn" onclick="switchMainTab('decretos', this)">📜 Decretos y Promulgaciones (Matriz 2020-2025)</button>
+    </div>
+
+    <!-- Filtros y Búsqueda -->
+    <div class="filter-section">
+        <div class="filter-pills" id="pillsContainer">
+            <button class="pill active" onclick="filtrarTabla('todos', this)">⭐ Mostrar Todos</button>
+            <button class="pill" onclick="filtrarTabla('santuario', this)">🏛️ Soberano Santuario</button>
+            <button class="pill" onclick="filtrarTabla('logia', this)">🔺 Logia Luxor N.º 1 / Simbolismo</button>
+            <button class="pill" onclick="filtrarTabla('fazio', this)">👑 Edgar Fazio / Conservador</button>
+        </div>
+        <input type="text" class="search-input" id="tableSearch" placeholder="Buscar acta, decreto, fecha o autoridad..." onkeyup="buscarEnTabla()">
+    </div>
+
+    <!-- ── TAB 1: ACTAS DE INCUMPLIMIENTO ── -->
+    <div id="tab-actas" class="tab-content active">
+        <div class="table-container">
+            <table id="actasTable">
+                <thead>
+                    <tr>
+                        <th>N.º Acta / Balustre</th>
+                        <th>Título y Hecho Denunciado</th>
+                        <th>Creado Por (Inspección / Redacción)</th>
+                        <th>Autorizado / Promulgado Por</th>
+                        <th>Fecha Exacta E∴ V∴</th>
+                        <th>Estado y Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Acta 1 -->
+                    <tr class="row-santuario">
+                        <td data-label="N.º Acta"><span class="num-badge alert">Acta N.º 01 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#ff9999;">Admisión Irregular y Rebeldía (Caso Ceto Torales)</div>
+                            <div class="desc-cell">Desacato del SGM Sinforiano Riveros a la Plancha N.º 03/2025, permitiendo a Ceto Torales ejercer como Orador en Thot N.º 2 sin Quit-Placet.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Comisión de Inspección</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">👑 MSH Christhian Keim / Deyhut (96º)</span></td>
+                        <td data-label="Fecha">25 / 01 / 2025</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-alerta"></span>Rebeldía Confirmada<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('acta1')">👁️ Ver Acta Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Acta 2 -->
+                    <tr class="row-santuario">
+                        <td data-label="N.º Acta"><span class="num-badge alert">Acta N.º 02 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#ff9999;">Viaje No Autorizado a Perú y Ocultamiento de Informe</div>
+                            <div class="desc-cell">Visita ilegal a Perú para contactar a Luis León Pizarro sin placet diplomático del Santuario y omisión de informe escrito.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">✍️ Gran Cancillería e Imperio</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">👑 MSH Christhian Keim / Deyhut (96º)</span></td>
+                        <td data-label="Fecha">15 / 03 / 2025</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-alerta"></span>Nulidad Internacional<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('acta2')">👁️ Ver Acta Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Acta 3 -->
+                    <tr class="row-santuario">
+                        <td data-label="N.º Acta"><span class="num-badge alert">Acta N.º 03 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#ff9999;">Retención de Fondos (8.000.000 Gs) en Tesorería</div>
+                            <div class="desc-cell">Falta de rendición de cuentas, balances e informes contables por la Gran Tesorera Alejandra Aguilera en el simbolismo.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Comisión de Hacienda</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">👑 SGM Deyhut (Grado 96º)</span></td>
+                        <td data-label="Fecha">20 / 04 / 2025</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-alerta"></span>Emplazamiento Fiscal<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('acta3')">👁️ Ver Acta Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Acta 4 -->
+                    <tr class="row-santuario">
+                        <td data-label="N.º Acta"><span class="num-badge alert">Acta N.º 04 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#ff9999;">Omisión Administrativa en Gran Secretaría General</div>
+                            <div class="desc-cell">Inacción del Gran Secretario Ray Fernando Oviedo Rotela por no redactar ni asentar en actas las sesiones virtuales del Santuario.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Inspector General del Santuario</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">👑 SGM Deyhut (Grado 96º)</span></td>
+                        <td data-label="Fecha">28 / 04 / 2025</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-alerta"></span>Apercibimiento Vacancia<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('acta4')">👁️ Ver Acta Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Acta 5 -->
+                    <tr class="row-santuario row-logia">
+                        <td data-label="N.º Acta"><span class="num-badge alert">Acta N.º 05 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#ff9999;">Tratado Espurio con Logia Mixta Salvaje y Abandono Luxor N.º 1</div>
+                            <div class="desc-cell">Firma ilegal de tratado con la Gran Logia Simbólica Mixta (potencia salvaje sin Carta Patente) y abandono de la Logia Madre.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Cámara de Reyes del Santuario</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">👑 SGM Deyhut (Grado 96º)</span></td>
+                        <td data-label="Fecha">12 / 05 / 2025</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-alerta"></span>Nulidad de Tratado<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('acta5')">👁️ Ver Acta Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Acta 6 -->
+                    <tr class="row-santuario row-logia">
+                        <td data-label="N.º Acta"><span class="num-badge alert">Acta N.º 06 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#ff9999;">Ingreso y Afiliación de Hermanos de Otros Orientes sin Plancha de Quite</div>
+                            <div class="desc-cell">Recepción irregular de miembros externos sin exigir el certificado de Paz y Salvo (Quit-Placet), convirtiendo las columnas en refugio de indisciplina.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Gran Inspección del Santuario</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">👑 SGM Deyhut (Grado 96º)</span></td>
+                        <td data-label="Fecha">20 / 05 / 2025</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-alerta"></span>Afiliación Nula<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('acta6')">👁️ Ver Acta Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Balustre 1 -->
+                    <tr class="row-santuario">
+                        <td data-label="N.º Acta"><span class="num-badge" style="border-color:#9d4edd; color:#e0aaff;">Balustre N.º 01 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#e0aaff;">Informe General de Alarma al Gran Hierofante MSH∴ Luis León Pizarro</div>
+                            <div class="desc-cell">Elevación formal al Cenit del Perú / Cenit Mundial detallando colapso administrativo, indisciplina simbólica e intromisiones.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Soberano Santuario Paraguay</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">👑 MSH Deyhut (Grado 96º)</span></td>
+                        <td data-label="Fecha">15 / 05 / 2025</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-cyan"></span>Elevado al Hierofante<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('balustre1')">👁️ Ver Balustre Completo</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ── TAB 2: EXPEDIENTE DE SALIDA ORDENADA (2026) ── -->
+    <div id="tab-salida" class="tab-content">
+        <div class="table-container">
+            <table id="salidaTable">
+                <thead>
+                    <tr>
+                        <th>N.º Documento</th>
+                        <th>Título y Fundamento Canónico</th>
+                        <th>Creado Por (Obreros / Taller)</th>
+                        <th>Autorizado / Resguardado Por</th>
+                        <th>Fecha Exacta E∴ V∴</th>
+                        <th>Estado y Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Doc 00: Reactivación 9 de Julio de 2026 -->
+                    <tr class="row-santuario row-logia row-fazio row-sgm" style="background: rgba(212, 175, 55, 0.15); border: 2px solid var(--gold);">
+                        <td data-label="N.º Doc"><span class="num-badge" style="border-color:#00f5d4; color:#00f5d4; font-weight:bold; background:rgba(0,245,212,0.1);">Reactivación / 9 Julio</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#00f5d4; font-size:1.1em; font-weight:bold;">🎉 RETORNO A LA ORDEN ANTIGUA: REACTIVACIÓN DE LA SOBERANA ORDEN</div>
+                            <div class="desc-cell" style="color:#fff;">Proclamación del Jueves 9 de Julio de 2026 E∴ V∴: Reactivación de la <strong>Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim</strong>, depuración total de elementos espurios e impuros, y levantamiento de las 3 Logias Fundacionales (Luxor N.º 1, Constructores N.º 2 y Emancipadoras N.º 3).</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-sgm">👑 MSH Deyhut (Grado 96º)</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-fazio">🏛️ MSH Fazio 95º / Cenit Nacional</span></td>
+                        <td data-label="Fecha" style="color:#00f5d4; font-weight:bold;">09 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente" style="background:#00f5d4; box-shadow:0 0 8px #00f5d4;"></span>ORDEN REACTIVADA<br>
+                            <button class="btn-view" style="margin-top:8px; border-color:#00f5d4; color:#00f5d4;" onclick="openModal('reactivacion9Julio')">👁️ Ver Manifiesto</button>
+                        </td>
+                    </tr>
+
+                    <!-- Doc 0: Nota Deyhut I -->
+                    <tr class="row-santuario row-logia">
+                        <td data-label="N.º Doc"><span class="num-badge" style="border-color:#d4af37; color:#f3e5ab;">Nota Deyhut I / 2026</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#f3e5ab;">Comunicación Oficial de Retiro y Cierre de Etapa del SGM Deyhut (96º)</div>
+                            <div class="desc-cell">Manifiesto fundacional del 06/06/2026 con advertencia sobre la tarea pendiente en institucionalidad, disciplina interna y rigor ritual.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">👑 MSH Deyhut (Grado 3º 33º 96º)</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">🏛️ Soberano Santuario Paraguay</span></td>
+                        <td data-label="Fecha">06 / 06 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-historico"></span>Legado Perpetuo<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('notaDeyhut1')">👁️ Ver Nota Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Doc 0.5: Registro Litúrgico y Cédulas -->
+                    <tr class="row-logia row-fazio">
+                        <td data-label="N.º Doc"><span class="num-badge exit">Matrícula / 2026</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#80ffdb;">Registro Litúrgico Egipcio (11 Luces, Salmos) e Identidad C.I.</div>
+                            <div class="desc-cell">Acreditación canónica de Luxor N.º 1 (Candelabros 5-4-2, Ara, Gran Anubis) frente a reuniones convocadas "a espaldas de los obreros".</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-logia">🔺 V:. M:. Nelly Jara Keim y Oficiales</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-fazio">👑 Edgar Fazio / Conservador (95º)</span></td>
+                        <td data-label="Fecha">03 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente"></span>Rigor Canónico<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('registroLiturgico')">👁️ Ver Estándares</button>
+                        </td>
+                    </tr>
+
+                    <!-- Doc 0.8: Planilla Oficial de Ingresantes -->
+                    <tr class="row-logia row-fazio">
+                        <td data-label="N.º Doc"><span class="num-badge exit">Planilla / 2026</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#80ffdb;">Planilla Oficial de Ingresantes y Control Canónico de Regularidad</div>
+                            <div class="desc-cell">Padrino: Edgar Fazio. Ingreso de Alan Keim con Quite y Placet original del Rito Nacional Paraguayo (Madrina Nelly de Keim) e iniciaciones con C.I. verificado.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-logia">👑 Padrino Edgar Fazio / Madrina Nelly de Keim</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">🏛️ Gran Registro / Santuario Nacional</span></td>
+                        <td data-label="Fecha">05 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente"></span>Regularidad Verificada<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('planillaIngresantes')">👁️ Ver Planilla Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Doc 1: Acta Devolucion -->
+                    <tr class="row-logia">
+                        <td data-label="N.º Doc"><span class="num-badge exit">Acta Notarial / 2026</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#80ffdb;">Acta de Devolución de Carta Patente, Rituales y Bienes</div>
+                            <div class="desc-cell">Puesta a cubierto, inventario de entrega de malletes y abatimiento temporal por pérdida de regularidad, aumento irregular de Obreras y admisión de externos sin Quite.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-logia">🔺 V:. M:. y Oficiales salientes (Luxor N.º 1)</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">🏛️ Interventor / Santuario Nacional</span></td>
+                        <td data-label="Fecha">05 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente"></span>Salida Ordenada<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('docDevolucion')">👁️ Ver Acta Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Doc 2: Manifiesto -->
+                    <tr class="row-logia">
+                        <td data-label="N.º Doc"><span class="num-badge exit">Manifiesto / 2026</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#80ffdb;">Manifiesto de Ruptura Institucional y Retiro Irrevocable</div>
+                            <div class="desc-cell">Denuncia pública sobre pérdida de institucionalidad, vulneración de Landmarks al promover irregularmente a Obreras y afiliar a miembros externos sin Quit-Placet.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-logia">🔺 Maestros Masones y Obreros libres</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">✍️ Notificación a Potencias Regulares</span></td>
+                        <td data-label="Fecha">05 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente"></span>Proclamado<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('docManifiesto')">👁️ Ver Manifiesto Completo</button>
+                        </td>
+                    </tr>
+
+                    <!-- Doc 3: Plancha Quite -->
+                    <tr class="row-logia">
+                        <td data-label="N.º Doc"><span class="num-badge exit">Quit-Placet / 2026</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#80ffdb;">Plancha de Quite y Desafiliación Formal bajo Protesta</div>
+                            <div class="desc-cell">Solicitud canónica de demisión individual/colectiva ejerciendo el derecho masónico imprescriptible a retirarse en paz y salvo.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-logia">🔺 Rubén González y Hermanos firmantes</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-sgm">✍️ Secretaría de Logia / Gran Matrícula</span></td>
+                        <td data-label="Fecha">05 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente"></span>Demisión Aceptada<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('docQuite')">👁️ Ver Plancha Completa</button>
+                        </td>
+                    </tr>
+
+                    <!-- Doc 4: Paz y Salvo -->
+                    <tr class="row-logia">
+                        <td data-label="N.º Doc"><span class="num-badge exit">Paz y Salvo / 2026</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#80ffdb;">Certificado de Paz y Salvo con el Tesoro y Solvencia</div>
+                            <div class="desc-cell">Acreditación contable al 100% al día con metales y capitaciones, impidiendo legalmente cualquier rechazo o acusación de morosidad.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-logia">🔺 Tesorería Logia Luxor N.º 1</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-sgm">👑 Comisión Revisora / Fiscal</span></td>
+                        <td data-label="Fecha">05 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente"></span>A Cubierto (100%)<br>
+                            <button class="btn-view" style="margin-top:8px;" onclick="openModal('docPazSalvo')">👁️ Ver Certificado</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ── TAB 3: DECRETOS Y PROMULGACIONES ── -->
+    <div id="tab-decretos" class="tab-content">
+        <div class="table-container">
+            <table id="decretosTable">
+                <thead>
+                    <tr>
+                        <th>N.º Decreto</th>
+                        <th>Título / Objeto del Decreto</th>
+                        <th>Creado Por (Origen / Redacción)</th>
+                        <th>Autorizado Por (Promulgación)</th>
+                        <th>Fecha E∴ V∴</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row-santuario row-fazio row-sgm" style="background: rgba(212, 175, 55, 0.15); border: 2px solid var(--gold);">
+                        <td data-label="N.º Decreto"><span class="num-badge" style="border-color:#00f5d4; color:#00f5d4; font-weight:bold;">03 / 2026-SS</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color:#00f5d4; font-weight:bold;">👑 Exaltación y Aumento al Grado 33º (Soberanos Grandes Inspectores Generales)</div>
+                            <div class="desc-cell">Conferimiento de la investidura filosófica a los HH. <strong>Alan Keim</strong> (Quite RNP), <strong>Carlos Acha</strong> y <strong>Miguel Benítez</strong> (C.I. 3.813.747), bajo instrucción de su Padrino MSH Edgar Fazio (95º).</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Soberano Santuario Paraguay</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-sgm">👑 SGM Deyhut (96º) / Fazio (95º)</span></td>
+                        <td data-label="Fecha" style="color:#00f5d4; font-weight:bold;">06 / 07 / 2026</td>
+                        <td data-label="Estado">
+                            <span class="status-dot status-vigente"></span>INSPECTORES 33º<br>
+                            <button class="btn-view" style="margin-top:8px; border-color:#00f5d4; color:#00f5d4;" onclick="openModal('decretoAumento33')">👁️ Ver Decreto 33º</button>
+                        </td>
+                    </tr>
+                    <tr class="row-santuario">
+                        <td data-label="N.º Decreto"><span class="num-badge">001 / 2020</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell">Despertar de Columnas del Paraguay</div>
+                            <div class="desc-cell">Establecimiento de la jurisdicción nacional del Rito en Asunción.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">🏛️ Soberano Santuario Latinoamericano</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">✍️ Gran Cancillería e Imperio</span></td>
+                        <td data-label="Fecha">12 / 01 / 2020</td>
+                        <td data-label="Estado"><span class="status-dot status-historico"></span>Promulgado</td>
+                    </tr>
+                    <tr class="row-santuario">
+                        <td data-label="N.º Decreto"><span class="num-badge">004 / 2021</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell">Estatutos y Reglamentos de 95 Grados</div>
+                            <div class="desc-cell">Unificación litúrgica y legislativa para todos los talleres.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-santuario">📜 Comisión Legislativa del Santuario</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-fazio">👑 Soberano Santuario 95°</span></td>
+                        <td data-label="Fecha">20 / 03 / 2021</td>
+                        <td data-label="Estado"><span class="status-dot status-vigente"></span>Vigente</td>
+                    </tr>
+                    <tr class="row-fazio">
+                        <td data-label="N.º Decreto"><span class="num-badge">008 / 2022</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell">Carta Patente Logia Luxor N.º 1</div>
+                            <div class="desc-cell">Consagración perpetua de la Logia Madre en el Valle de Asunción.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-fazio">👑 Edgar Fazio (Grado 95°)</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-fazio">👑 Patriarca Gran Conservador</span></td>
+                        <td data-label="Fecha">05 / 05 / 2022</td>
+                        <td data-label="Estado"><span class="status-dot status-vigente"></span>Perpetuo</td>
+                    </tr>
+                    <tr class="row-fazio">
+                        <td data-label="N.º Decreto"><span class="num-badge">015 / 2023</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell">Tratados de Paz y Amistad Internacional</div>
+                            <div class="desc-cell">Alianza masónica y mutuo reconocimiento con potencias del Rito.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-fazio">👑 Edgar Fazio (Grado 95°)</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-santuario">🏛️ Consejo Superior del Grado 95°</span></td>
+                        <td data-label="Fecha">14 / 10 / 2023</td>
+                        <td data-label="Estado"><span class="status-dot status-vigente"></span>Vigente</td>
+                    </tr>
+                    <tr class="row-fazio">
+                        <td data-label="N.º Decreto"><span class="num-badge">022 / 2024</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell">Apertura de Cámaras Filosóficas (33° al 90°)</div>
+                            <div class="desc-cell">Exaltación a los altos grados herméticos del rito egipcio.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-fazio">👑 Edgar Fazio (Grado 95°)</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-fazio">👑 Edgar Fazio (Conservador General)</span></td>
+                        <td data-label="Fecha">18 / 08 / 2024</td>
+                        <td data-label="Estado"><span class="status-dot status-vigente"></span>Vigente</td>
+                    </tr>
+                    <tr class="row-logia">
+                        <td data-label="N.º Decreto"><span class="num-badge">003 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell">Designación de V:. M:. Nelly Jara Keim</div>
+                            <div class="desc-cell">Confirmación como Augusta Responsable de Logia Luxor N.º 1.</div>
+                        </td>
+                        <td data-label="Creado Por"><span class="chip chip-sgm">✍️ Secretaría de la Gran Logia</span></td>
+                        <td data-label="Autorizado Por"><span class="chip chip-sgm">👑 SGM Sinforiano Riveros</span></td>
+                        <td data-label="Fecha">10 / 02 / 2025</td>
+                        <td data-label="Estado"><span class="status-dot status-vigente"></span>Activo</td>
+                    </tr>
+                    <tr class="row-logia row-fazio" style="background: rgba(0, 255, 136, 0.05);">
+                        <td data-label="N.º Decreto"><span class="num-badge" style="border-color: #00ff88; color: #00ff88;">007 / 2025</span></td>
+                        <td data-label="Título">
+                            <div class="title-cell" style="color: #00ff88;">Autorización Trabajos: Aumento (Rubén) e Iniciación (Pamela)</div>
+                            <div class="desc-cell">Convocatoria para 15-04-2025 y 06-05-2025 en Templo 25 de Mayo y Acacia.</div>
+                        </td>
+                        <td data-label="Creado Por">
+                            <span class="chip chip-logia">🔺 V:. M:. Nelly Jara Keim (Luxor N.º 1)</span>
+                            <div style="margin-top: 6px;"><span class="chip chip-fazio" style="font-size: 0.75rem;">👑 Redacción por Edgar Fazio (95°)</span></div>
+                        </td>
+                        <td data-label="Autorizado Por"><span class="chip chip-sgm">👑 SGM Sinforiano Riveros</span></td>
+                        <td data-label="Fecha">05 / 07 / 2025</td>
+                        <td data-label="Estado"><span class="status-dot status-vigente"></span>En Ejecución</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ── MODAL PARA TEXTO COMPLETO DE LAS ACTAS ── -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal-box" id="modalContent">
+            <button class="modal-close" onclick="closeModalBtn()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Cambiar entre Pestañas Principales
+        function switchMainTab(tabId, btnEl) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btnEl.classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        // Filtrar filas
+        function filtrarTabla(tipo, elem) {
+            document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+            elem.classList.add('active');
+            const trs = document.querySelectorAll('tbody tr');
+            trs.forEach(tr => {
+                if (tipo === 'todos') tr.style.display = '';
+                else if (tipo === 'fazio' && tr.classList.contains('row-fazio')) tr.style.display = '';
+                else if (tipo === 'santuario' && tr.classList.contains('row-santuario')) tr.style.display = '';
+                else if (tipo === 'logia' && tr.classList.contains('row-logia')) tr.style.display = '';
+                else tr.style.display = 'none';
+            });
+        }
+
+        // Búsqueda en tabla activa
+        function buscarEnTabla() {
+            const val = document.getElementById('tableSearch').value.toLowerCase();
+            const activeTab = document.querySelector('.tab-content.active');
+            const trs = activeTab.querySelectorAll('tbody tr');
+            trs.forEach(tr => {
+                const texto = tr.innerText.toLowerCase();
+                tr.style.display = texto.includes(val) ? '' : 'none';
+            });
+        }
+
+        // Base de datos completa de textos de Actas y Documentos ("Como debe de ser completas")
+        const actasData = {
+            'acta1': `
+                <h2>ACTA DE REGISTRO DE INCUMPLIMIENTO N.º 01 / 2025</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 25 de enero de 2025 E∴ V∴</span>
+                    <span><strong>Lugar:</strong> Valle de Asunción, Paraguay</span>
+                    <span><strong>Autoridad:</strong> SGM Christhian Keim (Deyhut 96º)</span>
+                </div>
+                <h3>📑 ANTECEDENTES Y HECHOS REGISTRADOS</h3>
+                <p><strong>1. Emisión de Directiva:</strong> Con fecha 10 de enero de 2025, el Soberano Santuario remitió al Muy Respetable Serenísimo Gran Maestro de la Gran Logia Simbólica, V∴ H∴ Sinforiano Riveros, la <em>Plancha N.º 03/2025</em>, notificándole formalmente sobre el estado de irregularidad del Hermano <strong>Ceto Torales</strong> respecto a su Logia de origen, ordenándole suspender su participación en los trabajos del Simbolismo.</p>
+                <p><strong>2. Omisión y Desobediencia:</strong> Transcurrido el plazo reglamentario, se verificó mediante informes de inspección que el Gran Maestro Sinforiano Riveros hizo caso omiso a la orden emanada de esta Autoridad Suprema, permitiendo y avalando que el Hermano Ceto Torales —quien carece de <em>Quit-Placet</em> y se encuentra en rebeldía por su logia de origen— asuma y ejerza irregularmente el cargo de <strong>Gran Orador de la Logia Thot N.º 2</strong>.</p>
+                <h3>⚖️ CALIFICACIÓN JURÍDICA Y RESOLUCIÓN SOBERANA</h3>
+                <p>Este hecho configura una flagrante violación al <strong>Artículo 33.º</strong> (subordinación de la Gran Maestría al Santuario) y al <strong>Artículo 35.º</strong> de las Grandes Constituciones (inapelabilidad de decisiones del Santuario Nacional).</p>
+                <ol>
+                    <li><strong>Primero:</strong> Registrar oficialmente el PRIMER INCUMPLIMIENTO y desacato administrativo de la Gran Maestría Simbólica.</li>
+                    <li><strong>Segundo:</strong> Reiterar la prohibición absoluta de ingreso a templos del H. Ceto Torales bajo apercibimiento de declarar irregular los trabajos de la Logia Thot N.º 2.</li>
+                </ol>
+            `,
+            'acta2': `
+                <h2>ACTA DE REGISTRO DE INCUMPLIMIENTO N.º 02 / 2025</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 15 de marzo de 2025 E∴ V∴</span>
+                    <span><strong>Lugar:</strong> Valle de Asunción, Paraguay</span>
+                    <span><strong>Autoridad:</strong> SGM Christhian Keim (Deyhut 96º)</span>
+                </div>
+                <h3>📑 ANTECEDENTES Y HECHOS REGISTRADOS</h3>
+                <p><strong>1. Viaje y Coordinación No Autorizada:</strong> El Muy Respetable Serenísimo Gran Maestro V∴ H∴ Sinforiano Riveros coordinó y realizó de forma unilateral, <strong>sin contar con la venia de viaje ni el placet diplomático</strong> del Soberano Santuario Nacional, una visita oficial a la República del Perú con el objeto de entablar relaciones y coordinar actividades con el Gran Hierofante Luis León Pizarro.</p>
+                <p><strong>2. Ocultamiento de Información:</strong> Tras el retorno de su comitiva, el Gran Maestro omitió deliberadamente presentar un informe oficial o Plancha de conclusions ante este Soberano Santuario, sin dejar constancia alguna por escrito de lo tratado en el extranjero.</p>
+                <h3>⚖️ CALIFICACIÓN JURÍDICA Y RESOLUCIÓN SOBERANA</h3>
+                <p>De acuerdo con las Grandes Constituciones de Menfis-Misraïm, las relaciones internacionales y tratados de paz son de la <strong>competencia única y exclusiva del Soberano Santuario Nacional</strong>. Ningún Gran Maestro Simbólico posee facultad de representación externa.</p>
+                <ol>
+                    <li><strong>Primero:</strong> Registrar el SEGUNDO INCUMPLIMIENTO por usurpación de competencias diplomáticas.</li>
+                    <li><strong>Segundo:</strong> Declarar <strong>nulos y sin ningún efecto legal o iniciático</strong> en Paraguay todos los acuerdos o conversaciones sostenidas en dicha visita por carecer de mandato representativo.</li>
+                </ol>
+            `,
+            'acta3': `
+                <h2>ACTA DE REGISTRO DE INCUMPLIMIENTO N.º 03 / 2025</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 20 de abril de 2025 E∴ V∴</span>
+                    <span><strong>Lugar:</strong> Valle de Asunción, Paraguay</span>
+                    <span><strong>Autoridad:</strong> SGM Deyhut (Grado 96º)</span>
+                </div>
+                <h3>📑 ANTECEDENTES Y HECHOS REGISTRADOS</h3>
+                <p><strong>1. Falta de Rendición de Cuentas:</strong> La Gran Tesorería de la Gran Logia Simbólica, bajo la responsabilidad de la Gran Tesorera <strong>Alejandra Aguilera</strong>, ha omitido sistemáticamente la rendición de cuentas, balances e estados de caja ante este Soberano Santuario desde su consagración hasta la actualidad.</p>
+                <p><strong>2. Retención de Fondos (8.000.000 Gs):</strong> Se ha detectado una retención y discrepancia financiera de <strong>ocho millones de guaraníes (8.000.000 Gs.) en caja</strong> que no han sido rendidos, justificados ni ingresados, manteniendo dicha irregularidad contable de forma continuada tanto en el ejercicio anterior como en el actual.</p>
+                <h3>⚖️ CALIFICACIÓN JURÍDICA Y RESOLUCIÓN SOBERANA</h3>
+                <p>Infracción flagrante al <strong>Artículo 29.º del Reglamento de la Gran Logia Simbólica</strong> y normas de control fiscal del Santuario.</p>
+                <ol>
+                    <li><strong>Primero:</strong> Labrar el TERCER INCUMPLIMIENTO OFICIAL por opacidad y retención injustificada de metales.</li>
+                    <li><strong>Segundo:</strong> Emplazar a la Gran Tesorera Alejandra Aguilera en un plazo perentorio de quince (15) días a presentar balance general auditado y depositar los fondos, bajo apercibimiento de suspensión e intervención inmediata de las arcas.</li>
+                </ol>
+            `,
+            'acta4': `
+                <h2>ACTA DE REGISTRO DE INCUMPLIMIENTO N.º 04 / 2025</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 28 de abril de 2025 E∴ V∴</span>
+                    <span><strong>Lugar:</strong> Valle de Asunción, Paraguay</span>
+                    <span><strong>Autoridad:</strong> SGM Deyhut (Grado 96º)</span>
+                </div>
+                <h3>📑 ANTECEDENTES Y HECHOS REGISTRADOS</h3>
+                <p><strong>1. Omisión y Falta de Actas:</strong> El Gran Secretario del Soberano Santuario, H. <strong>Ray Fernando Oviedo Rotela, Grado 66º / 33º</strong>, ha incurrido en negligencia continuada al <strong>no redactar ni asentar en actas ninguna de las reuniones de carácter virtual</strong> celebradas por esta alta cámara.</p>
+                <p><strong>2. Parálisis del Archivo Legal:</strong> Esta falta de redacción deja a la jurisdicción sin trazadas formales de las actuaciones, debates, decisiones y decretos aprobados, vulnerando la memoria histórica y dejando desprotegida la legalidad de la Orden.</p>
+                <h3>⚖️ CALIFICACIÓN JURÍDICA Y RESOLUCIÓN SOBERANA</h3>
+                <p>Violación de los deberes inalienables de la Secretaría General y custodia del Libro de Oro.</p>
+                <ol>
+                    <li><strong>Primero:</strong> Registrar el CUARTO INCUMPLIMIENTO OFICIAL por negligencia en la función de Gran Secretaría.</li>
+                    <li><strong>Segundo:</strong> Emplazar al H. Ray Fernando Oviedo Rotela en el término de diez (10) días a poner al día el Libro de Arquitectura, bajo apercibimiento de remoción y declaración de vacancia del cargo.</li>
+                </ol>
+            `,
+            'acta5': `
+                <h2>ACTA DE REGISTRO DE INCUMPLIMIENTO N.º 05 / 2025</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 12 de mayo de 2025 E∴ V∴</span>
+                    <span><strong>Lugar:</strong> Valle de Asunción, Paraguay</span>
+                    <span><strong>Autoridad:</strong> SGM Deyhut (Grado 96º)</span>
+                </div>
+                <h3>📑 ANTECEDENTES Y HECHOS REGISTRADOS</h3>
+                <p><strong>1. Tratado Espurio con Potencia "Salvaje":</strong> En abierta desobediencia a la advertencia formal extendida en la <em>Plancha N.º 06/2025</em>, el Gran Maestro Sinforiano Riveros procedió a firmar un tratado de paz, amistad y reconocimiento con la <strong>Gran Logia Simbólica Mixta</strong>, permitiendo la intromisión de miembros de dicho cuerpo en nuestros templos regulares.</p>
+                <p><strong>2. Calificación de Potencia Spuria:</strong> Se deja constancia indiscutible de que la <strong>Gran Logia Simbólica Mixta es una Gran Logia "Salvaje" que opera de forma espuria y carece de Carta Patente legítima de origen</strong>. Firmar pactos con ella compromete gravemente la pureza y regularidad internacional del Rito.</p>
+                <p><strong>3. Abandono de Logia Luxor N.º 1:</strong> Paralelamente, el Gran Maestro ha abandonado por completo la atención, visitas y soporte administrativo a la R∴ L∴ S∴ Luxor N.º 1 en el Oriente de Asunción (su propia residencia), generando desamparo y división en el simbolismo.</p>
+                <h3>⚖️ RESOLUCIÓN Y DECLARACIÓN SOBERANA</h3>
+                <ol>
+                    <li><strong>Primero:</strong> Registrar el QUINTO INCUMPLIMIENTO OFICIAL por desacato grave y pactos espurios.</li>
+                    <li><strong>Segundo:</strong> Declarar <strong>nulo de toda nulidad, inválido y sin efecto legal o espiritual</strong> el tratado con la Gran Logia Simbólica Mixta, prohibiendo el ingreso de sus miembros bajo pena de profanación.</li>
+                    <li><strong>Tercero:</strong> Emplazar a Sinforiano Riveros a regularizar su asistencia a la Logia Luxor N.º 1 en cinco (5) días, bajo apercibimiento de proceso por traición a sus juramentos y rebeldía constitucional.</li>
+                </ol>
+            `,
+            'acta6': `
+                <h2>ACTA DE REGISTRO DE INCUMPLIMIENTO N.º 06 / 2025</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 20 de mayo de 2025 E∴ V∴</span>
+                    <span><strong>Lugar:</strong> Valle de Asunción, Paraguay</span>
+                    <span><strong>Autoridad:</strong> SGM Deyhut (Grado 96º)</span>
+                </div>
+                <h3>📑 ANTECEDENTES Y HECHOS REGISTRADOS</h3>
+                <p><strong>1. Admisión de Hermanos sin Quit-Placet:</strong> Se ha constatado fehacientemente y mediante informes de la Gran Inspección que la conducción de la Gran Logia Simbólica ha venido permitiendo y autorizando el <strong>ingreso, afiliación e incorporación a los talleres de Hermanos provenientes de otros Orientes, Potencias u Obediencias externas, SIN exigir ni verificar la previa presentación de su Plancha de Quite (Quit-Placet)</strong> ni el Certificado de Paz y Salvo de su Oriente de origen.</p>
+                <p><strong>2. Práctica Generalizada y Desacato Canónico:</strong> Esta práctica ilegal convierte a las columnas en refugio de obreros que pudieran encontrarse morosos con el Tesoro, sancionados o expulsados en sus antiguas jurisdicciones, destruyendo la pureza iniciática, profanando el pavimento mosaico y rompiendo los tratados de respeto territorial con las Potencias Regulares del mundo masónico.</p>
+                <h3>⚖️ CALIFICACIÓN JURÍDICA Y RESOLUCIÓN SOBERANA</h3>
+                <p>Infracción flagrante a los Antiguos Límites (Landmarks) y a las Grandes Constituciones de Menfis-Misraïm.</p>
+                <ol>
+                    <li><strong>Primero:</strong> Labrar y registrar el SEXTO INCUMPLIMIENTO OFICIAL por afiliación ilegal y desacato canónico.</li>
+                    <li><strong>Segundo:</strong> Declarar <strong>NULAS DE TODA NULIDAD e inválidas</strong> todas las afiliaciones o pases de columna de miembros externos realizadas sin la constancia canónica del certificado de Quit-Placet original de su obediencia madre.</li>
+                    <li><strong>Tercero:</strong> Ordenar la prohibición absoluta e inmediata de ingreso a templos de todo afiliado o visitante externo sin documentación regularizada y emplazar a la Gran Maestría Simbólica en diez (10) días a presentar el padrón auditado bajo apercibimiento de intervención litúrgica total.</li>
+                </ol>
+            `,
+            'balustre1': `
+                <h2>GRAN BALUSTRE DE INFORME AL GRAN HIEROFANTE N.º 01 / 2025</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 15 de mayo de 2025 E∴ V∴</span>
+                    <span><strong>Destino:</strong> Gran Hierofante Mundial MSH∴ Luis León Pizarro (Cenit del Perú)</span>
+                    <span><strong>Emisor:</strong> MSH Deyhut (Grado 96º) - Paraguay</span>
+                </div>
+                <h3>🏛️ INFORME GENERAL DE ALARMA SOBRE INDISCIPLINA Y REGULARIDAD</h3>
+                <p>Ilustre y Soberano Hermano Gran Hierofante <strong>MSH∴ Luis León Pizarro</strong>: Nos dirigimos a vuestra Alta Autoridad en el Cenit Mundial con el doloroso pero ineludible deber de elevar un informe de alarma sobre los graves acontecimientos institucionales, litúrgicos y financieros que amenazan la soberanía del Rito en Paraguay:</p>
+                <ul>
+                    <li><strong>1. Rebeldía de la Gran Maestría Simbólica (Sinforiano Riveros):</strong> Admisión irregular de Ceto Torales en Thot N.º 2 sin Quit-Placet (Acta 01); viajes diplomáticos no autorizados a Perú para contactar a Vuestra Autoridad sin placet diplomático (Acta 02); firma de tratados espurios con Logias "Salvajes" mixtas carentes de patente legítima (Acta 05); afiliación e ingreso ilegal de Hermanos de otros Orientes sin Plancha de Quite (Acta 06); conferimiento anticanónico y acelerado de aumentos de grado a Obreras fuera de toda norma litúrgica; y abandono total de la Logia Madre Luxor N.º 1 en Asunción.</li>
+                    <li><strong>2. Discrepancias Financieras en Gran Tesorería:</strong> Falta absoluta de rendición de balances y retención injustificada de <strong>8.000.000 Gs.</strong> por la hermana Alejandra Aguilera (Acta 03).</li>
+                    <li><strong>3. Parálisis de Gran Secretaría:</strong> Omisión del hermano Ray Fernando Oviedo Rotela en la redacción y archivo de actas de sesiones virtuales, dejando sin memoria jurídica a la cámara (Acta 04).</li>
+                    <li><strong>4. Intromisión Externa (Bret González):</strong> Intento ilegítimo de usurpación de jurisdicción por parte del hermano Bret González, rechazado categóricamente.</li>
+                </ul>
+                <p><strong>Conclusión:</strong> Solicitamos el respaldo soberano de la Suprema Hierofanía para ejecutar las medidas cautelares, regularizar las columnas y defender la pureza de nuestra Carta Patente.</p>
+            `,
+            'docDevolucion': `
+                <h2>ACTA DE DEVOLUCIÓN DE CARTA PATENTE, RITUALES Y BIENES LITÚRGICOS</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 05 de julio de 2026 E∴ V∴</span>
+                    <span><strong>Origen:</strong> Logia Simbólica Luxor N.º 1</span>
+                    <span><strong>Acción:</strong> Abatimiento Temporal y Salida Ordenada</span>
+                </div>
+                <h3>🏛️ FUNDAMENTO CANÓNICO Y PUESTA A CUBIERTO</h3>
+                <p>Ante la pérdida de condiciones de institucionalidad de la conducción, la ruptura de los principios fundamentales de la Orden, la ejecución anticanónica de <strong>aumentos de grado de Obreras fuera de toda liturgia regular</strong> y la sistemática <strong>afiliación e ingreso ilegal de Hermanos de otros Orientes sin Plancha de Quite</strong>, los miembros del Taller y Dignatarios han resuelto de manera unánime cesar trabajos bajo esta cobertura irregular, procediendo al retiro ordenado y entrega patrimonial.</p>
+                <h3>📦 INVENTARIO DE ELEMENTOS ENTREGADOS BAJO SELLO</h3>
+                <ul>
+                    <li><strong>Cartas y Patentes:</strong> Carta Patente Original de Constitución de Luxor N.º 1 y Cartas de Dispensa.</li>
+                    <li><strong>Libros Oficiales:</strong> Libros de Actas de Aprendices, Compañeros y Maestros (al día y cerrados); Libro de Matrícula; y Libro de Tesorería con balance en saldo cero y sin deudas.</li>
+                    <li><strong>Rituales Codificados:</strong> Ejemplares completos de los Rituales de 1.er, 2.º y 3.er Grado de Menfis-Misraïm y catecismos.</li>
+                    <li><strong>Joyas y Malletes:</strong> 3 Malletes de Mando, Sello físico oficial del Taller, Collarines de Oficialía, mandiles y Estandarte depositado en custodia neutral.</li>
+                </ul>
+                <h3>🛡️ DECLARACIÓN DE ABATIMIENTO TEMPORAL</h3>
+                <p>Las columnas de la Logia quedan abatidas temporalmente en esta jurisdicción viciada, prohibiendo a cualquier autoridad espuria utilizar su nombre, número o símbolos. Los dignatarios salientes quedan liberados de toda responsabilidad civil o masónica futura.</p>
+            `,
+            'docManifiesto': `
+                <h2>MANIFIESTO DE RUPTURA INSTITUCIONAL Y RETIRO IRREVOCABLE</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 05 de julio de 2026 E∴ V∴</span>
+                    <span><strong>Emisores:</strong> Maestros y Obreros Regulares</span>
+                    <span><strong>Destino:</strong> Mundo Masónico y Potencias Regulares</span>
+                </div>
+                <h3>📜 PREÁMBULO Y DENUNCIA PÚBLICA</h3>
+                <p>Quienes suscriben, Obreros y Maestros Masones libres y de buenas costumbres, declaramos formalmente nuestra desvinculación e independencia de la actual estructura directiva por la absoluta pérdida de institucionalidad y vulneración de los Antiguos Límites (Landmarks):</p>
+                <ol>
+                    <li><strong>Pérdida de Institucionalidad:</strong> Colapso administrativo, opacidad contable y firma de pactos espurios con logias "salvajes" sin reconocimiento.</li>
+                    <li><strong>Usurpación de Competencias:</strong> Subversión del orden jerárquico entre el Simbolismo y las Cámaras Superiores.</li>
+                    <li><strong>Aumento Irregular de Grado de Obreras:</strong> Denunciamos y rechazamos el conferimiento anticanónico y acelerado de Aumentos de Salario (Compañero) y Exaltaciones (Maestro Masón) a Obreras sin cumplir los tiempos mínimos de permanencia, sin plomadas de escrutinio, sin defensa de Trabajos de Arquitectura y por autoridades carentes de legitimidad litúrgica.</li>
+                    <li><strong>Ingreso Irregular de Hermanos de Otros Orientes sin Quit-Placet:</strong> Denunciamos la ilegal admisión de miembros procedentes de otras jurisdicciones sin exigir ni autenticar su Plancha de Quite y Salvo, convirtiendo los templos en refugio de morosos o expulsados de otras potencias y profanando la seguridad iniciática de las columnas.</li>
+                </ol>
+                <p><strong>Resolución:</strong> Retiro ordenado y legal en estricto cumplimiento de las Grandes Constituciones, estando al día con el Tesoro y advirtiendo sobre la nulidad internacional de los grados y afiliaciones conferidos bajo dichas irregularidades.</p>
+            `,
+            'docQuite': `
+                <h2>PLANCHA DE QUITE Y DESAFILIACIÓN FORMAL BAJO PROTESTA</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 05 de julio de 2026 E∴ V∴</span>
+                    <span><strong>Solicitante:</strong> Rubén González (Maestro Masón 3.º)</span>
+                    <span><strong>Matrícula:</strong> PY-MM-0892 | Logia Luxor N.º 1</span>
+                </div>
+                <h3>✍️ SOLICITUD CANÓNICA DE DEMISIÓN</h3>
+                <p>De conformidad con el Derecho Masónico Universal y las Grandes Constituciones, se ejerce el derecho sagrado e imprescriptible de solicitar el retiro voluntario y el certificado de <em>Quit-Placet</em> al estar 100% a cubierto con los metales.</p>
+                <h3>🚨 MOTIVOS DE DESAFILIACIÓN BAJO PROTESTA INSTITUCIONAL</h3>
+                <p>Se deja expresa constancia que esta demisión es BAJO PROTESTA motivada por: 1) Inexistencia de condiciones de institucionalidad y pactos espurios con potencias salvajes; 2) Ruptura del principio de autoridad y desacato a decretos superiores; 3) <strong>Otorgamiento irregular de grados a Obreras</strong> de manera arbitraria fuera de toda norma litúrgica; 4) <strong>Recepción e incorporación ilegal de Hermanos de otros Orientes sin Plancha de Quite</strong>, destruyendo la seguridad y la regularidad de las columnas.</p>
+                <p><strong>Emplazamiento:</strong> Se emplaza a la Secretaría a tomar razón de la baja oficial inmediata, extender la Carta de Paz y Salvo en 5 días y abstenerse de iniciar sumarios o sanciones espurias que serán nulas de toda nulidad.</p>
+            `,
+            'docPazSalvo': `
+                <h2>CERTIFICADO DE PAZ Y SALVO CON EL TESORO Y SOLVENCIA</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 05 de julio de 2026 E∴ V∴</span>
+                    <span><strong>Beneficiario:</strong> Rubén González y Obreros salientes</span>
+                    <span><strong>Certificador:</strong> Tesorería Logia Luxor N.º 1</span>
+                </div>
+                <h3>🪙 CERTIFICACIÓN DE ESTADO FINANCIERO AL DÍA</h3>
+                <p>Se certifica fehacientemente y bajo fe masónica que al momento de la presentación de su Plancha de Quite el 05/07/2026, los hermanos solicitantes se encuentran:</p>
+                <ul>
+                    <li><strong>100% AL DÍA Y A CUBIERTO</strong> en cuotas ordinarias mensuales de Logia hasta el ejercicio corriente.</li>
+                    <li><strong>100% AL DÍA Y A CUBIERTO</strong> en capitaciones nacionales, derechos de registro, diplomas y credenciales ante la Gran Tesorería y el Soberano Santuario.</li>
+                    <li><strong>LIBRES DE TODO ADEUDO</strong> pecuniario, compromisos de metales o retención de bienes, joyas, malletes o fondos de caja chica del Taller.</li>
+                </ul>
+                <h3>⚖️ EFECTO JURÍDICO MASÓNICO (ART. 29.º REGLAMENTO)</h3>
+                <p>Al estar plenamente a cubierto con el Tesoro, <strong>ninguna autoridad podrá retener, dilatar o negar el otorgamiento del QUIT-PLACET</strong>, invalidando desde su origen cualquier acusación falsa de morosidad o abandono que intente articularse como represalia política.</p>
+            `,
+            'notaDeyhut1': `
+                <h2>COMUNICACIÓN OFICIAL: NOTA DEYHUT I — RETIRO DE MEMPHIS-MISRAÏM</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 6 de junio de 2026 E∴ V∴ (6.6.26)</span>
+                    <span><strong>Autor:</strong> MSH∴ Deyhut 3° 33° 96°</span>
+                    <span><strong>Carácter:</strong> Manifiesto Fundacional y Cierre de Etapa</span>
+                </div>
+                <h3>🏛️ QUERIDOS Y RESPETADOS HERMANOS</h3>
+                <p>Al concluir esta etapa de trabajo, deseo expresar mi más profundo agradecimiento por la confianza depositada en mí para acompañar este importante proceso de levantamiento, organización y fortalecimiento del Rito Antiguo y Primitivo de Memphis-Misraïm en la República del Paraguay.</p>
+                <p>Ha sido un honor contribuir, desde el lugar que me correspondió, a la conformación y consolidación de la Gran Logia, del Supremo Consejo y del Soberano Santuario del Rito de Memphis-Misraïm. Este trabajo, realizado con esfuerzo, compromiso y espíritu fraternal, representa una base importante para el porvenir de la masonería egipcia en vuestra jurisdicción.</p>
+                <p>El trabajo esencial está hecho. El grupo se encuentra fortalecido, las columnas han sido levantadas y las conexiones con una fuente auténtica y legítima del Rito de Memphis-Misraïm han quedado establecidas. Esto constituye un paso significativo, no solamente en el plano institucional, sino también en el orden iniciático y espiritual.</p>
+                <h3>⚖️ LA ADVERTENCIA INSTITUCIONAL Y EL CAMINO A SEGUIR</h3>
+                <p>Sin embargo, como en toda verdadera obra masónica, lo realizado hasta ahora no es un punto final, sino el inicio de un camino más profundo. <strong>Queda aún mucho por trabajar en materia de institucionalidad, códigos masónicos, formación ritual, disciplina interna, organización administrativa</strong> y comprensión plena de los deberes que impone una tradición iniciática tan antigua, compleja y elevada como la de Memphis-Misraïm.</p>
+                <p>La masonería egipcia no es solamente una estructura ritual o administrativa. Es una vía de búsqueda interior, una escuela de símbolos, una senda de regeneración espiritual y una herencia viva de los antiguos misterios. En ella resuenan la sabiduría hermética, la luz de los templos antiguos, el silencio de la iniciación y el deber permanente de transformar al ser humano en una piedra más justa, más pura y más útil para la construcción universal.</p>
+                <p>Será el tiempo, junto con el estudio, la perseverancia y los trabajos bien conducidos, el que permitirá que todo alcance su debida forma. Nada verdaderamente iniciático nace completo en un solo día. Toda obra justa requiere paciencia, humildad, orden, fraternidad y constancia. Solamente el tiempo y los trabajos harán que todo sea, en su momento, justo y perfecto.</p>
+                <h3>✨ DESPEDIDA Y MANDATO ESOTÉRICO</h3>
+                <p>Me retiro de este proceso con gratitud, respeto y esperanza, confiando en que los Hermanos sabrán cuidar la llama recibida, fortalecer sus columnas y honrar con dignidad la tradición que ahora tienen en sus manos.</p>
+                <p>Les deseo una buena vida masónica, una larga y fecunda vida masónica, llena de luz, sabiduría, unión, trabajo y servicio. Que el Sublime Arquitecto de los Mundos ilumine vuestros pasos y que la antigua tradición de Memphis-Misraïm florezca con nobleza, autenticidad y profundidad en la República del Paraguay.</p>
+                <p><em>Con estima fraternal,</em></p>
+                <p style="text-align: right; font-weight: bold; color: var(--gold-light);">MSH∴ Deyhut 3° 33° 96°<br>6.6.26</p>
+                <hr style="border-color: var(--border); margin: 25px 0;">
+                <h4 style="text-align: center; color: var(--gold);">🔱 EPÍGRAFE Y MEDITACIÓN FINAL 🔱</h4>
+                <p style="text-align: center; font-style: italic;">"Que el tiempo, gran guardián de toda obra iniciática, sea quien revele la verdadera medida de lo construido. Porque sólo aquello que ha sido levantado sobre piedra firme, con escuadra, compás, silencio y rectitud, logra atravesar la hora fugaz del hombre y permanecer más allá de su propio tiempo."</p>
+                <p style="text-align: center; font-style: italic;">"Así como las pirámides, hijas del desierto y del misterio, permanecen inmóviles sobre la tierra y orientadas hacia las estrellas, también toda obra masónica verdadera debe sostenerse en fundamentos sólidos y elevar su vértice hacia la luz, hacia la sabiduría y hacia el Sublime Arquitecto de los Mundos."</p>
+                <p style="text-align: center; font-weight: bold; color: var(--cyan);">"Que Memphis-Misraïm conserve siempre esa orientación sagrada: pies firmes sobre la tierra, corazón consagrado al trabajo y mirada elevada hacia el cielo."</p>
+            `,
+            'registroLiturgico': `
+                <h2>REGISTRO LITÚRGICO, OFICIALÍA Y MATRÍCULA CANÓNICA</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 3 de julio de 2026 E∴ V∴</span>
+                    <span><strong>Oriente:</strong> Valle de Asunción — R∴ L∴ S∴ Luxor N.º 1</span>
+                    <span><strong>Regularidad:</strong> Estricto Apego Litúrgico Egipcio</span>
+                </div>
+                <h3>🔱 ESTÁNDARES LITÚRGICOS DEL RITO DE MEMPHIS-MISRAÏM</h3>
+                <p>En contraposición al desorden y a los aumentos de grado arbitrarios ejecutados por el simbolismo sin instrucción, la Logia Madre Luxor N.º 1 deja constancia fehaciente de su estricto cumplimiento del ritual y simbolismo egipcio:</p>
+                <ul>
+                    <li><strong>Iluminación del Templo (11 Luces Sagradas):</strong> Oriente iluminado por Candelabro de 5 velas; 1.er Vigilante con dos candelabros de 2 velas (4 luces); y 2.º Vigilante con dos candelabros de 1 vela (2 luces). Total: 11 luces rituales. Consejero de luces: 5, 3, 1, 2.</li>
+                    <li><strong>Altar de los Juramentos (Ara):</strong> Biblia Sagrada con espada encima y rodeada por 4 velas de consagración.</li>
+                    <li><strong>Apertura del Volumen de la Ley Sagrada según Grado:</strong>
+                        <ul>
+                            <li><em>1.er Grado (Aprendiz):</em> Salmo 133.</li>
+                            <li><em>2.º Grado (Compañero):</em> Libro de Rut o Amós.</li>
+                            <li><em>3.er Grado (Maestro Masón):</em> Eclesiastés Capítulo 12.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Kit de Aprendiz Regular:</strong> Mandil de cuero blanco, guantes blancos y moño negro (Costo referencial social: 145.000 Gs.), garantizando la uniformidad y equidad de los neófitos.</li>
+                </ul>
+                <h3>🏛️ ESTRUCTURA DE OFICIALÍA Y DIGNIDADES DE LA ORDEN</h3>
+                <p>El gobierno litúrgico del Rito preserva sus denominaciones tradicionales y jerarquías indiscutibles:</p>
+                <ol>
+                    <li>Sustituto Gran Maestro Nacional o Vice Gran Maestro Nacional.</li>
+                    <li>Gran Secretario o Gran Canciller.</li>
+                    <li>Gran Orador o Gran Defensor del Rito o Ministro de Estado.</li>
+                    <li>Gran Tesorero o Gran Guardador de los Tesoros.</li>
+                    <li>Gran Experto o <strong>Gran Anubis</strong> (Guardián del Umbral).</li>
+                    <li>Gran Maestro de Ceremonias.</li>
+                    <li>Gran Conservador, Guardasellos.</li>
+                    <li>1.er Gran Guardián o Gran Capitán de Guardia.</li>
+                    <li>2.º Gran Guardián.</li>
+                </ol>
+                <h3>📑 REGISTRO OFICIAL DE MATRÍCULAS Y CÉDULAS DE IDENTIDAD (C.I.)</h3>
+                <p>Para la debida seguridad de las columnas y prevenir la intromisión de miembros irregulares o expulsados de otros orientes, se asienta el registro oficial de identidad civil de los Hermanos fundadores y garantes de la regularidad en el Valle de Asunción:</p>
+                <ul>
+                    <li><strong>Edgar Esbissi Fazio Pedrozo:</strong> C.I. N.º 2.105.199 (Gran Conservador / 95º)</li>
+                    <li><strong>Miguel Angel Benitez Rodas:</strong> C.I. N.º 3.813.747 (Lic. IPS Eventos / Maestro Masón)</li>
+                    <li><strong>Selva María Chaparro Delgado:</strong> C.I. N.º 2.453.002 (Obrera Regular)</li>
+                </ul>
+                <p><strong>Conclusión Canónica:</strong> Este registro demuestra que mientras la Logia Luxor N.º 1 y el Soberano Santuario trabajan con precisión esotérica y rigor identitario, la convocatoria de Sinforiano Riveros para el 7 de julio se articuló <em>"a espaldas de los obreros"</em>, legitimando el retiro y abatimiento temporal del 05/07/2026.</p>
+            `,
+            'planillaIngresantes': `
+                <h2>PLANILLA OFICIAL DE INGRESANTES Y CONTROL DE REGULARIDAD</h2>
+                <div class="modal-meta-box">
+                    <span><strong>Fecha:</strong> 05 de julio de 2026 E∴ V∴</span>
+                    <span><strong>Padrino Garante:</strong> MSH Edgar Esbissi Fazio Pedrozo (Grado 95º)</span>
+                    <span><strong>Madrina Garante:</strong> IPH Nelly Jara de Keim (V∴ M∴ Luxor N.º 1)</span>
+                </div>
+                <h3>🏛️ REGULARIDAD CANÓNICA VS. ADMISIONES IRREGULARES</h3>
+                <p>En directa oposición al <strong>Acta de Incumplimiento N.º 06/2025</strong> —que denuncia la admisión irregular de miembros de otros orientes sin exigir Plancha de Quite—, la Logia Madre Luxor N.º 1 y el Soberano Santuario exhiben el padrón oficial de nuevos ingresantes, demostrando el estricto cumplimiento canónico al exigir credenciales de origen y padrinazgo responsable:</p>
+                <div class="table-container" style="margin: 20px 0;">
+                    <table style="width:100%; text-align:left; border-collapse:collapse; background:rgba(0,0,0,0.4); border:1px solid var(--border);">
+                        <thead>
+                            <tr style="background:rgba(212,175,55,0.15); color:var(--gold);">
+                                <th style="padding:10px; border-bottom:1px solid var(--border);">N.º</th>
+                                <th style="padding:10px; border-bottom:1px solid var(--border);">Ingresante</th>
+                                <th style="padding:10px; border-bottom:1px solid var(--border);">Cédula / Doc.</th>
+                                <th style="padding:10px; border-bottom:1px solid var(--border);">Padrino / Madrina</th>
+                                <th style="padding:10px; border-bottom:1px solid var(--border);">Logia / Rito Origen</th>
+                                <th style="padding:10px; border-bottom:1px solid var(--border);">Estatus Documental</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:10px; font-weight:bold; color:var(--gold);">01</td>
+                                <td style="padding:10px; font-weight:bold; color:#fff;">Alan José KEIM GÓMEZ SÁNCHEZ</td>
+                                <td style="padding:10px;">Verificado en Secretaría</td>
+                                <td style="padding:10px; color:#80ffdb;">IPH Nelly Jara de Keim<br><small>(V:. M:. Luxor N.º 1)</small></td>
+                                <td style="padding:10px;">Gran Logia Simbólica del<br><strong>Rito Nacional Paraguayo</strong></td>
+                                <td style="padding:10px;"><span style="color:#80ffdb; font-weight:bold;">✅ PRESENTA QUITE Y PLACET</span><br><small>A cubierto con su obediencia madre</small></td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:10px; font-weight:bold; color:var(--gold);">02</td>
+                                <td style="padding:10px; font-weight:bold; color:#fff;">Miguel Ángel BENÍTEZ RODAS</td>
+                                <td style="padding:10px; font-family:monospace;">C.I. 3.813.747<br><small>(Lic. IPS Eventos)</small></td>
+                                <td style="padding:10px; color:var(--gold-light);">MSH Edgar Fazio Pedrozo<br><small>(Gran Conservador 95º)</small></td>
+                                <td style="padding:10px;">Profano / Iniciación<br><strong>Valle de Asunción</strong></td>
+                                <td style="padding:10px;"><span style="color:#80ffdb; font-weight:bold;">✅ APROBADO POR PLOMADA</span><br><small>Instrucción bajo rigor egipcio</small></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px; font-weight:bold; color:var(--gold);">03</td>
+                                <td style="padding:10px; font-weight:bold; color:#fff;">Selva María CHAPARRO DELGADO</td>
+                                <td style="padding:10px; font-family:monospace;">C.I. 2.453.002</td>
+                                <td style="padding:10px; color:var(--gold-light);">MSH Edgar Fazio Pedrozo<br><small>(Gran Conservador 95º)</small></td>
+                                <td style="padding:10px;">Profana / Iniciación<br><strong>Valle de Asunción</strong></td>
+                                <td style="padding:10px;"><span style="color:#80ffdb; font-weight:bold;">✅ APROBADO POR PLOMADA</span><br><small>Respeto a tiempos litúrgicos</small></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3>🛡️ CONCLUSIÓN DEL REGISTRO CANÓNICO</h3>
+                <p>El caso del hermano <strong>Alan José Keim Gómez Sánchez</strong> sienta el precedente jurisprudencial obligatorio del Rito de Memphis-Misraïm en Paraguay: al provenir de la <strong>Gran Logia Simbólica del Rito Nacional Paraguayo</strong>, ha presentado formalmente su <strong>Plancha de Quite y Placet original</strong>, demostrando que en nuestra jurisdicción ningún masón externo es admitido sin su carta de paz y salvo, honrando los antiguos límites de la orden.</p>
+                <p>Asimismo, los hermanos apadrinados directamente por el Gran Conservador <strong>Edgar Esbissi Fazio Pedrozo (C.I. 2.105.199)</strong> cuentan con sus registros civiles e iniciáticos en regla, garantizando columnas puras, instruidas y libres de toda irregularidad.</p>
+            `,
+            'reactivacion9Julio': `
+                <h2 style="color:#00f5d4;">🎉 MANIFIESTO DE REACTIVACIÓN Y RETORNO A LA ORDEN ANTIGUA</h2>
+                <div class="modal-meta-box" style="background:rgba(0, 245, 212, 0.1); border-color:#00f5d4;">
+                    <span><strong>Fecha de Reactivación:</strong> Jueves 9 de Julio de 2026 E∴ V∴</span>
+                    <span><strong>Soberano Gran Maestro:</strong> MSH Deyhut (Grado 3º 33º 96º)</span>
+                    <span><strong>Patriarca Gran Conservador:</strong> MSH Edgar Fazio Pedrozo (Grado 95º)</span>
+                </div>
+                <h3>🏛️ EL REGRESO A LA SOBERANA ORDEN DEL RITO ANTIGUO Y PRIMITIVO</h3>
+                <p>El <strong>Jueves 9 de Julio de 2026</strong>, tras haber consumado la <strong>Salida Ordenada del 05 de julio</strong> y habiendo depurado nuestras columnas de toda morosidad, indisciplina e intromisión profana (denunciadas en las Actas N.º 01 al 06), los auténticos Maestros y Conservadores de la Luz <strong>RETORNAN Y REACTIVAN LA ORDEN ANTIGUA</strong>: la <strong>Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim</strong> de la República del Paraguay.</p>
+                
+                <div style="background:rgba(255, 77, 77, 0.15); border-left:4px solid #ff4d4d; padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:#ff4d4d; margin-top:0;">🛡️ DEPURACIÓN CANÓNICA: EXCLUSIÓN TOTAL DE ESPURIOS E IMPUROS</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff;">
+                        En estricta defensa de la regularidad litúrgica y territorial de nuestra Orden, el Soberano Santuario decreta y proclama la <strong>ELIMINACIÓN DE TODO REGISTRO, ACTA Y RECONOCIMIENTO</strong> por ser declarados <strong>ESPURIOS, IMPUROS E IRREGULARES</strong>:<br>
+                        1. <strong>las agrupaciones espurias e impuras borradas de todo registro.C.":</strong> Quedan expulsados y borrados de todo registro o reconocimiento canónico en nuestra jurisdicción por constituir una intromisión externa espuria e impura.<br>
+                        2. <strong>Usurpadores Simbólicos y Rebeldes:</strong> Quedan asimismo excluidos y sin valor masónico los ciudadanos <strong>Sinforiano Riveros, Ceto Torales, Alejandra Aguilera, Ray Fernando Oviedo Rotela y Bret González</strong>.<br>
+                        <em>Toda patente, tratado o convocatoria que porte la firma o sello de dichos cuerpos o individuos es NULA DE NULIDAD ABSOLUTA.</em>
+                    </p>
+                </div>
+
+                <h3>🌟 LEVANTAMIENTO DE INSTITUCIONES REGULARES E INHERENTES</h3>
+                <p>Para el pleno funcionamiento soberano y regular de la nueva Orden, se reactivan y ponen en marcha todas sus cámaras e instituciones:</p>
+                <ul>
+                    <li><strong>Soberano Santuario Nacional (Grados 33º, 95º y 96º):</strong> Conducido por el SGM MSH Deyhut (96º) y el Patriarca Gran Conservador MSH Edgar Fazio Pedrozo (95º), en subordinación a la Autocefalía Soberana, cesando la jurisdicción externa de MSH Luis León Pizarro (Grado 99º) ante el Hierofante de la Gran Logia Simbólica del Paraguay.</li>
+                    <li><strong>Gran Logia Simbólica de la Soberana Orden:</strong> Gobierno regular del simbolismo mixto paraguayo.</li>
+                    <li><strong>Reactivación de las Tres Logias Fundacionales:</strong> Luxor N.º 1 (Logia Madre, V∴ M∴ Nelly Jara de Keim), Constructores del Arte Real N.º 2 y Emancipadoras de la Patria N.º 3.</li>
+                    <li><strong>Alianza Histórica con el Rito Nacional Paraguayo:</strong> Se consolida el reconocimiento fraterno que respalda la afiliación regular con Plancha de Quite y Placet del H. Alan José Keim Gómez Sánchez y la Madrina Nelly Jara de Keim.</li>
+                </ul>
+                <div style="text-align:center; margin-top:25px;">
+                    <button class="btn-view" style="background:var(--gold); color:#000; font-weight:bold; padding:10px 20px; font-size:1.05em;" onclick="openModal('juramentos339596')">📜 Ver Juramentos Canónicos (Grados 33º, 95º y 96º)</button>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:#00f5d4; font-size:1.1em; margin-top:20px;">¡LA LUZ HA REGRESADO A SU CAUSA PRIMITIVA! 🏛️✨</p>
+            `,
+            'juramentos339596': `
+                <h2 style="color:var(--gold);">📜 JURAMENTOS CANÓNICOS DE EXALTACIÓN E INVESTIDURA</h2>
+                <div class="modal-meta-box" style="background:rgba(212,175,55,0.1); border-color:var(--gold);">
+                    <span><strong>Cámara:</strong> Soberano Santuario Nacional</span>
+                    <span><strong>Grados:</strong> 33º (Inspección), 95º (Patriarcado), 96º (Gobierno SGM)</span>
+                    <span><strong>Objetivo:</strong> Resguardo de Regularidad y Exclusión de Espuriedad</span>
+                </div>
+                <h3>🏛️ EL PACTO INQUEBRANTABLE DEL RITO EGIPCIO</h3>
+                <p>En el Rito Antiguo y Primitivo de Memfis Misraim, el juramento canónico es un sello iniciático y moral que obliga al resguardo de los Antiguos Límites (Landmarks) y a la extirpación implacable de toda intromisión externa espuria e impura.</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #80ffdb; padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:#80ffdb; margin-top:0;">🦅 JURAMENTO DEL GRADO 33º (Soberano Gran Inspector General):</h4>
+                    <p style="font-style:italic; font-size:0.95em; line-height:1.6; color:#fff;">
+                        "Yo, [Nombres], ante la Gloria del Sublime Arquitecto de los Mundos y el Supremo Consejo del Grado 33º, <strong>JURO POR MI HONOR, MI CONCIENCIA Y MI ESPADA</strong>:<br>
+                        1. Guardar lealtad absoluta y subordinación canónica al Soberano Santuario Nacional de la Orden y a sus Grandes Constituciones.<br>
+                        2. Ejercer la labor de inspección con rectitud y plomada moral, defendiendo a los obreros regulares.<br>
+                        3. No consentir innovación espuria, indisciplina ni morosidad; y <strong>rechazar terminantemente la admisión de cualquier masón externo que no presente su Plancha de Quite original y Paz y Salvo</strong>.<br>
+                        4. Resguardar el secreto iniciático del 1º al 33º Grado.<br>
+                        Si faltare a este juramento, que se me despoje de mi Banda y Mandil, sea quebrado mi mallete y borrado mi nombre de la masonería regular. ¡Así sea!"
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">🔱 JURAMENTO DEL GRADO 95º (Patriarca Gran Conservador del Rito):</h4>
+                    <p style="font-style:italic; font-size:0.95em; line-height:1.6; color:#fff;">
+                        "Yo, [Nombres], investido de la luz de Heliópolis, Memfis y Tebas, ante la Suprema Asamblea de los Patriarcas Grandes Conservadores, <strong>JURO SOLEMNEMENTE E INVOCANDO EL FUEGO SAGRADO</strong>:<br>
+                        1. Consagrar mi vida a la conservación, defensa y resguardo inalterable de los rituales, liturgias y arcanos del Rito en su pureza de 99 grados.<br>
+                        2. Custodiar el tesoro, archivos y Cartas Patentes del Soberano Santuario, impidiendo que caigan en manos de morosos, usurpadores o profanos.<br>
+                        3. <strong>No reconocer jamás, no firmar pactos ni someterme a cuerpos o individuos declarados espurios, impuros o irregulares</strong>, defendiendo el linaje que nos hermana con el Cenit Mundial.<br>
+                        4. Asumir la instrucción litúrgica como garante moral y columna de arquitectura de los hermanos.<br>
+                        Si violare este pacto, que la luz de Osiris se aparte de mi espíritu y mi cordón patriarcal sea reducido a cenizas. ¡PAX – AMOR – IMPERIUM! Así sea."
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #9d4edd; padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:#e0aaff; margin-top:0;">👑 JURAMENTO DEL GRADO 96º (Soberano Gran Maestro Nacional / SGC):</h4>
+                    <p style="font-style:italic; font-size:0.95em; line-height:1.6; color:#fff;">
+                        "Yo, [Nombres], llamado a presidir el Soberano Santuario de la República del Paraguay, <strong>JURO POR LA SUPREMA SOBERANÍA Y EL MALLETE DE PODER</strong>:<br>
+                        1. Gobernar y administrar el Soberano Santuario, Supremo Consejo 33º y Gran Logia Simbólica con sabiduría, fortaleza, equidad y apego a las Grandes Constituciones.<br>
+                        2. Aplicar el peso de la ley masónica para extirpar rebeldía, morosidad, retención de caudales y desacato; expulsando a quien pretenda profanar las columnas.<br>
+                        3. Defender la independencia y soberanía del Santuario frente a potencias usurpadoras o diplomacia irregular.<br>
+                        4. Mantener una leal fraternidad y subordinación canónica internacional hacia nuestro legítimo <strong>Gran Hierofante Mundial, MSH∴ Luis León Pizarro</strong> (Cenit Mundial).<br>
+                        5. Levantar y sostener las instituciones regulares de la Soberana Orden para que hombres y mujeres libres practiquen el Arte Real en igualdad.<br>
+                        Si traicionare esta alta magistratura, que el Gran Mallete se vuelva contra mí y mi estandarte sea abatido. ¡PAX – AMOR – IMPERIUM! Así sea."
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); margin-top:20px;">✨ Juramentos prestados y honrados por MSH Deyhut (96º) y MSH Edgar Fazio Pedrozo (95º) ✨</p>
+            `,
+            'decretoAumento33': `
+                <h2 style="color:var(--gold);">👑 DECRETO SOBERANO N.º 03 / 2026 – S.S.</h2>
+                <div class="modal-meta-box" style="background:rgba(212, 175, 55, 0.15); border-color:var(--gold);">
+                    <span><strong>Fecha Promulgación:</strong> 06 de Julio de 2026 E∴ V∴</span>
+                    <span><strong>Soberano Gran Maestro:</strong> MSH Deyhut (Grado 3º 33º 96º)</span>
+                    <span><strong>Patriarca Gran Conservador:</strong> MSH Edgar Fazio Pedrozo (Grado 95º)</span>
+                </div>
+                <h3>🦅 EXALTACIÓN Y AUMENTO DE SALARIO AL GRADO 33º</h3>
+                <p>El Soberano Santuario Nacional y el Supremo Consejo del Grado 33º otorgan la investidura de <strong>Soberanos Grandes Inspectores Generales del Rito Antiguo y Primitivo de Memfis Misraim</strong> a tres destacados obreros de la luz, en reconocimiento a su lealtad inquebrantable, regularidad canónica y solvencia en metales:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">📜 HERMANOS EXALTADOS E INVESTIDOS (GRADO 33º):</h4>
+                    <ul style="font-size:1.05em; line-height:1.8; color:#fff;">
+                        <li><strong>ALAN JOSÉ KEIM GÓMEZ SÁNCHEZ:</strong> Ingresado con Plancha de Quite y Placet original de la Gran Logia Simbólica del Rito Nacional Paraguayo, sentando jurisprudencia obligatoria de regularidad.</li>
+                        <li><strong>CARLOS ACHA:</strong> Miembro regular y a cubierto de metales, leal a las columnas fundacionales del Valle de Asunción.</li>
+                        <li><strong>MIGUEL ÁNGEL BENÍTEZ RODAS (C.I. 3.813.747):</strong> Obrero regular y a cubierto, bajo instrucción y padrinazgo directo del Gran Conservador MSH Edgar Fazio Pedrozo (95º).</li>
+                    </ul>
+                </div>
+
+                <h3>⚔️ PRERROGATIVAS E INSPECCIÓN JURISDICCIONAL</h3>
+                <p>A partir de la presente promulgación, los Hermanos investidos con el <strong>Grado 33º</strong> quedan facultados para empuñar la espada del inspeccionar en todos los templos y talleres de la jurisdicción nacional, velando por el estricto apego a las Grandes Constituciones, el cobro regular de capitaciones, el rechazo a iniciaciones o afiliaciones sin Quit-Placet original, y el resguardo del ceremonial egipcio.</p>
+                
+                <div style="background:rgba(0, 245, 212, 0.1); border-left:4px solid #00f5d4; padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">🏛️ SOBERANÍA ÚNICA DESPUÉS DEL 9 DE JULIO DE 2026:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Se ratifica y decreta que, tras la reactivación institucional del 9 de julio, <strong>TODO ES SOBERANA ORDEN DEL RITO ANTIGUO Y PRIMITIVO DE MEMFIS MISRAIM DE LA REPÚBLICA DEL PARAGUAY</strong>, quedando unificadas y subordinadas todas las cámaras al gobierno soberano nacional del MSH Deyhut (96º) en alianza canónica con la Autocefalía Soberana, cesando la jurisdicción externa de MSH Luis León Pizarro (Grado 99º) ante el Hierofante de la Gran Logia Simbólica del Paraguay.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); margin-top:20px;">¡PAX – AMOR – IMPERIUM! 🦅👑</p>
+            `,
+            'soberaniaUnica9799': `
+                <h2 style="color:#00f5d4;">🏛️ DECRETO DE SOBERANÍA ÚNICA Y REGLAMENTACIÓN DE CÚSPIDE</h2>
+                <div class="modal-meta-box" style="background:rgba(0, 245, 212, 0.1); border-color:#00f5d4;">
+                    <span><strong>Vigencia:</strong> A partir del Jueves 9 de Julio de 2026</span>
+                    <span><strong>Jurisdicción:</strong> República del Paraguay</span>
+                    <span><strong>Cúspide:</strong> Grados 97º, 98º y 99º (Hierofanía)</span>
+                </div>
+                <h3>🌟 PROCLAMACIÓN CARDINAL: TODO ES SOBERANA ORDEN DEL RITO ANTIGUO Y PRIMITIVO DE MEMFIS MISRAIM</h3>
+                <p>A partir del <strong>9 de julio de 2026</strong>, se decreta el cese definitivo de toda división, denominación externa confusa o paralelismo usurpador. Todas las logias y cámaras regulares que trabajan en el territorio paraguayo quedan unificadas e integradas bajo un solo estandarte, una sola ley y una sola denominación oficial: <strong>SOBERANA ORDEN DEL RITO ANTIGUO Y PRIMITIVO DE MEMFIS MISRAIM DE LA REPÚBLICA DEL PARAGUAY</strong>.</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">👑 REGLAMENTACIÓN DE LA CÚSPIDE HIEROFÁNTICA (GRADOS 97º AL 99º):</h4>
+                    <ul style="font-size:0.95em; line-height:1.7; color:#fff;">
+                        <li><strong>GRADO 97º (Sublime Patriarca Gran Consagrador / Gran Comendador del Rito):</strong> Custodio del Sanctum Sanctorum y de la transmisión litúrgica superior que consagra a los Patriarcas de los grados 95º y 96º.</li>
+                        <li><strong>GRADO 98º (Serenísimo Gran Patriarca Conservador del Rito / SGC del Mundo):</strong> Senado Superior y Consejo Consultivo Internacional que custodia el Arca de la Alianza y la ortodoxia ritual en los cinco continentes.</li>
+                        <li><strong>GRADO 99º (Soberano Gran Hierofante Mundial / Supremo Conservador):</strong> Vértice supremo y absoluto del Rito a nivel global, que encarna el pontificado egipcio y la transmisión de la Carta Patente. En nuestra jurisdicción regular, resplandece en la dignidad del <strong>MSH∴ Luis León Pizarro</strong> (Cenit del Perú / Cenit Mundial).</li>
+                    </ul>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">🛡️ DEFENSA DE COLUMNAS Y EXPULSIÓN DE ESPURIEDAD:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Cualquier individuo, cuerpo o documento ajeno a la <strong>Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim de la República del Paraguay</strong> es declarado <strong>ESPURIO, IMPURO E IRREGULAR</strong>. Quedan borrados de todo registro elementos espurios e impuros borrados de todo registro / agrupaciones espurias y los elementos rebeldes desvinculados en la salida ordenada del 05/07/2026.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:#00f5d4; font-size:1.1em; margin-top:20px;">¡LA LUZ BRILLA ÚNICA Y SOBERANA EN EL PARAGUAY! 🏛️✨</p>
+            `,
+            'ritualesDudososRojas': `
+                <h2 style="color:#ff4d6d;">🛡️ ANÁLISIS Y RECHAZO DE RITUALES "DUDOSOS" Y APÓCRIFOS</h2>
+                <div class="modal-meta-box" style="background:rgba(255, 77, 109, 0.15); border-color:#ff4d6d;">
+                    <span><strong>Origen del Dictamen:</strong> Soberano Santuario Paraguay</span>
+                    <span><strong>Garante Litúrgico:</strong> MSH Edgar Fazio Pedrozo (95º)</span>
+                    <span><strong>Clasificación:</strong> Advertencia y Guardia Ritual</span>
+                </div>
+                <h3>🔍 ¿POR QUÉ SE CLASIFICAN COMO "DUDOSOS" ALGUNOS RITUALES EGIPCIOS?</h3>
+                <p>En repositorios públicos circulan manuales y compendios catalogados explícitamente con la leyenda <strong>"(dudoso)"</strong> o apócrifos (como las compilaciones atribuidas a Gabriel López de Rojas y otros autores sin linaje). Esta clasificación en la historiografía masónica internacional obedece a tres defectos canónicos insalvables:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">⚠️ VICIOS DE LOS RITUALES APÓCRIFOS:</h4>
+                    <ul style="font-size:0.95em; line-height:1.7; color:#fff;">
+                        <li><strong>Carencia de Carta Patente y Linaje:</strong> Son reconstrucciones literarias sin transmisión regular emanada de un Soberano Santuario o Cenit Mundial legítimo.</li>
+                        <li><strong>Omisión de las Claves Esotéricas:</strong> Carecen de las verdaderas palabras de paso, tocamientos, sellos alquímicos y de la geometría de 11 luces sagradas que resguardan la pureza iniciática.</li>
+                        <li><strong>Innovaciones Profanas:</strong> Mezclan sincretismos irregulares no autorizados por la Gran Conservaduría del Rito.</li>
+                    </ul>
+                </div>
+
+                <div style="background:rgba(212, 175, 55, 0.15); border-left:4px solid var(--gold); padding:15px; margin:20px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">🏛️ PARALELISMO JURISDICCIONAL EN EL PARAGUAY:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Así como la masonería universal repudia los textos "dudosos", en nuestra jurisdicción <strong>se repudia y borra de todo registro a entidades espurias e impuras (elementos espurios e impuros borrados de todo registro)</strong> y a los cabecillas rebeldes expulsados (Sinforiano Riveros, Ceto Torales, etc.). A partir del <strong>9 de julio de 2026</strong>, en la <strong>Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim de la República del Paraguay</strong> solo se reconocen los rituales oficiales custodiados por el SGM Deyhut (96º) y el Patriarca Gran Conservador Edgar Fazio (95º).
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:#00f5d4; font-size:1.1em; margin-top:20px;">¡PLOMADA, ORTODOXIA Y PUREZA EN NUESTRAS COLUMNAS! 🛡️✨</p>
+            `,
+            'nomenclator1a100': `
+                <h2 style="color:var(--gold);">👑 NOMENCLÁTOR Y ESCALA CEREMONIAL DE LOS GRADOS 1º AL 100º</h2>
+                <div class="modal-meta-box" style="background:rgba(212, 175, 55, 0.15); border-color:var(--gold);">
+                    <span><strong>Corpus:</strong> Rito de Memphis-Misraïm (Escala de 100 Grados)</span>
+                    <span><strong>Pilares Litúrgicos:</strong> Grados 33º, 95º y 96º</span>
+                    <span><strong>Fuentes:</strong> Colecciones Históricas R-12, R-16 y series completas</span>
+                </div>
+                <h3>🏛️ ESTRUCTURA GENERAL DE LAS CUATRO SERIES</h3>
+                <p>El Antiguo y Primitivo Rito de Memphis-Misraïm estructura su progresión en <strong>100 escalones iniciáticos</strong> que conducen al recipiendario desde la piedra bruta hasta la luz pontifical:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">I. SERIE SIMBÓLICA Y FILOSÓFICA (Grados 1º al 33º):</h4>
+                    <p style="font-size:0.9em; line-height:1.6; color:#fff; margin-bottom:5px;">
+                        Comprende las Logias Simbólicas (1º al 3º), Colegios de Perfección (4º al 14º), Capítulos Rosacruces (15º al 18º — incl. el <strong>16º Príncipe de Jerusalén / R-16</strong>), Senados Herméticos (19º al 29º) y Consejos de Grandes Electos (30º al 33º).
+                    </p>
+                    <p style="font-size:0.95em; color:var(--gold); margin-bottom:0;"><strong>⚔️ PILAR DEL GRADO 33º (Soberano Gran Inspector General):</strong> Confiere la espada de plomada e inspección sobre todos los talleres del Valle, dignidad investida en los HH∴ Alan Keim, Carlos Acha y Miguel Benítez.</p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">II. y III. SERIES SUPERIORES, CIENTÍFICAS Y HERMÉTICAS (Grados 34º al 90º):</h4>
+                    <p style="font-size:0.9em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Abarca el Consistorio Superior (34º al 66º Gran Consagrador) y el Sublime Consejo de Misterios Egipcios (67º al 90º Sublime Maestro de la Gran Obra / Patriarca de Isis), profundizando en la alquimia, la cábala y los misterios de Heliópolis y Memphis.
+                    </p>
+                </div>
+
+                <div style="background:rgba(212, 175, 55, 0.15); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">IV. SOBERANO SANTUARIO — GOBIERNO Y CÚSPIDE (Grados 91º al 100º):</h4>
+                    <ul style="font-size:0.95em; line-height:1.7; color:#fff; margin-bottom:0;">
+                        <li><strong>95º PATRIARCA GRAN CONSERVADOR DEL RITO:</strong> Pilar del hermetismo, garante del Arca de la Alianza y protector litúrgico. En Paraguay: <strong>MSH Edgar Fazio Pedrozo (C.I. 2.105.199)</strong>.</li>
+                        <li><strong>96º SOBERANO GRAN MAESTRO NACIONAL:</strong> Pilar del poder soberano y gobierno canónico del Santuario. En Paraguay: <strong>MSH Deyhut (Grado 3º 33º 96º)</strong>.</li>
+                        <li><strong>97º al 100º CÚSPIDE HIEROFÁNTICA:</strong> Gran Consagrador (97º), SGC del Mundo (98º), Gran Hierofante Mundial (99º — <strong>MSH∴ Luis León Pizarro</strong>) y Soberano Gran Hierofante General (100º).</li>
+                    </ul>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:#00f5d4; font-size:1.1em; margin-top:20px;">¡UNIDAD Y SOBERANÍA ÚNICA EN LOS 100 ESCALONES DE LA LUZ! 🏛️✨</p>
+            `,
+            'hijosLuzLibroNegro': `
+                <h2 style="color:#9b5de5;">☀️ DOCTRINAL: LOS HIJOS DE LA LUZ VS. EL LIBRO NEGRO</h2>
+                <div class="modal-meta-box" style="background:rgba(155, 93, 229, 0.15); border-color:#9b5de5;">
+                    <span><strong>Tesis:</strong> Justificación Filosófica de la Purga y Reactivación</span>
+                    <span><strong>Obras:</strong> R. Aubourg Dejean vs. Dr. S. Raynaud de la Ferrière</span>
+                    <span><strong>Vigencia:</strong> Desde el 9 de Julio de 2026</span>
+                </div>
+                <h3>⚖️ LA DIALÉCTICA MASÓNICA EN NUESTRA JURISDICCIÓN</h3>
+                <p>La depuración y reactivación soberana de nuestra obediencia halla su fundamento en el contraste doctrinario entre dos grandes tratados masónicos:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">⬛ "EL LIBRO NEGRO DE LA FRANCMASONERÍA" (La Denuncia):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Serge Raynaud de la Ferrière denuncia la pérdida del secreto, el mercantilismo, la retención de caudales y la admisión sin filtros en los cuerpos degenerados. <strong>En Paraguay, las Actas de Auditoría e Incumplimiento constituyeron nuestro Libro Negro</strong>, motivando la salida ordenada del 05/07/2026 y borrando de todo registro a morosos y espurios (elementos espurios e impuros borrados de todo registro).
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">☀️ "LOS HIJOS DE LA LUZ" (El Retorno a la Pureza):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Raymond F. Aubourg Dejean recuerda que somos herederos de los misterios egipcios llamados a construir un templo de moral y fraternidad. <strong>El 9 de julio de 2026 resplandece la Reactivación Soberana</strong>, proclamando que todo es <strong>Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim de la República del Paraguay</strong>, bajo el gobierno del SGM Deyhut (96º) y el Gran Conservador Edgar Fazio (95º).
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡PLOMADA E INSPECCIÓN CONTRA TODA PROFANACIÓN! ⚔️🏛️</p>
+            `,
+            'livreMMMichel': `
+                <h2 style="color:#00f5d4;">🐍 GNOSIS EGIPCIA: EL "LIVRE MM (MICHEL)" Y HERMES TRISMEGISTO</h2>
+                <div class="modal-meta-box" style="background:rgba(0, 245, 212, 0.15); border-color:#00f5d4;">
+                    <span><strong>Tradición:</strong> Hermetismo y Teosofía Egipcia</span>
+                    <span><strong>Arquetipo:</strong> Hermes Trismegisto (Tres Veces Grande)</span>
+                    <span><strong>Custodia:</strong> Patriarca Gran Conservador (Grado 95º)</span>
+                </div>
+                <h3>🏛️ EL RAIGÓN TRISMEGÍSTICO DE NUESTRA ORDEN</h3>
+                <p>El compendio histórico y teosófico preservado como el <strong>"Livre MM (Michel)"</strong> (El Libro de Memphis-Misraïm) establece que nuestra Orden no es una administración mercantil, sino un santuario de iniciación alquímica y caballería espiritual, sustentado en tres pilares:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">I. LA LEY DE ANALOGÍA Y CORRESPONDENCIA:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        <em>“Como es arriba, es abajo; para realizar el milagro de la Cosa Única”</em>. El Soberano Santuario Nacional en el Valle de Asunción es el espejo sagrado del orden cósmico e iniciático tradicional.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">II. ALQUIMIA ESPIRITUAL (Rechazo al Metal Profano):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        El magisterio exige transmutar el plomo de la codicia en el oro del servicio. La tradición trismegística proscribe el comercio de grados y condena a quienes retienen capitaciones por lucro personal, justificando la expulsión de elementos morosos, espurios e impuros.
+                    </p>
+                </div>
+
+                <div style="background:rgba(0, 245, 212, 0.15); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">III. CUSTODIA CANÓNICA Y VIGENCIA DESDE EL 9 DE JULIO DE 2026:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        El Garante de Liturgia y Patriarca Gran Conservador (<strong>MSH Edgar Esbissi Fazio Pedrozo - Grado 95º</strong>) custodia esta gnosis contra todo ritual "dudoso". Desde el <strong>9 de julio de 2026</strong>, se ratifica que en el Paraguay <strong>todo es Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim</strong>, bajo el gobierno del SGM Deyhut (96º).
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡SABIDURÍA TRISMEGÍSTICA, FUERZA Y BELLEZA EN NUESTROS TEMPLOS! 🐍✨</p>
+            `,
+            'alianzaRosacruz058': `
+                <h2 style="color:#ff0055;">🌹 ALIANZA ROSACRUZ Y GNOSIS: INVESTIGACIÓN HERMÉTICA EN EL RITO</h2>
+                <div class="modal-meta-box" style="background:rgba(255, 0, 85, 0.15); border-color:#ff0055;">
+                    <span><strong>Tradición:</strong> Rosacrucismo y Masonería Egipcia</span>
+                    <span><strong>Publicación:</strong> Retales de Masonería Nº 058 (Abril 2016)</span>
+                    <span><strong>Custodia:</strong> Patriarca Gran Conservador (Grado 95º)</span>
+                </div>
+                <h3>🌹 EL HERMANAMIENTO DEL CAPÍTULO ROSACRUZ Y LA GNOSIS</h3>
+                <p>La investigación masónica y hermética internacional (reflejada en la colección "Retales de Masonería Nº 058") evidencia la unidad indisoluble entre la Masonería Simbólica (1º al 3º), el magisterio del <strong>Soberano Capítulo Rosacruz (15º al 18º)</strong> y los Altos Arcanos del Rito:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff0055; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff0055; margin-top:0;">I. LA ROSA EN EL CENTRO DE LA CRUZ (Sacrificio y Justicia):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        El Rosacruz masónico transmuta el dolor en luz espiritual. En la práctica institucional de nuestra obediencia, esto exige <strong>inquebrantable justicia canónica</strong>: la expulsión de elementos morosos y el repudio de usurpadores espurios (elementos espurios e impuros borrados de todo registro) es un deber sagrado de purificación.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">II. LIBRE INVESTIGACIÓN SIN LIBERTINAJE LITÚRGICO:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Las revistas de investigación aportan valiosa instrucción, pero no reemplazan la autoridad canónica. El <strong>Patriarca Gran Conservador (MSH Edgar Esbissi Fazio Pedrozo - Grado 95º)</strong> proscribe todo ritual "dudoso" o apócrifo en nuestros templos.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255, 0, 85, 0.15); border-left:4px solid #ff0055; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">III. UNIDAD SOBERANA DESDE EL 9 DE JULIO DE 2026:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Bajo el gobierno regular del SGM <strong>MSH Deyhut (96º)</strong> bajo <strong>Soberanía Autocéfala y cese de jurisdicción externa de MSH Luis León Pizarro (Grado 99º)</strong> ante el Hierofante de la Gran Logia Simbólica del Paraguay, se ratifica que en todo el Paraguay <strong>todo es Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim</strong>.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡PAX, AMOR Y LUZ ROSACRUZ EN EL ZENIT DEL PARAGUAY! 🌹🏛️✨</p>
+            `,
+            'canonAkalMariel': `
+                <h2 style="color:#3a86ff;">📚 CANON ACADÉMICO: AKAL, PIERRE MARIEL Y CULTURA MASÓNICA Nº 60</h2>
+                <div class="modal-meta-box" style="background:rgba(58, 134, 255, 0.15); border-color:#3a86ff;">
+                    <span><strong>Autoridad:</strong> Historiografía y Enciclopedia Masónica Universal</span>
+                    <span><strong>Obras:</strong> Diccionario Akal, P. Mariel, Cultura Masónica</span>
+                    <span><strong>Respaldo:</strong> Purga de Espurios y Regularidad del Rito</span>
+                </div>
+                <h3>🏛️ EL RESPALDO CIENTÍFICO DE NUESTRA DEPURACIÓN</h3>
+                <p>Las magnas obras del conocimiento masónico internacional ratifican la ortodoxia de nuestras decisiones jurisdiccionales:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #3a86ff; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#3a86ff; margin-top:0;">I. DICCIONARIO AKAL DE LA FRANCMASONERÍA (Linaje y Regularidad):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Define que la regularidad de un cuerpo egipcio depende de su subordinación al <strong>Patriarca Gran Conservador (Grado 95º)</strong> y al <strong>SGM (Grado 96º)</strong>. Quienes se rebelan o carecen de patente caen en la clandestinidad, legitimando el borrado de todo registro de elementos espurios e impuros borrados de todo registro y la agrupaciones espurias e impuras borradas de todo registro
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">II. PIERRE MARIEL - RITUALES E INICIACIONES (Pureza Litúrgica):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Demuestra que la iniciación requiere investidura canónica e ininterrumpida, repudiando los inventos modernos y textos "dudosos". Nuestro Garante, <strong>MSH Edgar Esbissi Fazio Pedrozo (C.I. 2.105.199)</strong>, custodia esta pureza ceremonial en el Sanctum Sanctorum.
+                    </p>
+                </div>
+
+                <div style="background:rgba(58, 134, 255, 0.15); border-left:4px solid #3a86ff; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#a2d2ff; margin-top:0;">III. CULTURA MASÓNICA Nº 60 (Transparencia y Ética):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Exige el máximo rigor en la gestión institucional. Nuestra auditoría contra morosos y la reactivación soberana del <strong>9 de julio de 2026</strong> son el reflejo exacto de la alta cultura masónica en el Valle de Asunción.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡RIGOR ACADÉMICO Y PLOMADA CANÓNICA EN NUESTRAS COLUMNAS! 📚🏛️⚔️</p>
+            `,
+            'liturgiaR16': `
+                <h2 style="color:var(--gold);">⚔️ LITURGIA R-16: PRÍNCIPE DE JERUSALÉN Y VÉRTICES 33º, 95º Y 96º</h2>
+                <div class="modal-meta-box" style="background:rgba(212, 175, 55, 0.15); border-color:var(--gold);">
+                    <span><strong>Compendio:</strong> R-16 / Grado 16º Príncipe de Jerusalén</span>
+                    <span><strong>Herramientas:</strong> La Espada y la Llana</span>
+                    <span><strong>Pilares:</strong> Grados 33º, 95º y 96º</span>
+                </div>
+                <h3>🏛️ DE LA RECONSTRUCCIÓN A LA DEFENSA SOBERANA</h3>
+                <p>El compendio litúrgico canónico <strong>R-16</strong> resguarda los misterios del <strong>Grado 16º (Príncipe de Jerusalén)</strong>, enseñando el trabajo ceremonial con dos herramientas sagradas:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">I. LA LLANA Y LA ESPADA EN EL R-16:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        <strong>Con la Llana:</strong> Edificamos el templo interior y la fraternidad de las columnas. <br>
+                        <strong>Con la Espada:</strong> Defendemos la Orden contra invasores, morosos, traidores y usurpadores profanos.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">II. CONEXIÓN CON LOS TRES VÉRTICES DE LA ORDEN:</h4>
+                    <ul style="font-size:0.95em; line-height:1.7; color:#fff; margin-bottom:0;">
+                        <li><strong>GRADO 33º (Soberanos Inspectores Generales):</strong> Empuñan la espada de la plomada para auditar y verificar la regularidad en el Valle (HH∴ Alan Keim, Carlos Acha y Miguel Benítez).</li>
+                        <li><strong>GRADO 95º (Patriarca Gran Conservador):</strong> Custodia el Arca de la Alianza y resguarda la liturgia contra textos apócrifos (MSH Edgar Esbissi Fazio Pedrozo - C.I. 2.105.199).</li>
+                        <li><strong>GRADO 96º (Soberano Gran Maestro Nacional):</strong> Preside con luz soberana la reactivación plenaria del <strong>9 de julio de 2026</strong> (MSH Deyhut), en Soberanía Autocéfala, cesando toda jurisdicción externa de MSH Luis León Pizarro (Grado 99º) ante el Hierofante de la Gran Logia Simbólica del Paraguay.</li>
+                    </ul>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:#00f5d4; font-size:1.1em; margin-top:20px;">¡CON LA LLANA DE LA PAZ Y LA ESPADA DE LA JUSTICIA! ⚔️🏛️✨</p>
+            `,
+            'regaliaPanelesFinal': `
+                <h2 style="color:#9b5de5;">🎨 REGALÍA CANÓNICA: DELANTALES, PANELES Y RITUAL FINAL</h2>
+                <div class="modal-meta-box" style="background:rgba(155, 93, 229, 0.15); border-color:#9b5de5;">
+                    <span><strong>Iconografía:</strong> Delantales y Paneles (1º al 99º/100º)</span>
+                    <span><strong>Liturgia:</strong> Memphis Ritual Final 2 / Clausura de Trabajos</span>
+                    <span><strong>Custodia:</strong> Patriarca Gran Conservador (Grado 95º)</span>
+                </div>
+                <h3>🏛️ EL LENGUAJE VISUAL Y SACRO DE LA INICIACIÓN</h3>
+                <p>La ornamentación ceremonial y los cuadros de logia no son mero adorno profano, sino el sello espiritual de nuestra regularidad canónica en la República del Paraguay:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #9b5de5; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#9b5de5; margin-top:0;">I. DELANTALES Y PANELES DE LA ESCALA (1º al 33º):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Desde la piel blanca del Aprendiz hasta el delantal blanco y púrpura del <strong>Grado 33º</strong> con el Águila Bicéfala, cada regalía representa un grado de pureza moral y fiscalización justiciera (HH∴ Alan Keim, Carlos Acha y Miguel Benítez).
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">II. REGALÍA DE LA CÚSPIDE (95º al 99º):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        <strong>Grado 95º (Patriarca Gran Conservador):</strong> Púrpura ornada con el Ouroboros y el Arca de la Alianza (MSH Edgar Fazio), proscribiendo toda usurpación apócrifa. <br>
+                        <strong>Grado 96º (SGM Nacional):</strong> Terciopelo morado imperial y oro (MSH Deyhut), gobernando el santuario en Soberanía Autocéfala, cesando toda jurisdicción externa de MSH Luis León Pizarro (Grado 99º) ante el Hierofante de la Gran Logia Simbólica del Paraguay.
+                    </p>
+                </div>
+
+                <div style="background:rgba(155, 93, 229, 0.15); border-left:4px solid #9b5de5; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#c77dff; margin-top:0;">III. RITUAL FINAL Y SOBERANÍA DESDE EL 9 DE JULIO DE 2026:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Se decreta la proscripción de regalia inventada o usurpada por cuerpos espurios (elementos espurios e impuros borrados de todo registro). Desde el <strong>9 de julio de 2026</strong>, se ratifica que <strong>todo es Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim</strong>.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡REGALÍA INMACULADA Y LUZ HERMÉTICA EN EL ZENIT DEL PARAGUAY! 🎨🏛️✨</p>
+            `,
+            'archivoMaestroPDF': `
+                <h2 style="color:#00f5d4;">📂 ARCHIVO MAESTRO Y BIBLIOTECA CANÓNICA DE LA ORDEN</h2>
+                <div class="modal-meta-box" style="background:rgba(0, 245, 212, 0.15); border-color:#00f5d4;">
+                    <span><strong>Custodia:</strong> Patriarca Gran Conservador (Grado 95º)</span>
+                    <span><strong>Fondos:</strong> Catálogo Integral de Tratados y PDF (19 Obras)</span>
+                    <span><strong>Purga:</strong> Erradicación Absoluta de Nombres Espurios</span>
+                </div>
+                <h3>🏛️ EL ARCHIVO COMO ESCUDO DE REGULARIDAD</h3>
+                <p>El Soberano Santuario resguarda en este Catálogo Maestro la clasificación oficial de las fuentes litúrgicas, históricas y científicas que rigen en el Paraguay:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">I. COMPENDIOS RITUALES Y CANÓNICOS (Ortodoxia Activa):</h4>
+                    <ul style="font-size:0.9em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        <li><strong>R-12 y R-16:</strong> Manuales operativos del Simbolismo (1º-3º) y Príncipe de Jerusalén (16º con la Llana y la Espada).</li>
+                        <li><strong>Livre MM (Michel):</strong> Compendio teosófico sobre Hermes Trismegisto y Alquimia Espiritual.</li>
+                        <li><strong>Memphis Ritual Final 2 & Delantales y Paneles:</strong> Fórmulas de clausura en paz e iconografía ceremonial (1º al 99º/100º).</li>
+                    </ul>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #3a86ff; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#3a86ff; margin-top:0;">II. ENCICLOPEDIAS, EGIPTOLOGÍA Y ESTUDIOS ACADÉMICOS:</h4>
+                    <ul style="font-size:0.9em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        <li><strong>Diccionario Akal, P. Mariel & Cultura Masónica Nº 60:</strong> Respaldo de linaje, regularidad y plomada institucional.</li>
+                        <li><strong>Mito de Isis, Círculo do Sol & Estudos Memphis-Mitzraim:</strong> Raigón solar kemético y estudios contemporáneos (Diálogo Entre Masones, Zapata Castilla).</li>
+                        <li><strong>O.T.O. (Rituales Secretos):</strong> Referencia histórica de alianzas primigenias, diferenciando nuestra línea masónica ortodoxa y pura.</li>
+                    </ul>
+                </div>
+
+                <div style="background:rgba(255, 77, 109, 0.15); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">III. DOCTRINA DE PURGA Y REPUDIO LITÚRGICO:</h4>
+                    <p style="font-size:0.9em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Se adoptan <em>"Los Hijos de la Luz"</em> como bandera y las Actas de Auditoría como nuestro <em>"Libro Negro"</em>. Quedan proscritos los rituales apócrifos y borrados de todo registro los elementos espurios e impuros.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡MEMORIA BLINDADA Y ORTODOXIA EN EL VALLE DE ASUNCIÓN! 📂🏛️✨</p>
+            `,
+            'raigonEgiptologico': `
+                <h2 style="color:#ffb703;">☀️ RAIGÓN EGIPTOLÓGICO: MITO DE ISIS Y LITURGIA SOLAR KEMÉTICA</h2>
+                <div class="modal-meta-box" style="background:rgba(255, 183, 3, 0.15); border-color:#ffb703;">
+                    <span><strong>Tradición:</strong> Egipto Antiguo, Kemet y Heliópolis</span>
+                    <span><strong>Estudios:</strong> Isis en el Mediterráneo, Círculo do Sol, Diálogo Entre Masones</span>
+                    <span><strong>Arquetipo:</strong> La Reconstrucción de Osiris por Isis</span>
+                </div>
+                <h3>☀️ LA HERENCIA SOLAR Y LOS MISTERIOS DE TRANSICIÓN</h3>
+                <p>Las investigaciones académicas sobre egiptología y ritos antiguos demuestran que nuestras alegorías capitulares son la vivencia misma de la transmutación solar:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ffb703; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ffb703; margin-top:0;">I. ISIS Y LA RECONSTRUCCIÓN DEL ORDEN (Osiris Reintegrado):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Isis reúne los miembros dispersos de Osiris, despedazado por el profano Seth. En Paraguay, la expulsión de elementos espurios y el borrado de sus registros es el destierro de Seth, permitiendo que la Luz reúna las columnas bajo un gobierno único el <strong>9 de julio de 2026</strong>.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">II. EL CÍRCULO DO SOL Y EL RECHAZO Al METAL:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        La liturgia solar kemética invoca a Khepri en el oriente sagrado. Este amanecer recuerda que la luz no se vende ni compra: desterrar el mercantilismo proteje el fuego incorruptible del santuario.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255, 183, 3, 0.15); border-left:4px solid #ffb703; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ffb703; margin-top:0;">III. ESTUDIO ACADÉMICO BAJO CUSTODIA DEL GRADO 95º:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Las revistas de debate (Diálogo Entre Masones, Estudos Memphis-Mitzraim) exigen rigor intelectual, pero ningún rito externo reemplaza la liturgia canónica custodiada por nuestro Garante y Padrino (<strong>MSH Edgar Esbissi Fazio Pedrozo - Grado 95º</strong>).
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:#00f5d4; font-size:1.1em; margin-top:20px;">¡SOL DE JUSTICIA Y LUZ KEMÉTICA EN EL ZENIT DEL PARAGUAY! ☀️🏛️🐍</p>
+            `,
+            'autocefaliaNacional': `
+                <h2 style="color:#ff0055;">🛡️ MATRIZ PRIMIGENIA Y SOBERANÍA NACIONAL ABSOLUTA</h2>
+                <div class="modal-meta-box" style="background:rgba(255, 0, 85, 0.15); border-color:#ff0055;">
+                    <span><strong>Tratado Base:</strong> Anónimo - El Rito de Memphis (Scribd Ref.)</span>
+                    <span><strong>Estatus:</strong> Raigón Primigenio y Fuente Original</span>
+                    <span><strong>Autoridad Suprema:</strong> Hierofante de la Gran Logia Simbólica y Soberano Santuario Paraguay</span>
+                </div>
+                <h3>🏛️ INEXISTENCIA DE JURISDICCIÓN EXTERNA Y MIGRACIÓN HISTÓRICA</h3>
+                <p>En estricta observancia con la verdad histórica del Rito en la región, se proclama la primacía canónica de nuestra institución:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff0055; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff0055; margin-top:0;">I. LA ORDEN NUNCA ESTUVO BAJO JURISDICCIÓN EXTERNA:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        La Soberana Orden del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay <strong>jamás estuvo bajo jurisdicción o sumisión exterior</strong>. Por el contrario, esta Orden es la <strong>Matriz Primigenia</strong>: antes todos ellos estaban acá, integrando nuestras columnas, y posteriormente <strong>migraron y se separaron de esta Orden</strong>. Por tanto, el <strong>MSH∴ Luis León Pizarro (Grado 99º)</strong> carece de toda potestad o jurisdicción sobre nuestro Valle.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">II. EL HIEROFANTE DE LA GRAN LOGIA SIMBÓLICA DEL PARAGUAY:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        La jurisdicción nacional originaria es ejercida en forma absoluta, exclusiva e inapelable por el <strong>Hierofante de la Gran Logia Simbólica del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay</strong>, bajo la garantía de los pilares jerárquicos de Cúspide: <br>
+                        • <strong>Grado 95º (Patriarca Gran Conservador):</strong> MSH Edgar Esbissi Fazio Pedrozo (C.I. 2.105.199). <br>
+                        • <strong>Grado 96º (SGM Nacional):</strong> MSH Deyhut. <br>
+                        • <strong>Grado 33º (Soberanos Inspectores):</strong> HH∴ Alan Keim, Carlos Acha y Miguel Benítez.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255, 0, 85, 0.15); border-left:4px solid #ff0055; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">III. SOBERANÍA TOTAL DESDE EL 9 DE JULIO DE 2026:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Se ratifica que desde el <strong>9 de julio de 2026</strong>, en todo el territorio del Paraguay <strong>todo es Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim, Matriz Primigenia y Soberana</strong>, de la cual los demás en su momento formaron parte y migraron.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡MATRIZ PRIMIGENIA, SOBERANÍA NACIONAL Y PLOMADA EN EL ZENIT DEL PARAGUAY! 🛡️🏛️✨</p>
+            `,
+            'ceremonialJueves9Julio': `
+                <h2 style="color:#00f5d4;">👑 GRAN CEREMONIAL DE INSTALACIÓN Y EXALTACIONES (JUEVES 9 DE JULIO 2026)</h2>
+                <div class="modal-meta-box" style="background:rgba(0, 245, 212, 0.15); border-color:#00f5d4;">
+                    <span><strong>Decreto Soberano:</strong> N.º 07-2026</span>
+                    <span><strong>Evento:</strong> Instalación Soberano Consejo y Supremo Consejo 33º</span>
+                    <span><strong>Presidiendo:</strong> MSH Deyhut (96º) — Gran Hierofante</span>
+                </div>
+                <h3>📜 AUMENTOS DE GRADO Y CONSAGRACIONES DE CÚSPIDE</h3>
+                <p>En solemne Tenida del Jueves 9 de Julio de 2026, se ejecutan las siguientes exaltaciones canónicas de nuestra Matriz Primigenia:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">I. EXALTACIÓN AL GRADO 96º (SGM Y GRAN CONSERVADOR SUPREMO):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>MSH EDGAR ESBISSI FAZIO PEDROZO (C.I. 2.105.199):</strong> Sube al Grado 96º para copresidir con MSH Deyhut la conducción soberana, litúrgica y doctrinal del Soberano Santuario Nacional.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #9b5de5; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#9b5de5; margin-top:0;">II. EXALTACIÓN AL GRADO 95º (PATRIARCA / MATRIARCA CONSERVADOR):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>IPH NELLY JARA DE KEIM:</strong> Venerable Maestra de Luxor N.º 1, Baluarte de la Luz Egipcia. <br>
+                        • <strong>IPH CARLOS ACHA:</strong> Columna de Fuerza y Defensor de la soberanía.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff4d6d; margin-top:0;">III. EXALTACIÓN AL GRADO 33º (INSPECTORES GENERALES):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>H∴ CARLOS ACHA</strong> *(Instalación en el Supremo Consejo previa a su paso al 95º)*. <br>
+                        • <strong>H∴ MIGUEL ÁNGEL BENÍTEZ RODAS (C.I. 3.813.747)</strong>. <br>
+                        • <strong>H∴ ALAN JOSÉ KEIM GÓMEZ SÁNCHEZ</strong>.
+                    </p>
+                </div>
+
+                <div style="background:rgba(0, 245, 212, 0.15); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">IV. ADORNO DEL TEMPLO, VELAS Y HERRAMIENTAS:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>Velas:</strong> 9 Luces Doradas en el Oriente (Soberano Santuario), 3 Luces en el Altar (Púrpura-Oriente, Rojo-Sur, Blanco-Occidente) y pebetero de mirra/sándalo. <br>
+                        • <strong>Herramientas:</strong> La Llana y la Espada (Liturgia R-16 para el 95º), la Plomada de Oro y la Escuadra/Compás en 33º (Supremo Consejo), y el Cetro de Hierofante. <br>
+                        • <strong>Diplomas:</strong> Cartas Patente oficiales impresas en pergamino, firmadas por MSH Deyhut y selladas en cera/oro para entrega ceremonial.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡PAX · AMOR · IMPERIUM — LA LUZ SUPREMA RESPLANDECE EN PARAGUAY! 👑🏛️☀️</p>
+            `,
+            'declaracionesGrados': `
+                <h2 style="color:#9b5de5;">📜 DECLARACIONES Y PROCLAMAS LITÚRGICAS DE CADA GRADO</h2>
+                <div class="modal-meta-box" style="background:rgba(155, 93, 229, 0.15); border-color:#9b5de5;">
+                    <span><strong>Manual Operativo:</strong> Diálogo Ceremonial</span>
+                    <span><strong>Ortodoxia:</strong> Matriz Primigenia</span>
+                    <span><strong>Pronuncia:</strong> MSH Deyhut (96º) / MSH Edgar Fazio (96º)</span>
+                </div>
+                <h3>⚔️ ALOCUCIONES, JURAMENTOS Y FÓRMULAS RITUALES</h3>
+                <p>Para la consagración del Jueves 9 de Julio de 2026, el Hierofante proclama la esencia litúrgica y doctrinal de cada dignidad:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff4d6d; margin-top:0;">I. DECLARACIÓN DEL GRADO 33º (INSPECTORES GENERALES):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>Esencia:</strong> La cumbre del escocismo, la justicia masónica y la plomada fiscalizadora. <br>
+                        • <strong>Juramento y Herramienta:</strong> Juran ante la Plomada de Oro fiscalizar la pureza del tesoro y rechazar innovaciones espurias. Reciben el Águila Bicéfala y los 3 golpes sagrados de espada sobre la hombrera. <br>
+                        • <strong>Exaltados:</strong> HH∴ Carlos Acha, Miguel Benítez y Alan Keim.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">II. DECLARACIÓN DEL GRADO 95º (PATRIARCAS CONSERVADORES):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>Esencia:</strong> La Gnosis Egipcia, la custodia de la liturgia kemética y la protección del Sanctum Sanctorum. <br>
+                        • <strong>Juramento y Herramienta:</strong> Juran conservar intacto el Archivo Maestro y no someterse jamás a jurisdicción ultramarina. Reciben la Banda Púrpura, el Delantal bordado en oro, la Llana de Constructor para unir y la Espada para defender (Liturgia R-16). <br>
+                        • <strong>Exaltados:</strong> IPH Nelly Jara de Keim e IPH Carlos Acha.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">III. DECLARACIÓN DEL GRADO 96º (SOBERANO GRAN MAESTRO):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>Esencia:</strong> La Cúspide de la Soberanía Nacional, el gobierno ejecutivo y la autocefalía absoluta del Valle de Asunción. <br>
+                        • <strong>Juramento y Herramienta:</strong> Jura ante las 9 Luces Doradas gobernar en copresidencia con plomada y defender el Raigón Primigenio. Recibe la Banda Cúspide Morada/Oro y empuña el Gran Cetro del Hierofante. <br>
+                        • <strong>Exaltado:</strong> MSH Edgar Esbissi Fazio Pedrozo (C.I. 2.105.199).
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡LA PALABRA SAGRADA Y EL VERBO DE KEMET ESTÁN CONSAGRADOS! 📜🏛️✨</p>
+            `,
+            'marcasDINAPI': `
+                <h2 style="color:#ff0055;">⚖️ REIVINDICACIÓN DE MARCAS Y NOMBRES (DINAPI EXP. 2623155)</h2>
+                <div class="modal-meta-box" style="background:rgba(255, 0, 85, 0.15); border-color:#ff0055;">
+                    <span><strong>Expediente DINAPI:</strong> N.º 2623155 (19/03/2026)</span>
+                    <span><strong>Clase Registral:</strong> Mixta 41 (Educación/Cultura)</span>
+                    <span><strong>Decreto Soberano:</strong> N.º 08-2026 (Cese de Titularidad)</span>
+                </div>
+                <h3>🏛️ DESVINCULACIÓN DEFINITIVA DE ALEJANDRA AGUILERA CABRERA</h3>
+                <p>En resguardo del patrimonio intelectual y jurídico de nuestra Matriz Primigenia en la República del Paraguay, se decreta:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff0055; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff0055; margin-top:0;">I. CESE DE PERTENENCIA Y DESVINCULACIÓN REGISTRAL:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Se declara formalmente que la Sra. <strong>ALEJANDRA AGUILERA CABRERA [PY] DEJA DE PERTENECER y queda absolutamente desvinculada</strong> de las denominaciones y organizaciones tramitadas bajo el Expediente DINAPI N.º 2623155: <br>
+                        • <em>Soberano Santuario del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay.</em> <br>
+                        • <em>Supremo Consejo Grado 33° del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay.</em> <br>
+                        • <em>Gran Logia Simbólica del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay.</em>
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">II. PROPIEDAD DE LA MATRIZ PRIMIGENIA Y CÚSPIDE:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        La titularidad intelectual, histórica y jurídica de estos tres nombres pertenece a perpetuidad y en forma indivisible a nuestra Soberana Orden y Matriz Primigenia, gobernada por sus mandatarios legítimos: <br>
+                        • <strong>MSH Deyhut (Grado 96º):</strong> Soberano Gran Maestro Nacional y Gran Hierofante. <br>
+                        • <strong>MSH Edgar Esbissi Fazio Pedrozo (C.I. 2.105.199) (Grado 96º/95º):</strong> Padrino y Garante del Sanctum Sanctorum. <br>
+                        • <strong>Supremo Consejo 33º:</strong> HH∴ Alan Keim, Carlos Acha y Miguel Benítez.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255, 0, 85, 0.15); border-left:4px solid #ff0055; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff85a1; margin-top:0;">III. MANDATO DE TRANSFERENCIA Y OPOSICIÓN REGISTRAL:</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        Se mandata a la fiscalización del Grado 33º y al equipo jurídico a formalizar ante la DINAPI (antes del vencimiento del plazo registral) la cesión y consolidación de titularidad registral, ratificando que desde el <strong>9 de julio de 2026</strong> en el Paraguay todo es Soberana Orden del Rito Antiguo y Primitivo de Memfis Misraim.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡PATRIMONIO JURÍDICO Y PLOMADA REGISTRAL BLINDADOS EN PARAGUAY! ⚖️🏛️✨</p>
+            `,
+            'nuevoNombreOrden': `
+                <h2 style="color:#00f5d4;">🛡️ NUEVA DENOMINACIÓN OFICIAL DE LA ORDEN (DECRETO 09-2026)</h2>
+                <div class="modal-meta-box" style="background:rgba(0, 245, 212, 0.15); border-color:#00f5d4;">
+                    <span><strong>Estrategia Registral:</strong> Blindaje ante DINAPI (Clase 41)</span>
+                    <span><strong>Estatus:</strong> Nombres Oficiales de Cúspide</span>
+                    <span><strong>Estreno Ceremonial:</strong> Jueves 9 de Julio de 2026</span>
+                </div>
+                <h3>👑 LOS NUEVOS NOMBRES INEXPUGNABLES DE LA ORDEN</h3>
+                <p>Al desvincular a Alejandra Aguilera y superar los registros viciados, la institución consagra una nomenclatura canónica superior e inconfundible para su solemne instalación:</p>
+                
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid var(--gold); padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:var(--gold); margin-top:0;">🌟 DENOMINACIÓN GENERAL MAESTRA DE LA ORDEN:</h4>
+                    <p style="font-size:1.05em; line-height:1.6; color:#fff; font-weight:bold; margin-bottom:0;">
+                        SOBERANA ORDEN REGULAR DEL RITO ANTIGUO Y PRIMITIVO DE MEMFIS-MIZRAÍM — VALLE DEL PARAGUAY <br>
+                        <span style="font-size:0.85em; color:#00f5d4; font-weight:normal;">(Siglas Oficiales: S.O.R.R.A.P.M.M. - V.P.)</span>
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #9b5de5; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#9b5de5; margin-top:0;">I. SOBERANO SANTUARIO (Grados 95º y 96º — Cúspide y Gobierno):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>Nombre Oficial:</strong> <em>Soberano Santuario Patriarcal de la República del Paraguay — Rito Antiguo y Primitivo de Memfis-Mizraím.</em> <br>
+                        • <strong>Justificación:</strong> El término "Patriarcal" (inherente al Grado 95º y al Conservador MSH Edgar Esbissi Fazio Pedrozo C.I. 2.105.199) otorga distinción única y blindaje marcario inmediato.
+                    </p>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05); border-left:4px solid #ff4d6d; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#ff4d6d; margin-top:0;">II. SUPREMO CONSEJO (Grado 33º — Justicia y Escocismo):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>Nombre Oficial:</strong> <em>Supremo Consejo Soberano de los Grados 33° del Rito Antiguo y Primitivo de Memfis-Mizraím para el Paraguay.</em> <br>
+                        • <strong>Justificación:</strong> Consagra la autoridad colegiada de los Soberanos Inspectores (HH∴ Alan Keim, Carlos Acha y Miguel Benítez C.I. 3.813.747).
+                    </p>
+                </div>
+
+                <div style="background:rgba(0, 245, 212, 0.15); border-left:4px solid #00f5d4; padding:15px; margin:15px 0; border-radius:4px;">
+                    <h4 style="color:#00f5d4; margin-top:0;">III. GRAN LOGIA SIMBÓLICA (Grados 1º al 3º — Logias y Talleres):</h4>
+                    <p style="font-size:0.95em; line-height:1.6; color:#fff; margin-bottom:0;">
+                        • <strong>Nombre Oficial:</strong> <em>Gran Logia Simbólica Soberana y Regular de Memfis-Mizraím de la República del Paraguay.</em> <br>
+                        • <strong>Justificación:</strong> Blinda la base litúrgica bajo una identidad inmaculada, liderada por nuestra Logia Madre Luxor N.º 1.
+                    </p>
+                </div>
+                <p style="text-align:center; font-weight:bold; color:var(--gold); font-size:1.1em; margin-top:20px;">¡NOMBRES PURIFICADOS, BLINDADOS Y LISTOS PARA LA GLORIA DEL 9 DE JULIO! 👑🛡️✨</p>
+            `
+        };
+
+        // Abrir Modal
+        function openModal(id) {
+            const overlay = document.getElementById('modalOverlay');
+            const body = document.getElementById('modalBody');
+            body.innerHTML = actasData[id] || '<p>Texto en archivo histórico.</p>';
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Cerrar Modal
+        function closeModal(e) {
+            if (e.target === document.getElementById('modalOverlay')) {
+                closeModalBtn();
+            }
+        }
+
+        function closeModalBtn() {
+            document.getElementById('modalOverlay').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModalBtn();
+        });
+    </script>
+</body>
+</html>

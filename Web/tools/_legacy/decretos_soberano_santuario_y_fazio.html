@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo de Decretos Masónicos - Rito de Menfis-Misraïm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --container-bg: #1f2833;
+            --gold-primary: #c5a059;
+            --gold-light: #e5c583;
+            --text-color: #c5c6c7;
+            --text-title: #ffffff;
+            --border-color: #45a29e;
+            --danger-color: #ff4d4d;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px double var(--gold-primary);
+            padding-bottom: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 2.5rem;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text-title);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-bar {
+            background-color: #151a21;
+            border: 1px solid var(--gold-primary);
+            color: var(--text-title);
+            padding: 10px 15px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            width: 300px;
+            outline: none;
+        }
+
+        .search-bar:focus {
+            box-shadow: 0 0 5px var(--gold-light);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background-color: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 10px 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--gold-primary);
+            color: var(--bg-color);
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: var(--container-bg);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.15);
+            border-color: var(--gold-primary);
+        }
+
+        .card::before {
+            content: "∴";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+        }
+
+        .card-header {
+            margin-bottom: 15px;
+        }
+
+        .card-number {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .card-title {
+            color: var(--text-title);
+            font-size: 1.4rem;
+            margin: 5px 0;
+            font-weight: 600;
+        }
+
+        .card-body {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            font-size: 0.95rem;
+            color: #8892b0;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-badge {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .badge-santuario {
+            background-color: rgba(197, 160, 89, 0.15);
+            color: var(--gold-light);
+            border: 1px solid var(--gold-primary);
+        }
+
+        .badge-fazio {
+            background-color: rgba(69, 162, 158, 0.15);
+            color: #66fcf1;
+            border: 1px solid var(--border-color);
+        }
+
+        .read-btn {
+            background-color: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 8px 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            align-self: flex-start;
+        }
+
+        .read-btn:hover {
+            background-color: var(--gold-primary);
+            color: var(--bg-color);
+            font-weight: bold;
+        }
+
+        /* Modal style */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #1a1a24;
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+            padding: 40px;
+            box-shadow: 0 0 25px var(--gold-primary);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: var(--gold-primary);
+            font-size: 2rem;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--gold-light);
+        }
+
+        .modal-text {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            color: var(--text-color);
+        }
+
+        .modal-text h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .modal-text h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            text-align: center;
+        }
+
+        /* Sello Masónico */
+        .seal {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2rem;
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="seal">∴</div>
+        <h1>ARCHIVO LEGISLATIVO MASÓNICO</h1>
+        <div class="subtitle">Rito Antiguo y Primitivo de Menfis-Misraïm para la República del Paraguay</div>
+    </header>
+
+    <div class="controls">
+        <input type="text" class="search-bar" id="search" placeholder="Buscar por título, contenido o número..." onkeyup="filterDecrets()">
+        <div class="tabs">
+            <button class="tab-btn active" id="btn-all" onclick="filterTab('all')">Todos</button>
+            <button class="tab-btn" id="btn-santuario" onclick="filterTab('santuario')">Soberano Santuario</button>
+            <button class="tab-btn" id="btn-fazio" onclick="filterTab('fazio')">Edgar Fazio 95°</button>
+        </div>
+    </div>
+
+    <div class="grid-container" id="decrees-grid">
+        <!-- Cards will be populated by JS -->
+    </div>
+
+    <!-- Modal Lector -->
+    <div class="modal" id="reader-modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal(null)">&times;</span>
+            <div class="modal-text" id="modal-body">
+                <!-- Text populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const decrees = [
+            {
+                id: "S01",
+                emitter: "santuario",
+                emitterText: "Soberano Santuario",
+                number: "Decreto Soberano N.º 01/2025",
+                title: "Licencia Temporal e Integral por Salud",
+                desc: "Concede licencia médica integral a la I∴P∴H∴ Raquel Verónica Cáceres Vich (Grado 90º) en todos sus cargos (1er Gran Guardián del Santuario, Gran Experta del Supremo Consejo y Gran Secretaria de la Gran Logia), ordenando la designación Pro-Tempore en la Gran Secretaría en 15 días.",
+                date: "04/01/2025",
+                valley: "Valle de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n### B∴ E∴ A∴ C∴\n\n**SOBERANO SANTUARIO DEL RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM**\n**PARA LA REPÚBLICA DEL PARAGUAY**\n*Pax – Amor – Imperium*\n\n**DECRETO SOBERANO N.º 01/2025**\n\n**NOS, DEYHUT, GRADO 96º, SOBERANO GRAN MAESTRO NACIONAL DEL SOBERANO SANTUARIO...**\n\n**CONSIDERANDO:** Que la I∴P∴H∴ Raquel Verónica Cáceres Vich, Grado 90º, ha solicitado licencia temporal por motivos de salud afectando todos sus cargos activos en la obediencia (1er Gran Guardián del Santuario, Gran Experta del Supremo Consejo y Gran Secretaria de la Gran Logia Simbólica).\n\n**DECRETAMOS:**\n**ARTÍCULO 1.º:** Conceder formalmente el Placet de LICENCIA TEMPORAL E INTEGRAL POR MOTIVOS DE SALUD a la I∴P∴H∴ Raquel Verónica Cáceres Vich, Grado 90º.\n**ARTÍCULO 2.º:** Autorizar e instruir al Gran Maestro Sinforiano Riveros a designar su reemplazo Pro-Tempore en el cargo de Gran Secretaria en un plazo de quince (15) días.\n\nDado en el Valle de Asunción, a los 04 días del mes de enero de 2025 de la E∴V∴\n\n[Firmado] DEYHUT 96º`
+            },
+            {
+                id: "S02",
+                emitter: "santuario",
+                emitterText: "Soberano Santuario",
+                number: "Decreto Soberano N.º 02/2025",
+                title: "Regulación de periodicidad de Tenidas de las Logias",
+                desc: "Ordena a las Logias Thot N.º 2 y Maat N.º 3 reunirse y trabajar semanalmente (una vez por semana) para mantener su regularidad formal, y concede dispensa especial a la Logia Luxor N.º 1 para trabajar quincenalmente en atención a su cantidad de obreros.",
+                date: "04/01/2025",
+                valley: "Valle de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n### B∴ E∴ A∴ C∴\n\n**SOBERANO SANTUARIO DEL RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM**\n**PARA LA REPÚBLICA DEL PARAGUAY**\n*Pax – Amor – Imperium*\n\n**DECRETO SOBERANO N.º 02/2025**\n\n**DECRETAMOS:**\n**ARTÍCULO 1.º:** Exhortar e instruir al Gran Maestro Sinforiano Riveros a disponer que las Logias Thot N.º 2 y Maat N.º 3 modifiquen sus calendarios para trabajar una vez a la semana de forma obligatoria.\n**ARTÍCULO 2.º:** Conceder dispensa especial a la Logia Luxor N.º 1 (Oriente de Asunción) para continuar reuniéndose de manera quincenal (cada 15 días), validando su regularidad en virtud del número de sus obreros activos.\n\nDado en el Valle de Asunción, a los 04 días del mes de enero de 2025 de la E∴V∴\n\n[Firmado] DEYHUT 96º`
+            },
+            {
+                id: "S03",
+                emitter: "santuario",
+                emitterText: "Soberano Santuario",
+                number: "Decreto Soberano N.º 03/2025",
+                title: "Estandarización Litúrgica en Ciudad del Este",
+                desc: "Prohíbe el uso de rituales híbridos y no homologados de Menfis en las logias del Valle de Ciudad del Este y establece la obligatoriedad de ceñirse estrictamente al Ritual Oficial provisto por el Soberano Santuario Nacional y sus normas de formación.",
+                date: "04/01/2025",
+                valley: "Valle de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n### B∴ E∴ A∴ C∴\n\n**SOBERANO SANTUARIO DEL RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM**\n**DECRETAMOS:**\n**ARTÍCULO 1.º:** Declarar formalmente prohibido y nulo el uso del ritual híbrido de Menfis o cualquier otro manual de ceremonia no autorizado por el Soberano Santuario.\n**ARTÍCULO 2.º:** Ordenar a las Logias del Valle de Ciudad del Este ceñirse estrictamente al Ritual Oficial provisto por el Soberano Santuario Nacional.\n\nDado en el Valle de Asunción, a los 04 días del mes de enero de 2025 de la E∴V∴\n\n[Firmado] DEYHUT 96º`
+            },
+            {
+                id: "S04",
+                emitter: "santuario",
+                emitterText: "Soberano Santuario",
+                number: "Decreto Soberano N.º 04/2025",
+                title: "Nulidad de Afiliaciones de Ceto Torales y Lilian Buzarquis",
+                desc: "Declara nulas las afiliaciones no autorizadas de Ceto Torales y Lilian Buzarquis por falta de Quit-Placet y rebeldía de Torales. Niega el reconocimiento del rango de Past Venerable y ordena el saneamiento del linaje de la Carta Patente.",
+                date: "04/01/2025",
+                valley: "Valle de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n### B∴ E∴ A∴ C∴\n\n**SOBERANO SANTUARIO DEL RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM**\n**DECRETAMOS:**\n**ARTÍCULO 1.º:** Declarar nulas de toda nulidad las afiliaciones de Ceto Torales y Lilian Buzarquis por no presentar Quit-Placet (conforme al Art. 45º del Reglamento General).\n**ARTÍCULO 2.º:** Prohibir su asistencia a los templos. Ceto Torales se encuentra además en rebeldía (conforme al Art. 58º del Reglamento General).\n**ARTÍCULO 3.º:** No reconocer el título de Past Venerable a quienes no culminaron su periodo constitucional completo (conforme al Art. 72º del Reglamento General).\n\nDado en el Valle de Asunción, a los 04 días del mes de enero de 2025 de la E∴V∴\n\n[Firmado] DEYHUT 96º`
+            },
+            {
+                id: "S05",
+                emitter: "santuario",
+                emitterText: "Soberano Santuario",
+                number: "Decreto Soberano N.º 01/2026",
+                title: "Delegación de Atribuciones y Retiro a la Reflexión de Deyhut",
+                desc: "Delega plenos poderes de regularización sobre la Gran Logia y el Supremo Consejo al Vice Serenísimo Edgar Esbissi en la jurisdicción del Meridiano 56° Oeste hacia el oeste, con funciones de Gran Maestro. Deyhut entra en periodo de retiro espiritual y reflexión.",
+                date: "01/01/2026",
+                valley: "Valle de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n\n**DECRETO SOBERANO N.º 01/2026**\n\n**NOS, DEYHUT, GRADO 96º, SOBERANO GRAN MAESTRO NACIONAL...**\n\n**DECRETAMOS:**\n**ARTÍCULO 1.º:** Ampliar y delegar atribuciones al Vice Serenísimo Edgar Esbissi, Grado 95º, para regularizar e intervenir la Gran Logia y el Supremo Consejo del Meridiano 56° Oeste hacia el oeste (frontera con Argentina).\n**ARTÍCULO 2.º:** Otorgar las mismas funciones de Serenísimo Gran Maestro y facultarlo a aumentar grados hasta el Grado 95º de la Orden.\n**ARTÍCULO 3.º:** Declarar que Deyhut entra en retiro a la reflexión por la indisciplina y abandono general suscitado.\n\nDado el 01 de enero de 2026 E∴V∴\n\n[Firmado] DEYHUT 96º`
+            },
+            {
+                id: "S06",
+                emitter: "santuario",
+                emitterText: "Soberano Santuario",
+                number: "Decreto Soberano N.º 02/2026",
+                title: "Exaltación al Grado 96.º e Instalación del MSH Edgar Esbissi",
+                desc: "Exalta al MSH Edgar Esbissi al Grado 96.º e instruye su instalación oficial en el Soberano Santuario Nacional de la República del Paraguay, consagrando su suprema autoridad masónica dogmática en el territorio.",
+                date: "02/01/2026",
+                valley: "Valle de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n\n**DECRETO SOBERANO N.º 02/2026**\n\n**DECRETAMOS:**\n**ARTÍCULO 1.º:** Exaltar al Sublime Grado 96º de la Orden de los Ritos Unidos de Menfis-Misraïm al Muy Respetable Hermano EDGAR ESBISSI.\n**ARTÍCULO 2.º:** Disponer su instalación oficial como miembro soberano del Soberano Santuario Nacional de la República del Paraguay.\n\nDado el 02 de enero de 2026 E∴V∴\n\n[Firmado] DEYHUT 96º`
+            },
+            {
+                id: "F01",
+                emitter: "fazio",
+                emitterText: "Edgar Fazio 95°",
+                number: "Carta Patente - R∴ L∴ S∴ Luxor N.º 1",
+                title: "Otorgamiento y Consagración de la Carta Patente",
+                desc: "Bajo las facultades de Patriarca Gran Conservador Grado 95º del Rito, se expide y consagra la Carta Patente Constitucional para el funcionamiento regular y encendido de columnas del taller fundatorio Luxor N.º 1 en el Oriente de Asunción.",
+                date: "16/08/2023",
+                valley: "Oriente de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n\n**SOBERANO SANTUARIO / SUPREMO CONSEJO GRADO 95º DE LA ORDEN**\n\n**NOS, EDGAR FAZIO ESBISSI, PATRIARCA GRAN CONSERVADOR GRADO 95º...**\n\nOtorgamos la presente CARTA PATENTE DE CONSTITUCIÓN REGULAR a la Augusta y Respetable Logia Luxor N.º 1 para que trabaje regularmente en los tres grados del Simbolismo (1º, 2º y 3º) del Rito Antiguo y Primitivo de Menfis-Misraïm en el Oriente de Asunción.\n\nDado el 16 de agosto de 2023 E∴V∴\n\n[Firmado] EDGAR FAZIO, Grado 95º`
+            },
+            {
+                id: "F02",
+                emitter: "fazio",
+                emitterText: "Edgar Fazio 95°",
+                number: "Decreto de la Gran Vice-Maestría N.º 01/2025",
+                title: "Autorización de Trabajos Magnos de Aumento e Iniciación",
+                desc: "Emite el decreto superior autorizando a la Logia Luxor N.º 1 a celebrar las tenidas magnas de Aumento de Salario a Compañero del Hermano Rubén (15/04/2025) y la Iniciación de la profana Pamela (06/05/2025), refrendando el protocolo y la regularidad del taller.",
+                date: "10/04/2025",
+                valley: "Oriente de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n\n**GRAN LOGIA SIMBÓLICA DEL RITO DE MEMPHIS-MISRAÏM DE PARAGUAY**\n\n**DECRETO N.º 01/2025**\n\n**VISTO:** La solicitud de la V∴ M∴ Nelly Jara Keim solicitando placet de segunda cámara e iniciación...\n\n**DECRETA:**\n**ARTÍCULO 1.º:** AUTORIZAR a la Logia Luxor N.º 1 a celebrar el Aumento de Salario del Q∴H∴ Rubén el 15/04/2025 E∴V∴ a las 20:00 hs en el Templo de la calle 25 de Mayo.\n**ARTÍCULO 2.º:** AUTORIZAR la Magna Tenida de Iniciación de la profana Pamela el 06/05/2025 E∴V∴ a las 20:00 hs en el Templo Solar Acacia.\n\nDado el 10 de abril de 2025 E∴V∴\n\n[Firmado] EDGAR FAZIO, Vice Serenísimo Gran Maestro`
+            },
+            {
+                id: "F03",
+                emitter: "fazio",
+                emitterText: "Edgar Fazio 95°",
+                number: "Decreto de Fianza Masónica N.º 09/2026",
+                title: "Tutela Solidaria del Aprendiz Rubén González",
+                desc: "Establece la fianza solidaria masónica y responsabilidad espiritual de Edgar Fazio Esbissi sobre la formación, conducta y aportes del Aprendiz Rubén González en la Logia Luxor N.º 1 hasta su futura Exaltación al Grado de Maestro.",
+                date: "04/07/2026",
+                valley: "Oriente de Asunción",
+                content: `### A∴ L∴ G∴ D∴ A∴ D∴ U∴\n\n**DECRETO DE LA GRAN MAESTRÍA N.º 09/2026**\n\n**ARTÍCULO 1.º:** Designar al MSH. Edgar Esbissi (Fazio), Grado 95º, como garante solidario y tutor espiritual del Aprendiz Rubén González.\n**ARTÍCULO 2.º:** Dicha corresponsabilidad cesará al ser exaltado al Sublime Grado de Maestro Masón.\n\nDiciembre del Gabinete, 04 de julio de 2026 E∴V∴`
+            }
+        ];
+
+        function displayDecrees(data) {
+            const container = document.getElementById('decrees-grid');
+            container.innerHTML = '';
+            data.forEach(d => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-emitter', d.emitter);
+                
+                const badgeClass = d.emitter === 'santuario' ? 'badge-santuario' : 'badge-fazio';
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-number">${d.number}</div>
+                        <span class="card-badge ${badgeClass}">${d.emitterText}</span>
+                        <div class="card-title">${d.title}</div>
+                    </div>
+                    <div class="card-body">
+                        ${d.desc}
+                    </div>
+                    <div>
+                        <div class="card-meta">
+                            <span>Fecha: ${d.date}</span>
+                            <span>${d.valley}</span>
+                        </div>
+                        <button class="read-btn" onclick="openModal('${d.id}')">Leer Plancha</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        let currentTab = 'all';
+
+        function filterTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${tab}`).classList.add('active');
+            filterDecrets();
+        }
+
+        function filterDecrets() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const filtered = decrees.filter(d => {
+                const matchesTab = currentTab === 'all' || d.emitter === currentTab;
+                const matchesQuery = d.number.toLowerCase().includes(query) || 
+                                     d.title.toLowerCase().includes(query) || 
+                                     d.desc.toLowerCase().includes(query) ||
+                                     d.content.toLowerCase().includes(query);
+                return matchesTab && matchesQuery;
+            });
+            displayDecrees(filtered);
+        }
+
+        function openModal(id) {
+            const decree = decrees.find(d => d.id === id);
+            const body = document.getElementById('modal-body');
+            
+            // Convert markdown simple layout to HTML
+            let htmlText = decree.content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/### (.*?)\n/g, '<h3>$1</h3>')
+                .replace(/## (.*?)\n/g, '<h2>$1</h2>');
+            
+            body.innerHTML = `
+                <div class="seal">∴</div>
+                ${htmlText}
+                <div class="seal">∴</div>
+            `;
+            
+            document.getElementById('reader-modal').style.display = 'flex';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'reader-modal' || event.target.className === 'close-btn') {
+                document.getElementById('reader-modal').style.display = 'none';
+            }
+        }
+
+        // Initialize
+        displayDecrees(decrees);
+    </script>
+</body>
+</html>

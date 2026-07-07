@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instrucción del 1er Grado – Aprendiz</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: #3a3226;
+  color: #1a1a1a;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #faf8f2;
+  min-height: 100vh;
+}
+
+.page {
+  padding: 80px 100px 60px;
+  page-break-after: always;
+  border-bottom: 1px solid #d4c9b0;
+}
+
+.page-marker {
+  text-align: center;
+  margin: 0 0 30px;
+  padding: 4px 0;
+  font-size: 10px;
+  color: #c4b69a;
+  letter-spacing: 6px;
+}
+.page-marker::before { content: "~ ~ ~"; }
+
+.gloria {
+  font-size: 13px;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+  color: #8b7355;
+  margin: 30px 0;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.rito {
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 20px 0;
+  text-align: center;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.orden {
+  font-size: 12px;
+  font-style: italic;
+  color: #555;
+  margin: 20px 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.granlogia {
+  font-size: 12px;
+  font-weight: bold;
+  color: #8b7355;
+  margin: 15px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.reunificados {
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  margin: 15px 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.text-block {
+  margin: 6px 0;
+  line-height: 1.7;
+  text-align: justify;
+  font-size: 12pt;
+}
+
+/* Headers */
+.proclamation {
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  margin: 25px 0 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.chapter {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 30px 0 15px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.title-header {
+  font-size: 13px;
+  font-weight: bold;
+  font-variant: small-caps;
+  margin: 20px 0 10px;
+  letter-spacing: 1px;
+}
+
+.article {
+  margin: 5px 0 5px 15px;
+  line-height: 1.6;
+}
+
+.catecismo {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px 0 20px;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+}
+
+.indice {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0 25px;
+  letter-spacing: 5px;
+}
+
+.question {
+  margin: 18px 0 4px;
+  font-style: italic;
+  color: #2c2c2c;
+  line-height: 1.6;
+}
+
+.answer {
+  margin: 0 0 18px 25px;
+  padding-left: 12px;
+  border-left: 2px solid #c4b69a;
+  color: #333;
+  line-height: 1.6;
+}
+
+.stage {
+  font-style: italic;
+  color: #666;
+  margin: 12px 0;
+  padding-left: 25px;
+  line-height: 1.6;
+}
+
+.aclamacion {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.oracion {
+  text-align: center;
+  font-style: italic;
+  margin: 15px 0;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Decorative separator for section pages */
+.section-sep {
+  text-align: center;
+  margin: 30px 0;
+  color: #8b7355;
+  font-size: 18px;
+  letter-spacing: 10px;
+}
+
+@media print {
+  body { background: white; }
+  .container { max-width: none; }
+  .page { padding: 60px 80px; border: none; }
+}
+
+.cover-image { width: 100%; max-width: 100%; display: block; margin: 0 auto; }
+.toc-image { width: 100%; max-width: 100%; display: block; margin: 0 auto; }
+.diagram-image { max-width: 90%; display: block; margin: 15px auto; }
+
+.dialog-table { width: 100%; border: none; border-collapse: collapse; margin: 4px 0; }
+.dialog-table td { vertical-align: top; padding: 2px 6px; }
+.speaker { width: 22%; font-weight: bold; white-space: nowrap; text-align: left; padding-left: 0 !important; }
+.speech { width: 78%; text-align: justify; line-height: 1.6; }
+.speech br { content: ''; display: block; margin: 4px 0; }
+
+/* Navigable Index Styles */
+.nav-index {
+  padding: 60px 80px;
+  background: #faf8f2;
+}
+
+.indice-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #1a1a1a;
+  letter-spacing: 4px;
+  font-variant: small-caps;
+}
+
+.index-section {
+  margin-bottom: 30px;
+}
+
+.index-section h3 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #8b7355;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #c4b69a;
+  padding-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.index-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.index-section li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.index-section a {
+  color: #2c2c2c;
+  text-decoration: none;
+  font-size: 11pt;
+  transition: color 0.2s;
+}
+
+.index-section a:hover {
+  color: #8b7355;
+  text-decoration: underline;
+}
+
+.index-section a::before {
+  content: "▸ ";
+  color: #c4b69a;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="page" id="page68">
+<div class="rito"><strong>RITO</strong> <strong>ANTIGUO</strong> Y <strong>PRIMITIVO</strong> DE <strong>MENFIS-MIZRAIM</strong> <strong>ORDEN</strong> DE LOS <strong>RITOS</strong> <strong>UNIDOS</strong> DE <strong>MENFIS</strong> & <strong>MIZRAIM</strong></div>
+<div class="reunificados">Ritos reunificados por José <strong>GARIBALDI</strong> en 1881</div>
+<div class="text-block">Gran Logia Simbólica</div>
+<div class="catecismo">INSTRUCCIÓN DEL 1er GRADO APRENDIZ</div>
+<div class="text-block">→ (A cada grado masónico está vinculada una instrucción por preguntas y respuestas. Las cuestiones se plantean para estimular la</div>
+<div class="text-block">reflexión).</div>
+<div class="text-block">→ (Los (Las) <strong>HH</strong>∴ deben esforzarse en responder según la lógica y no limitarse a retener simplemente las respuestas convencionales).</div>
+<div class="text-block">→ (Algunas de estas respuestas deben darse textualmente en el reteje.</div>
+<div class="text-block">Las escribimos en <strong>MAYÚSCULAS</strong>).</div>
+<div class="catecismo">CATECISMO</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué hay de común entre vos y yo?</div>
+<div class="answer"><strong>Respuesta</strong> LA <strong>FRANCMASONERÍA</strong>.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué es la Francmasonería?</div>
+<div class="answer"><strong>Respuesta</strong> Es una alianza universal, Institución humanitaria y filosófica, que tiene</div>
+<div class="text-block">por objetivo el perfeccionamiento intelectual y moral de la Humanidad.</div>
+<div class="question"><strong>Pregunta</strong> ¿La Francmasonería es una religión?</div>
+<div class="answer"><strong>Respuesta</strong> No es una religión en el estricto sentido de la palabra. Con todo tiene por</div>
+<div class="text-block">base esencial la creencia en una potencia Sublime, expresada e invocada con el nombre de Sublime Arquitecto de los Mundos (o Gran Arquitecto</div>
+<div class="text-block">del Universo). Por lo tanto, mejor que cualquier otra Institución, tiene como efecto <strong>UNIR</strong> los Seres entre ellos mismos; del latín “religare”, unir,</div>
+<div class="text-block">conectar, enlazar, en el sentido más amplio y el más elevado del término.</div>
+<div class="question"><strong>Pregunta</strong> ¿Sois Francmasón de Egipto?</div>
+<div class="answer"><strong>Respuesta</strong> Mis Hermanos me reconocen como tal.</div>
+<div class="question"><strong>Pregunta</strong> ¿Por qué respondéis así?</div>
+<div class="answer"><strong>Respuesta</strong> Porque un Aprendiz Masón debe desconfiar de sí mismo y teme emitir</div>
+<div class="text-block">juicio antes de haber recurrido a las luces de sus Hermanos.</div>
+</div>
+<div class="page" id="page70">
+<div class="answer"><strong>Respuesta</strong></div>
+<div class="text-block">Que no nos convertimos realmente en Masones hasta el día en que nuestro espíritu se abre por el estudio, a la inteligencia de los misterios</div>
+<div class="text-block">masónicos.</div>
+<div class="question"><strong>Pregunta</strong> ¿En qué reconoceré que sois Masón?</div>
+<div class="answer"><strong>Respuesta</strong> En mis Signos, Palabras y Toques.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo interpretáis esta respuesta?</div>
+<div class="answer"><strong>Respuesta</strong> Un Masón se reconoce por su manera de actuar, siempre equitativo y</div>
+<div class="text-block">franco (Señales); por su lengua leal y sincera (Palabras); en fin en la solicitud fraternal que manifiesta con los que está vinculados por los</div>
+<div class="text-block">lazos de la solidaridad (Apretones de manos, Contactos).</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo se hacen los Signos de los Masones?</div>
+<div class="answer"><strong>Respuesta</strong> Por la Escuadra, el Nivel y la Plomada.</div>
+<div class="question"><strong>Pregunta</strong> Explicad la respuesta.</div>
+<div class="answer"><strong>Respuesta</strong> El Masón, en sus actos, debe inspirarse en ideas de equidad (Escuadra);</div>
+<div class="text-block">debe contemplar a la nivelación de las desigualdades arbitrarias (Nivel) y contribuir por fin a elevar sin cesar el nivel social (Perpendicular).</div>
+<div class="question"><strong>Pregunta</strong> Dadme el Signo.</div>
+<div class="answer"><strong>Respuesta</strong> → (Se lo da).</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significa este Signo?</div>
+<div class="answer"><strong>Respuesta</strong> Que prefiero tener cortado el cuello antes que revelar los secretos que me</div>
+<div class="text-block">han sido confiados.</div>
+<div class="question"><strong>Pregunta</strong> ¿No tiene este Signo otros significados?</div>
+<div class="answer"><strong>Respuesta</strong> La mano derecha, colocada en escuadra sobre la garganta parece contener</div>
+<div class="text-block">el burbujeo de las pasiones que se agitan en el pecho y preservar así a la cabeza de toda exaltación febril, susceptible de comprometer nuestra</div>
+<div class="text-block">lucidez de espíritu. El Signo de Aprendiz significa desde este punto de vista: Estoy en posesión mí mismo y trataré de juzgar con imparcialidad.</div>
+<div class="question"><strong>Pregunta</strong> Dadme la palabra de pase.</div>
+<div class="answer"><strong>Respuesta</strong> Tubalcaín.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significa?</div>
+<div class="answer"><strong>Respuesta</strong> Posesión del Mundo.</div>
+</div>
+<div class="page" id="page71">
+<div class="question"><strong>Pregunta</strong></div>
+<div class="text-block">¿Qué queréis decir con ello?</div>
+<div class="answer"><strong>Respuesta</strong> Que el ser es el regente del universo y que él es su responsable.</div>
+<div class="question"><strong>Pregunta</strong> Dadme la Palabra Sagrada.</div>
+<div class="answer"><strong>Respuesta</strong> Yo no sé leer ni escribir, sólo sé deletrear. Decidme la primera letra y yo</div>
+<div class="text-block">os diré la Segunda.</div>
+<div class="question"><strong>Pregunta</strong> ¿Por qué decís “Yo no sé leer ni escribir”? ¿A qué se refiere vuestra</div>
+<div class="text-block">ignorancia?</div>
+<div class="answer"><strong>Respuesta</strong> Al lenguaje simbólico empleado por la Francmasonería.</div>
+<div class="text-block">El sentido sólo lo discierne progresivamente, y el Iniciado, al principio de su carrera, deletrea con dificultad lo que más tarde será para él un objeto</div>
+<div class="text-block">de lectura corriente.</div>
+<div class="question"><strong>Pregunta</strong> J.</div>
+<div class="answer"><strong>Respuesta</strong> A.</div>
+<div class="question"><strong>Pregunta</strong> K.</div>
+<div class="answer"><strong>Respuesta</strong> I.</div>
+<div class="question"><strong>Pregunta</strong> N.</div>
+<div class="answer"><strong>Respuesta</strong> (Juntos): <strong>JAKÍN</strong>.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significa esa palabra?</div>
+<div class="answer"><strong>Respuesta</strong> Estabilidad, Firmeza, Aplomo.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué os indica la manera de deletrear la Palabra Sagrada?</div>
+<div class="answer"><strong>Respuesta</strong> El método de enseñanza de la Francmasonería, que solicita los esfuerzos</div>
+<div class="text-block">intelectuales de cada uno, evitando al mismo tiempo inculcar dogmas. Se pone al Neófito en la Vía de la Verdad dándole simbólicamente la</div>
+<div class="text-block">primera carta de la palabra, que él mismo debe encontrar, luego se le indica la segunda, para que adivine la siguiente y así sucesivamente.</div>
+<div class="question"><strong>Pregunta</strong> ¿A qué se llama <strong>SALARIO</strong> en Masonería?</div>
+<div class="answer"><strong>Respuesta</strong> A la recompensa del trabajo, al resultado producido.</div>
+<div class="question"><strong>Pregunta</strong> ¿Habéis recibido vuestro salario?</div>
+</div>
+<div class="page" id="page73">
+<div class="question"><strong>Pregunta</strong></div>
+<div class="text-block">¿Cómo pueden sostener esas columnitas alegóricas a vuestra logia?</div>
+<div class="answer"><strong>Respuesta</strong> La <strong>SABIDURÍA</strong> <strong>CONCIBE</strong>, la <strong>FUERZA</strong> <strong>EJECUTA</strong> y la <strong>BELLEZA</strong></div>
+<div class="text-block"><strong>ADORNA</strong>.</div>
+<div class="question"><strong>Pregunta</strong> ¿Por qué os hicisteis recibir Francmasón?</div>
+<div class="answer"><strong>Respuesta</strong> Porque estaba en las tinieblas y deseaba la Luz.</div>
+<div class="question"><strong>Pregunta</strong> ¿En qué estado estabais cuando se procedió a vuestra Iniciación?</div>
+<div class="answer"><strong>Respuesta</strong> NI <strong>DESNUDO</strong>, NI <strong>VESTIDO</strong>, pero en un estado decente, privado del</div>
+<div class="text-block">uso de la vista y desprovisto de todos los metales.</div>
+<div class="question"><strong>Pregunta</strong> ¿Por qué en ese estado?</div>
+<div class="answer"><strong>Respuesta</strong> Para recordar que la virtud no tiene necesidad de ornamentos. La rodilla</div>
+<div class="text-block">derecha descubierta, para señalar los sentimientos de humildad que deben presidir la persecución de la Verdad. El pie izquierdo descalzado por</div>
+<div class="text-block">respeto a un lugar que es Santo, porque en él se busca la verdad. Privado del uso de la vista, para indicar la ignorancia del Neófito, aún privado de</div>
+<div class="text-block">la Luz que le aportará la instrucción, sin la cual permanece sumergido en las tinieblas. Desprovisto de todos los metales, como prueba de</div>
+<div class="text-block">desinterés y para aprender a privarse sin disgusto de todo lo que puede perjudicar nuestro perfeccionamiento.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo fuisteis introducido en la Logia?</div>
+<div class="answer"><strong>Respuesta</strong> Bajando la cabeza y curvándome, en señal de nuevo nacimiento.</div>
+<div class="question"><strong>Pregunta</strong> ¿Y después?</div>
+<div class="answer"><strong>Respuesta</strong> Tras diversas pruebas y del consentimiento de mis <strong>HH</strong>∴, el Maestro de</div>
+<div class="text-block">la Logia me recibió Masón.</div>
+<div class="question"><strong>Pregunta</strong> ¿En qué consisten los secretos de la Orden?</div>
+<div class="answer"><strong>Respuesta</strong> En el conocimiento de verdades abstractas, del que el simbolismo</div>
+<div class="text-block">Masónico es la traducción sensible.</div>
+<div class="question"><strong>Pregunta</strong> ¿Dónde está el <strong>V∴M</strong>∴?</div>
+<div class="answer"><strong>Respuesta</strong> EN EL <strong>ORIENTE</strong>.</div>
+<div class="question"><strong>Pregunta</strong> ¿Dónde están los Vigilantes?</div>
+<div class="answer"><strong>Respuesta</strong> En el Occidente para ayudar al Venerable Maestro, para pagar a los</div>
+<div class="text-block">obreros y despedirlos.</div>
+</div>
+<div class="page" id="page74">
+<div class="question"><strong>Pregunta</strong></div>
+<div class="text-block">¿Dónde están los Aprendices?</div>
+<div class="answer"><strong>Respuesta</strong> En el Septentrión, que representa la región menos iluminada, porque no</div>
+<div class="text-block">han recibido más que una instrucción elemental en Masonería, no están en condiciones de soportar un día excesivo</div>
+<div class="question"><strong>Pregunta</strong> ¿A qué hora los Masones abren y cierran sus Trabajos?</div>
+<div class="answer"><strong>Respuesta</strong> Alegóricamente: los Trabajos se abren a Mediodía y se cierran a</div>
+<div class="text-block">mediodía.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significan esas horas convencionales?</div>
+<div class="answer"><strong>Respuesta</strong> Indican que la mujer o el hombre alcanza la mitad de su carrera, el</div>
+<div class="text-block">Mediodía de su vida, antes de poder ser útiles a sus semejantes, pero que, desde ese momento, hasta su última hora debe trabajar sin descanso en la</div>
+<div class="text-block">felicidad común.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué nos enseña la costumbre de informarse de la hora antes de actuar?</div>
+<div class="answer"><strong>Respuesta</strong> La acción no es útil si no se hace a propósito. Las conquistas del progreso</div>
+<div class="text-block">no se realizan más que a su hora. Al mostrarse demasiado impaciente, se corre el riesgo de hacer abortar lo que está en curso de preparación. Es</div>
+<div class="text-block">necesario saber esperar el momento psicológico: actuar demasiado pronto o demasiado tarde implica un igual fracaso.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué edad tenéis?</div>
+<div class="answer"><strong>Respuesta</strong> <strong>TRES</strong> <strong>AÑOS</strong>.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significa esta respuesta?</div>
+<div class="answer"><strong>Respuesta</strong> Informarse de la edad masónica de un(a) H∴, es pedirle su Grado...</div>
+<div class="question"><strong>Pregunta</strong> ¿En qué trabajan los Aprendices?</div>
+<div class="answer"><strong>Respuesta</strong> En desbastar la piedra bruta, para despojarla de sus asperezas, y</div>
+<div class="text-block">aproximarla a una forma en relación con su destino.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué es pues esa piedra bruta?</div>
+<div class="answer"><strong>Respuesta</strong> Es el producto grosero de la naturaleza, que el arte debe pulir y</div>
+<div class="text-block">transformar.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuáles son las Herramientas del Aprendiz?</div>
+<div class="answer"><strong>Respuesta</strong> El Cincel, el Mallete y la Palanca.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué representan?</div>
+</div>
+<div class="page" id="page75">
+<div class="answer"><strong>Respuesta</strong></div>
+<div class="text-block">El Cincel representa el discernimiento en la investigación. El Mallete la voluntad en la aplicación. La Palanca la inteligencia humana que supo</div>
+<div class="text-block">multiplicar la energía.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significa la Marcha del Aprendiz?</div>
+<div class="answer"><strong>Respuesta</strong> El celo que debemos mostrar al ir hacia lo que nos ilumina.</div>
+<div class="question"><strong>Pregunta</strong> ¿Tenéis alguna ambición?</div>
+<div class="answer"><strong>Respuesta</strong> Una sola, aspiro al honor de ser recibido entre los “Compañeros”.</div>
+</div>
+</div>
+</body>
+</html>

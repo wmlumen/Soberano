@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Obreros - Pasaporte Masónico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d1b2a; /* Deep blue/black */
+            --secondary-color: #1b263b;
+            --accent-gold: #d4af37; /* Metallic gold */
+            --accent-gold-light: #f3e5ab;
+            --text-light: #e0e1dd;
+            --passport-bg: #fdfbf7; /* Off-white for passport page */
+            --passport-text: #2b2b2b;
+            --passport-blue: #1c3b57;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .subtitle {
+            color: var(--accent-gold-light);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            display: flex;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: rgba(27, 38, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-gold-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(13, 27, 42, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .chip-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .chip-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .chip-item label {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            cursor: pointer;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .chip-item input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Passport Preview Section */
+        .preview-section {
+            flex: 1;
+            min-width: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            perspective: 1000px;
+        }
+
+        .passport-card {
+            background: var(--passport-bg);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 15px;
+            padding: 2rem;
+            color: var(--passport-text);
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.5),
+                inset 0 0 60px rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #dcdcdc;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 60%),
+                url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 0l20 20-20 20L0 20z" fill="%23d4af37" fill-opacity="0.03" fill-rule="evenodd"/></svg>');
+        }
+
+        .passport-card:hover {
+            transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 
+                20px 30px 60px rgba(0,0,0,0.6),
+                inset 0 0 60px rgba(212, 175, 55, 0.15);
+        }
+
+        .passport-header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .passport-header h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--passport-blue);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .passport-header h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        .passport-body {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .photo-area {
+            width: 110px;
+            height: 140px;
+            border: 2px dashed #bbb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.8rem;
+            text-align: center;
+            border-radius: 5px;
+            background: rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .data-area {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .data-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data-label {
+            font-size: 0.65rem;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .data-value {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--passport-blue);
+            border-bottom: 1px dotted #ccc;
+            min-height: 1.2rem;
+            word-break: break-word;
+        }
+        
+        .mrz {
+            margin-top: 2rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--passport-blue);
+            word-break: break-all;
+            line-height: 1.5;
+            background: rgba(0,0,0,0.03);
+            padding: 0.5rem;
+            border-radius: 3px;
+        }
+
+        .button-group {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-gold-light);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Decorative Elements */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10rem;
+            color: rgba(212, 175, 55, 0.04);
+            font-family: 'Cinzel', serif;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Registro de Obreros</h1>
+        <p class="subtitle">Antiguo y Primitivo Rito de Memphis Misraim</p>
+    </header>
+
+    <div class="container">
+        <!-- Form -->
+        <div class="form-section">
+            <form id="obreroForm">
+                <div class="form-group">
+                    <label for="inputNombres">Apellidos y Nombres</label>
+                    <input type="text" id="inputNombres" placeholder="Ej. Acha Giménez, Carlos Alberto">
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputPasaporte">N° Pasaporte / Matrícula</label>
+                    <input type="text" id="inputPasaporte" placeholder="Ej. MM-1405022">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputGrado">Grado Actual</label>
+                    <select id="inputGrado">
+                        <option value="">Seleccione el Grado...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectLogia">Respetable Logia (Rito)</label>
+                    <select id="selectLogia">
+                        <option value="">Seleccione su Logia...</option>
+                        <option value='Respetable Logia "Valle de Luxor" N.º 1'>Resp. Logia "Valle de Luxor" N.º 1</option>
+                        <option value='Respetable Logia "Constructores del Nilo" N.º 2'>Resp. Logia "Constructores del Nilo" N.º 2</option>
+                        <option value='Respetable Logia "Luz de Menfis" N.º 3'>Resp. Logia "Luz de Menfis" N.º 3</option>
+                        <option value='Respetable Logia "Templo de Karnak" N.º 4'>Resp. Logia "Templo de Karnak" N.º 4</option>
+                        <option value='Respetable Logia "Faro de Alejandría" N.º 5'>Resp. Logia "Faro de Alejandría" N.º 5</option>
+                        <option value="Otro">Otro (Especificar)</option>
+                    </select>
+                    <input type="text" id="inputLogia" placeholder="Escriba el nombre de la Logia..." style="display: none; margin-top: 0.5rem;">
+                </div>
+                
+                <div class="form-group">
+                    <label>Cargos que Ocupó en Logia</label>
+                    <div class="chip-group" id="cargosContainer">
+                        <div class="chip-item"><input type="checkbox" id="cargo_vm" value="Venerable Maestro"><label for="cargo_vm">Ven. Maestro</label></div>
+                        <div class="chip-item"><input type="checkbox" id="cargo_tes" value="Tesorero"><label for="cargo_tes">Tesorero</label></div>
+
+                        <div class="chip-item"><input type="checkbox" id="cargo_1v" value="1er Vigilante"><label for="cargo_1v">1er Vigilante</label></div>
+                        <div class="chip-item"><input type="checkbox" id="cargo_hosp" value="Hospitalario"><label for="cargo_hosp">Hospitalario</label></div>
+
+                        <div class="chip-item"><input type="checkbox" id="cargo_2v" value="2do Vigilante"><label for="cargo_2v">2do Vigilante</label></div>
+                        <div class="chip-item"><input type="checkbox" id="cargo_exp" value="Experto"><label for="cargo_exp">Experto</label></div>
+
+                        <div class="chip-item"><input type="checkbox" id="cargo_or" value="Orador"><label for="cargo_or">Orador</label></div>
+                        <div class="chip-item"><input type="checkbox" id="cargo_mc" value="M. Ceremonias"><label for="cargo_mc">M. Ceremonias</label></div>
+
+                        <div class="chip-item"><input type="checkbox" id="cargo_sec" value="Secretario"><label for="cargo_sec">Secretario</label></div>
+                        <div class="chip-item"><input type="checkbox" id="cargo_gt" value="Guarda Templo"><label for="cargo_gt">Guarda Templo</label></div>
+                        
+                        <div class="chip-item" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" id="cargo_otro_check" value="Otro">
+                                <label for="cargo_otro_check">Otro (Especificar)</label>
+                            </div>
+                            <input type="text" id="cargo_otro_text" placeholder="Escribe el cargo aquí..." style="display: none; width: 100%; padding: 0.5rem;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputValle">Oriente / Valle</label>
+                    <input type="text" id="inputValle" placeholder="Ej. Asunción, Paraguay">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputFechaIniciacion">Fecha de Iniciación</label>
+                    <input type="date" id="inputFechaIniciacion">
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputFechaAumento">Aumento de Grado</label>
+                    <input type="date" id="inputFechaAumento">
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputFechaExaltacion">Exaltación</label>
+                    <input type="date" id="inputFechaExaltacion">
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputNacionalidad">Nacionalidad</label>
+                    <input type="text" id="inputNacionalidad" placeholder="Ej. Paraguaya">
+                </div>
+                
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 1rem; margin-bottom: 1rem;">
+                    <input type="checkbox" id="checkAfiliado" style="width: auto; margin: 0;">
+                    <label for="checkAfiliado" style="margin: 0; cursor: pointer; text-transform: none; letter-spacing: normal;">¿Es Obrero Afiliado?</label>
+                </div>
+                
+                <div id="afiliacionFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="inputFechaAfiliacion">Fecha de Afiliación</label>
+                        <input type="date" id="inputFechaAfiliacion">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputDecreto">Decreto de Afiliación</label>
+                        <input type="text" id="inputDecreto" placeholder="Ej. Dec. 012/2026">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputOrienteOrigen">Oriente de Origen</label>
+                        <input type="text" id="inputOrienteOrigen" placeholder="Ej. Gran Oriente de Francia">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputLogiaAumento">Logia donde Aumentó</label>
+                        <input type="text" id="inputLogiaAumento" placeholder="Ej. Logia Luz N° 3">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="window.print()">Imprimir / PDF</button>
+                    <button type="button" class="btn btn-primary" onclick="generateMRZ()">Generar MRZ</button>
+                    <button type="button" class="btn btn-primary" style="background: #28a745; color: white;" onclick="window.guardarEnFirebase()">Guardar en Nube</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Passport Preview -->
+        <div class="preview-section">
+            <div class="passport-card" id="passportCard">
+                <div class="watermark">MM</div>
+                
+                <div class="passport-header">
+                    <h2>ANTIGUO Y PRIMITIVO RITO DE MEMPHIS MISRAIM</h2>
+                    <h3>PASAPORTE MASÓNICO / MASONIC PASSPORT</h3>
+                </div>
+
+                <div class="passport-body">
+                    <div class="photo-area" id="photoContainer" onclick="document.getElementById('fileUpload').click()">
+                        <span>Click para foto<br>(3x4)</span>
+                        <img id="photoPreview" src="" alt="Foto Obrero">
+                        <input type="file" id="fileUpload" style="display:none" accept="image/*" onchange="previewImage(event)">
+                    </div>
+
+                    <div class="data-area">
+                        <div class="data-field">
+                            <span class="data-label">Tipo/Type</span>
+                            <span class="data-value">P</span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">Código/Code</span>
+                            <span class="data-value">MM</span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">N° Pasaporte/Passport No.</span>
+                            <span class="data-value" id="valPasaporte"></span>
+                        </div>
+                        <div class="data-field" style="grid-column: 1 / -1;">
+                            <span class="data-label">Apellidos y Nombres / Surname and Given Names</span>
+                            <span class="data-value" id="valNombres"></span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">Nacionalidad / Nationality</span>
+                            <span class="data-value" id="valNacionalidad"></span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">Grado / Degree</span>
+                            <span class="data-value" id="valGrado"></span>
+                        </div>
+                        <div class="data-field" style="grid-column: 1 / -1;">
+                            <span class="data-label">Logia / Lodge</span>
+                            <span class="data-value" id="valLogia"></span>
+                        </div>
+                        <div class="data-field" style="grid-column: 1 / -1;">
+                            <span class="data-label">Cargos en Logia / Lodge Offices Held</span>
+                            <span class="data-value" id="valCargos"></span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">Oriente / Orient</span>
+                            <span class="data-value" id="valValle"></span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">F. Iniciación / Init.</span>
+                            <span class="data-value" id="valFechaIniciacion" style="font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">Aum. Grado / Passing</span>
+                            <span class="data-value" id="valFechaAumento" style="font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="data-field">
+                            <span class="data-label">Exaltación / Raising</span>
+                            <span class="data-value" id="valFechaExaltacion" style="font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="data-field afiliacion-preview" style="display: none;">
+                            <span class="data-label">Afiliación / Affiliation</span>
+                            <span class="data-value" id="valFechaAfiliacion" style="font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="data-field afiliacion-preview" style="display: none;">
+                            <span class="data-label">Decreto / Decree</span>
+                            <span class="data-value" id="valDecreto" style="font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="data-field afiliacion-preview" style="display: none; grid-column: 1 / -1;">
+                            <span class="data-label">Oriente Origen / Origin Orient</span>
+                            <span class="data-value" id="valOrienteOrigen" style="font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="data-field afiliacion-preview" style="display: none; grid-column: 1 / -1;">
+                            <span class="data-label">Logia Aumento / Passing Lodge</span>
+                            <span class="data-value" id="valLogiaAumento" style="font-size: 0.8rem;"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mrz" id="valMRZ">
+                    P&lt;MM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>
+                    &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import Firebase functions from CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
+            authDomain: "mmpy-146a6.firebaseapp.com",
+            projectId: "mmpy-146a6",
+            storageBucket: "mmpy-146a6.firebasestorage.app",
+            messagingSenderId: "215936118140",
+            appId: "1:215936118140:web:4e9635a8b925bf5d5a88f9",
+            measurementId: "G-YDWYBKMMQR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Populate Grados 1 to 99
+        const selectGrado = document.getElementById('inputGrado');
+        const nombresGrados = [
+            "Aprendiz", "Compañero", "Maestro Masón",
+            "Maestro Secreto", "Maestro Perfecto", "Secretario Íntimo", "Preboste y Juez", "Intendente de los Edificios", "Maestro Elegido de los Nueve",
+            "Ilustre Elegido de los Quince", "Sublime Caballero Elegido", "Gran Maestro Arquitecto", "Real Arco de Enoc", "Gran Elegido y Perfecto Masón",
+            "Caballero de Oriente o de la Espada", "Príncipe de Jerusalén", "Caballero de Oriente y Occidente", "Soberano Príncipe Caballero Rosa Cruz",
+            "Gran Pontífice o Sublime Escocés", "Venerable Gran Maestro de todas las Logias", "Noaquita o Caballero Prusiano", "Caballero Real Hacha o Príncipe del Líbano",
+            "Jefe del Tabernáculo", "Príncipe del Tabernáculo", "Caballero de la Serpiente de Bronce", "Príncipe de Merced o Escocés Trinitario",
+            "Soberano Comendador del Templo", "Caballero del Sol o Príncipe Adepto", "Gran Escocés de San Andrés de Escocia", "Gran Elegido Caballero Kadosh",
+            "Gran Inspector Inquisidor Comendador", "Sublime Príncipe del Real Secreto", "Soberano Gran Inspector General",
+            "Caballero de Escandinavia", "Sublime Comendador del Templo", "Sublime Negociador", "Caballero de Shota", "Sublime Elegido de la Verdad",
+            "Gran Elegido de los Eones", "Sabio Savaista", "Caballero del Arco de los Siete Colores", "Príncipe de Luz", "Sublime Sabio Hermético",
+            "Príncipe del Zodiaco", "Sublime Sabio de los Misterios", "Sublime Pastor de las Chozas", "Caballero de las Siete Estrellas",
+            "Sublime Guardián del Monte Sagrado", "Sublime Sabio de las Pirámides", "Sublime Filósofo de Samotracia", "Sublime Titán del Cáucaso",
+            "Sabio del Laberinto", "Caballero o Sabio del Fénix", "Sublime Escáldigo", "Sublime Orador Órfico", "Pontífice de Cadmia", "Sublime Mago",
+            "Sabio Príncipe Brahmánico", "Sublime Sabio de Ogygia", "Sublime Guardián de los Tres Fuegos", "Sublime Filósofo Desconocido",
+            "Sublime Sabio de Eleusis", "Sublime Kawi", "Sabio de Mithras", "Patriarca Gran Instalador", "Patriarca Gran Consagrador",
+            "Patriarca Gran Eulogista", "Patriarca de la Verdad", "Sabio de la Rama de Oro de Eleusis", "Patriarca de los Planisferios",
+            "Patriarca de los Vedas Sagrados", "Sublime Maestro de la Sabiduría", "Patriarca del Fuego Sagrado", "Sublime Maestro de los Stoka",
+            "Patriarca Comendador de los Reyes", "Patriarca del Santo de los Santos", "Sublime Sabio de los Teósofos", "Pontífice de la Ciudad de los Dioses",
+            "Patriarca Maestro del Misterio", "Sabio del Monte Sinai", "Sublime Patriarca de las Siete Virtudes", "Patriarca de las Claves de Plata",
+            "Patriarca de las Letras de Oro", "Patriarca de las Ciencias Ocultas", "Patriarca del Verbo Creador", "Sublime Maestro de los Mundos Creados",
+            "Sublime Guardián del Sello de Oro", "Patriarca de la Profecía Eterna", "Patriarca del Misterio Infinito", "Sublime Maestro de la Gran Obra",
+            "Gran Defensor del Rito", "Gran Catequista", "Gran Regulador General", "Gran Administrador del Rito", "Gran Conservador del Rito",
+            "Gran y Poderoso Soberano del Rito", "Gran Hierofante Sustituto", "Gran Hierofante Nacional", "Soberano Gran Hierofante Internacional"
+        ];
+        
+        for (let i = 1; i <= 99; i++) {
+            const nombre = nombresGrados[i-1];
+            const opt = document.createElement('option');
+            opt.value = `${i}° - ${nombre}`;
+            opt.textContent = `${i}° - ${nombre}`;
+            selectGrado.appendChild(opt);
+        }
+
+        // Real-time update logic
+        const fields = [
+            { input: 'inputNombres', output: 'valNombres' },
+            { input: 'inputPasaporte', output: 'valPasaporte' },
+            { input: 'inputGrado', output: 'valGrado' },
+            { input: 'inputLogia', output: 'valLogia' },
+            { input: 'inputValle', output: 'valValle' },
+            { input: 'inputNacionalidad', output: 'valNacionalidad' },
+            { input: 'inputDecreto', output: 'valDecreto' },
+            { input: 'inputOrienteOrigen', output: 'valOrienteOrigen' },
+            { input: 'inputLogiaAumento', output: 'valLogiaAumento' }
+        ];
+
+        fields.forEach(f => {
+            const inputEl = document.getElementById(f.input);
+            const outputEl = document.getElementById(f.output);
+            if(inputEl && outputEl) {
+                inputEl.addEventListener('input', () => {
+                    outputEl.textContent = inputEl.value.toUpperCase();
+                });
+            }
+        });
+
+        // Logia selector logic
+        document.getElementById('selectLogia').addEventListener('change', function() {
+            const inputEl = document.getElementById('inputLogia');
+            if (this.value === 'Otro') {
+                inputEl.style.display = 'block';
+                inputEl.value = '';
+                document.getElementById('valLogia').textContent = '';
+            } else {
+                inputEl.style.display = 'none';
+                inputEl.value = this.value;
+                document.getElementById('valLogia').textContent = this.value.toUpperCase();
+            }
+        });
+
+        // Cargos Checkboxes listener
+        const updateCargos = () => {
+            const selected = Array.from(document.querySelectorAll('#cargosContainer input[type="checkbox"]:not(#cargo_otro_check)'))
+                                .filter(i => i.checked)
+                                .map(i => i.value);
+            
+            const otroCheck = document.getElementById('cargo_otro_check');
+            const otroText = document.getElementById('cargo_otro_text');
+            if(otroCheck && otroCheck.checked && otroText.value.trim() !== '') {
+                selected.push(otroText.value.trim());
+            }
+            document.getElementById('valCargos').textContent = selected.join(', ').toUpperCase();
+        };
+
+        document.querySelectorAll('#cargosContainer input').forEach(el => {
+            el.addEventListener('input', updateCargos);
+            el.addEventListener('change', updateCargos);
+        });
+
+        document.getElementById('cargo_otro_check').addEventListener('change', function() {
+            document.getElementById('cargo_otro_text').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Date formatters
+        const dateFields = ['Iniciacion', 'Aumento', 'Exaltacion', 'Afiliacion'];
+        dateFields.forEach(field => {
+            const el = document.getElementById(`inputFecha${field}`);
+            if(el) {
+                el.addEventListener('input', (e) => {
+                    const date = new Date(e.target.value);
+                    if(!isNaN(date)) {
+                        date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+                        const formatted = date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+                        document.getElementById(`valFecha${field}`).textContent = formatted.toUpperCase();
+                    } else {
+                        document.getElementById(`valFecha${field}`).textContent = '';
+                    }
+                });
+            }
+        });
+
+        // Toggle Afiliado fields
+        document.getElementById('checkAfiliado').addEventListener('change', function() {
+            const isChecked = this.checked;
+            document.getElementById('afiliacionFields').style.display = isChecked ? 'block' : 'none';
+            document.querySelectorAll('.afiliacion-preview').forEach(el => {
+                el.style.display = isChecked ? 'flex' : 'none';
+            });
+            if(!isChecked) {
+                document.getElementById('inputFechaAfiliacion').value = '';
+                document.getElementById('valFechaAfiliacion').textContent = '';
+                document.getElementById('inputDecreto').value = '';
+                document.getElementById('valDecreto').textContent = '';
+                document.getElementById('inputOrienteOrigen').value = '';
+                document.getElementById('valOrienteOrigen').textContent = '';
+                document.getElementById('inputLogiaAumento').value = '';
+                document.getElementById('valLogiaAumento').textContent = '';
+            }
+        });
+
+        // Image upload preview (Export to window scope for inline onclick)
+        window.previewImage = function(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const img = document.getElementById('photoPreview');
+                img.src = reader.result;
+                img.style.display = 'block';
+            }
+            if(event.target.files[0]) {
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        };
+
+        // Generate fake MRZ
+        window.generateMRZ = function() {
+            const name = document.getElementById('inputNombres').value.toUpperCase().replace(/[^A-Z]/g, '<');
+            const passport = document.getElementById('inputPasaporte').value.toUpperCase().replace(/[^A-Z0-9]/g, '') || '000000000';
+            const mrz1 = `P<MM<${name}${'<'.repeat(39)}`.substring(0, 44);
+            const mrz2 = `${passport}8MMR20260707${'<'.repeat(20)}`.substring(0, 44); 
+            
+            document.getElementById('valMRZ').innerHTML = `${mrz1}<br>${mrz2}`;
+        };
+        
+        // Save to Firebase function
+        window.guardarEnFirebase = async function() {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Guardando...';
+            btn.disabled = true;
+
+            const datos = {
+                nombres: document.getElementById('inputNombres').value,
+                pasaporte: document.getElementById('inputPasaporte').value,
+                grado: document.getElementById('inputGrado').value,
+                logia: document.getElementById('inputLogia').value,
+                cargos: document.getElementById('valCargos').textContent,
+                valle: document.getElementById('inputValle').value,
+                fecha_iniciacion: document.getElementById('inputFechaIniciacion').value,
+                fecha_aumento: document.getElementById('inputFechaAumento').value,
+                fecha_exaltacion: document.getElementById('inputFechaExaltacion').value,
+                fecha_afiliacion: document.getElementById('inputFechaAfiliacion').value,
+                decreto_afiliacion: document.getElementById('inputDecreto').value,
+                oriente_origen: document.getElementById('inputOrienteOrigen').value,
+                logia_aumento: document.getElementById('inputLogiaAumento').value,
+                nacionalidad: document.getElementById('inputNacionalidad').value,
+                fecha_registro: new Date().toISOString()
+            };
+
+            if(!datos.nombres || !datos.pasaporte) {
+                alert("Por favor, al menos rellena Nombres y N° Pasaporte.");
+                btn.textContent = originalText;
+                btn.disabled = false;
+                return;
+            }
+
+            try {
+                const docRef = await addDoc(collection(db, "obreros"), datos);
+                alert("¡Obrero guardado correctamente en la nube Firebase!");
+                document.getElementById('obreroForm').reset();
+                // Clear preview
+                document.querySelectorAll('.data-value').forEach(el => el.textContent = '');
+                document.getElementById('photoPreview').style.display = 'none';
+                document.getElementById('valMRZ').innerHTML = `P&lt;MM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;`;
+            } catch (e) {
+                console.error("Error al añadir documento: ", e);
+                alert("Hubo un error al guardar. Verifica la consola.");
+            }
+
+            btn.textContent = originalText;
+            btn.disabled = false;
+        };
+
+        // Custom print styles injection
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = `
+            @media print {
+                body { background: white; margin: 0; padding: 0; }
+                header, .form-section { display: none; }
+                .preview-section { margin: 0; padding: 0; }
+                .passport-card { box-shadow: none; border: 1px solid #000; transform: none !important; }
+                @page { size: auto; margin: 10mm; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

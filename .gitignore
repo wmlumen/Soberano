@@ -1,0 +1,28 @@
+# Ignore large binaries / generated artifacts
+*.pdf
+*.zip
+*.tar
+*.gz
+*.7z
+
+# Ignore large non-web artifacts if desired
+# Rituales/output/*
+# descargas/
+# Normativa/
+# Pasos/
+
+# OS / editor junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Firebase local config if present
+.firebaserc
+.firebase/
+
+# Node modules if any
+node_modules/
+
+# Python folders that aren't part of the web app
+__pycache__/
+*.pyc

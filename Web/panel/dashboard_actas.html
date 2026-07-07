@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Panel de Control | Memphis Misraim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
+    <style>
+        body[data-leftbar-theme="dark"] .leftside-menu { background-color: #050b14; border-right: 1px solid rgba(212, 175, 55, 0.2); }
+        .navbar-custom { background-color: #121c2d; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .side-nav-link { color: #f4f4f9 !important; }
+        .side-nav-link:hover, .side-nav-link.active { color: #d4af37 !important; }
+        .logo-lg, .logo-sm { font-family: 'Cinzel', serif; color: #d4af37; font-size: 1.2rem; font-weight: bold; }
+        
+        .btn-masonic { background-color: #d4af37; border-color: #d4af37; color: #050b14; font-weight: bold; }
+        .btn-masonic:hover { background-color: #e0bc48; border-color: #e0bc48; }
+        
+        .table-masonic { border-color: rgba(212, 175, 55, 0.2); }
+        .table-masonic th { background-color: #121c2d; color: #d4af37; border-bottom: 2px solid #d4af37; }
+        .table-masonic td { vertical-align: middle; }
+
+        /* Faint Egyptian Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150' opacity='0.08' fill='%23d4af37'><path d='M30 20c-5.5 0-10 4.5-10 10s4.5 10 10 10v5h-10v5h10v15h5v-15h10v-5h-10v-5c5.5 0 10-4.5 10-10s-4.5-10-10-10zm0 5c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z'/><path d='M100 30c-15 0-25 10-25 10s10 10 25 10 25-10 25-10-10-10-25-10zm0 5c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z'/><path d='M100 45v10c0 2-2 5-5 5M110 45l5 15' fill='none' stroke='%23d4af37' stroke-width='3'/><path d='M30 130l-20 15h40zM30 135c-2 0-3 1-3 2s1 2 3 2 3-1 3-2-1-2-3-2z'/><path d='M70 100l5-5 5 5 5-5 5 5 5-5 5 5 5-5 5 5M70 110l5-5 5 5 5-5 5 5 5-5 5 5 5-5 5 5' fill='none' stroke='%23d4af37' stroke-width='3'/><path d='M120 90h10v30h-10z'/><path d='M115 95h20v3h-20zM115 100h20v3h-20zM115 105h20v3h-20zM115 110h20v3h-20z'/></svg>") repeat;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="loading" data-layout-color="light" data-leftbar-theme="dark" data-layout-mode="fluid" data-rightbar-onstart="true">
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="leftside-menu">
+            <a href="dashboard.html" class="logo text-center logo-light mt-3 mb-3" style="text-decoration: none;">
+                <span class="logo-lg">MEMPHIS MISRAIM</span>
+                <span class="logo-sm">MM</span>
+            </a>
+            <div class="h-100" id="leftside-menu-container" data-simplebar>
+                <ul class="side-nav">
+                    <li class="side-nav-title side-nav-item">Panel General</li>
+                    <li class="side-nav-item">
+                        <a href="dashboard.html" class="side-nav-link">
+                            <i class="uil-users-alt"></i>
+                            <span> Registro de Obreros </span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="dashboard_logias.html" class="side-nav-link">
+                            <i class="uil-building"></i>
+                            <span> Logias </span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="dashboard_decretos.html" class="side-nav-link">
+                            <i class="uil-file-shield-alt"></i>
+                            <span> Decretos </span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="dashboard_actas.html" class="side-nav-link active">
+                            <i class="uil-book-open"></i>
+                            <span> Actas </span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="dashboard_tesoreria.html" class="side-nav-link">
+                            <i class="uil-money-bill"></i>
+                            <span> Tesorería </span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item mt-4">
+                        <a href="index.html" class="side-nav-link">
+                            <i class="uil-arrow-left"></i>
+                            <span> Volver al Portal </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content-page">
+            <div class="content">
+                <!-- Topbar -->
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <span class="account-user-avatar"> 
+                                    <img src="../assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name text-white" id="adminUserName">Gran Secretaría</span>
+                                    <span class="account-position text-muted">Administrador</span>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                                <a href="#" class="dropdown-item notify-item" id="btnLogout">
+                                    <i class="mdi mdi-logout me-1"></i>
+                                    <span>Cerrar Sesión</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <i class="mdi mdi-menu" style="color: #d4af37;"></i>
+                    </button>
+                </div>
+
+                <!-- Page Content -->
+                <div class="container-fluid mt-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title">Libro de Actas</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <h4 class="header-title mb-0">Actas por Estamento</h4>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <select id="estamentoFilter" class="form-select w-auto" style="background-color: var(--secondary); color: white; border-color: rgba(212,175,55,0.3);">
+                                                    <option value="Soberano Santuario">Soberano Santuario</option>
+                                                    <option value="Supremo Consejo">Supremo Consejo</option>
+                                                    <option value="Gran Logia">Gran Logia</option>
+                                                </select>
+                                                <select id="tallerFilter" class="form-select w-auto" style="background-color: var(--secondary); color: white; border-color: rgba(212,175,55,0.3);">
+                                                    <!-- Dynamic -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-masonic" data-bs-toggle="modal" data-bs-target="#actaModal"><i class="uil-upload"></i> Subir Acta</button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-centered table-masonic mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Fecha</th>
+                                                    <th>N° de Acta</th>
+                                                    <th>Estamento/Logia</th>
+                                                    <th>Asunto / Tipo</th>
+                                                    <th class="text-center">Archivo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="actasTableBody">
+                                                <tr>
+                                                    <td colspan="5" class="text-center py-4">
+                                                        <div class="spinner-border text-warning" role="status"></div>
+                                                        <p class="mt-2 text-muted">Cargando actas desde la base de datos...</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Acta y Asistencia -->
+    <div id="actaModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-color: var(--primary); color: white; border: 1px solid var(--accent-gold);">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title" style="color: var(--accent-gold);">Registrar Nueva Acta y Asistencia</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formActa">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white-50">Fecha de Tenida</label>
+                                <input type="date" class="form-control" style="background-color: var(--secondary); color: white; border-color: rgba(212,175,55,0.3);" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white-50">N° de Acta</label>
+                                <input type="number" class="form-control" style="background-color: var(--secondary); color: white; border-color: rgba(212,175,55,0.3);" placeholder="Ej: 45" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white-50">Tipo de Tenida</label>
+                                <select class="form-select" style="background-color: var(--secondary); color: white; border-color: rgba(212,175,55,0.3);" required>
+                                    <option value="Ordinaria">Ordinaria</option>
+                                    <option value="Extraordinaria">Extraordinaria</option>
+                                    <option value="Iniciacion">Iniciación</option>
+                                    <option value="AumentoSalario">Aumento de Salario</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white-50">Archivo (PDF)</label>
+                                <input type="file" class="form-control" style="background-color: var(--secondary); color: white; border-color: rgba(212,175,55,0.3);" accept=".pdf">
+                            </div>
+                        </div>
+
+                        <hr style="border-color: rgba(212,175,55,0.3);">
+                        <h5 style="color: var(--accent-gold);">Planilla de Asistencia</h5>
+                        <p class="text-white-50 font-13">Selecciona los obreros que estuvieron presentes en esta tenida.</p>
+                        
+                        <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                            <table class="table table-sm table-hover table-masonic mb-0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">
+                                            <input type="checkbox" id="selectAllObreros" class="form-check-input">
+                                        </th>
+                                        <th>Pasaporte</th>
+                                        <th>Nombre y Apellido</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="asistenciaTableBody">
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted py-3">Selecciona un Taller en el filtro principal para cargar obreros...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="text-end mt-4">
+                            <button type="button" class="btn btn-masonic" data-bs-dismiss="modal">Guardar Acta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/vendor.min.js"></script>
+    <script src="../assets/js/app.min.js"></script>
+
+    <!-- Firebase Connection -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
+            authDomain: "mmpy-146a6.firebaseapp.com",
+            projectId: "mmpy-146a6",
+            storageBucket: "mmpy-146a6.firebasestorage.app",
+            messagingSenderId: "215936118140",
+            appId: "1:215936118140:web:4e9635a8b925bf5d5a88f9",
+            measurementId: "G-YDWYBKMMQR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Security check
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "auth.html";
+            } else {
+                document.getElementById('adminUserName').textContent = user.displayName || user.email;
+                loadObreros();
+            }
+        });
+
+        document.getElementById('btnLogout').addEventListener('click', (e) => {
+            e.preventDefault();
+            signOut(auth);
+        });
+
+        // Dependent Dropdown Logic
+        const tallersPorEstamento = {
+            "Soberano Santuario": ["Consolidado Soberano Santuario"],
+            "Supremo Consejo": ["Consolidado Supremo Consejo", "Capítulo Rosacruz No. 1", "Areópago No. 1"],
+            "Gran Logia": ["Consolidado Gran Logia", "Logia Osiris No. 1", "Logia Isis No. 2"]
+        };
+
+        const estamentoFilter = document.getElementById('estamentoFilter');
+        const tallerFilter = document.getElementById('tallerFilter');
+        
+        // URL Parameter Support
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlTaller = urlParams.get('taller');
+
+        function updateTallerOptions(preselectTaller = null) {
+            const estamento = estamentoFilter.value;
+            tallerFilter.innerHTML = '';
+            
+            if (tallersPorEstamento[estamento]) {
+                tallersPorEstamento[estamento].forEach(taller => {
+                    tallerFilter.innerHTML += `<option value="${taller}">${taller}</option>`;
+                });
+            }
+            
+            if (estamento === "Soberano Santuario") {
+                tallerFilter.setAttribute("disabled", "true");
+            } else {
+                tallerFilter.removeAttribute("disabled");
+            }
+            
+            if (preselectTaller) {
+                tallerFilter.value = preselectTaller;
+            }
+            
+            loadActas();
+            loadObrerosParaAsistencia();
+        }
+
+        estamentoFilter.addEventListener('change', () => updateTallerOptions());
+        tallerFilter.addEventListener('change', () => {
+            loadActas();
+            loadObrerosParaAsistencia();
+        });
+
+        // Initialize with URL param if exists
+        if (urlTaller) {
+            // Find which estamento has this taller
+            for (const est in tallersPorEstamento) {
+                if (tallersPorEstamento[est].includes(urlTaller)) {
+                    estamentoFilter.value = est;
+                    break;
+                }
+            }
+            // Even if not found, we call updateTallerOptions and it might just reset to default
+            updateTallerOptions(urlTaller);
+        } else {
+            updateTallerOptions();
+        }
+
+        async function loadObrerosParaAsistencia() {
+            const taller = tallerFilter.value;
+            const tableBody = document.getElementById('asistenciaTableBody');
+            
+            if (!taller || taller.startsWith("Consolidado")) {
+                tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-3">Selecciona una Logia o Capítulo específico para ver su lista de obreros.</td></tr>';
+                return;
+            }
+            
+            try {
+                // MOCK logic: In a real app we would do:
+                // const q = query(collection(db, "obreros"), where("logia", "==", taller));
+                // But since we have dummy data, we just show a few dummy members
+                tableBody.innerHTML = `
+                    <tr>
+                        <td><input type="checkbox" class="form-check-input obrero-cb" value="dummy_id_1"></td>
+                        <td>00101</td>
+                        <td>Juan Pérez</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="form-check-input obrero-cb" value="dummy_id_2"></td>
+                        <td>00102</td>
+                        <td>Carlos Gómez</td>
+                    </tr>
+                `;
+            } catch (error) {
+                console.error("Error loading obreros for attendance", error);
+            }
+        }
+
+        document.getElementById('selectAllObreros').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.obrero-cb');
+            checkboxes.forEach(cb => cb.checked = this.checked);
+        });
+
+        async function loadActas() {
+            const tableBody = document.getElementById('actasTableBody');
+            const filtroEstamento = estamentoFilter.value;
+            const filtroTaller = tallerFilter.value;
+            const filtroTexto = filtroTaller !== "" ? filtroTaller : filtroEstamento;
+            
+            try {
+                const q = query(collection(db, "actas"));
+                const querySnapshot = await getDocs(q);
+                
+                tableBody.innerHTML = '';
+                
+                // MOCK DATA for visualization if DB is empty
+                if (querySnapshot.empty) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td>12/05/2026</td>
+                            <td><strong>Acta No. 42</strong></td>
+                            <td>${filtroTexto}</td>
+                            <td>Tenida Ordinaria</td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-outline-dark"><i class="uil-download-alt"></i> Descargar PDF</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20/04/2026</td>
+                            <td><strong>Acta No. 41</strong></td>
+                            <td>${filtroTexto}</td>
+                            <td>Tenida Extraordinaria</td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-outline-dark"><i class="uil-download-alt"></i> Descargar PDF</a>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${data.fecha || ''}</td>
+                            <td><strong>${data.numero || ''}</strong></td>
+                            <td>${data.estamento || ''}</td>
+                            <td>${data.tipo || ''}</td>
+                            <td class="text-center">
+                                <a href="${data.archivo_url || '#'}" class="btn btn-sm btn-outline-dark" target="_blank"><i class="uil-download-alt"></i> Descargar</a>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } catch (error) {
+                console.error("Error cargando actas:", error);
+                // Si falla Firebase Auth (configuration not found), mostrar mock de todos modos
+                tableBody.innerHTML = `
+                    <tr>
+                        <td>12/05/2026</td>
+                        <td><strong>Acta No. 42</strong></td>
+                        <td>${filtroTexto}</td>
+                        <td>Tenida Ordinaria</td>
+                        <td class="text-center">
+                            <a href="#" class="btn btn-sm btn-outline-dark"><i class="uil-download-alt"></i> Descargar PDF</a>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+        
+        // Initial setup handled by URL parameter logic above
+    </script>
+</body>
+</html>

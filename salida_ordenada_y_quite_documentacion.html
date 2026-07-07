@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expediente Canónico de Salida Ordenada y Quit-Placet | Rito de Menfis-Misraïm</title>
+    <meta name="description" content="Documentación oficial, canónica y jurídica para el retiro ordenado y la puesta a cubierto según las Grandes Constituciones de la Orden Masónica.">
+    
+    <!-- Google Fonts: Cinzel, Cormorant Garamond, Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #06070a;
+            --bg-card: rgba(18, 20, 28, 0.75);
+            --bg-card-hover: rgba(26, 30, 42, 0.9);
+            --bg-glass: rgba(15, 17, 23, 0.65);
+            --gold-primary: #d4af37;
+            --gold-bright: #f3e5ab;
+            --gold-dim: #8c7322;
+            --purple-royal: #3b185f;
+            --purple-glow: rgba(138, 43, 226, 0.18);
+            --crimson-alert: #8b0000;
+            --crimson-glow: rgba(220, 20, 60, 0.25);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-gold: rgba(212, 175, 55, 0.35);
+            --border-gold-strong: rgba(212, 175, 55, 0.85);
+            --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(59, 24, 95, 0.45) 0%, transparent 65%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 10% 40%, rgba(139, 0, 0, 0.12) 0%, transparent 45%),
+                linear-gradient(to bottom, transparent, #030406);
+            background-attachment: fixed;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+
+        /* ── Header Esotérico y Soberano ── */
+        header {
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+            border-bottom: 1px solid var(--border-gold);
+            background: linear-gradient(180deg, rgba(10, 11, 16, 0.95) 0%, rgba(6, 7, 10, 0.75) 100%);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .masonic-symbol {
+            font-size: 46px;
+            color: var(--gold-primary);
+            margin-bottom: 12px;
+            text-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
+            animation: pulseGold 3.5s infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes pulseGold {
+            0% { transform: scale(0.98); text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
+            100% { transform: scale(1.04); text-shadow: 0 0 30px rgba(243, 229, 171, 0.9), 0 0 10px #d4af37; }
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--gold-bright);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        header p.subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            font-style: italic;
+            color: var(--text-muted);
+            max-width: 900px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
+        }
+
+        .badges-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid var(--border-gold);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold-bright);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .badge.alert {
+            background: rgba(139, 0, 0, 0.25);
+            border-color: rgba(220, 20, 60, 0.5);
+            color: #ff8a8a;
+        }
+
+        /* ── Contenedor Principal ── */
+        .container {
+            max-width: 1280px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+        }
+
+        /* ── Panel de Personalización (Wizard en Tiempo Real) ── */
+        .customizer-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-premium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .customizer-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold-primary), var(--purple-royal));
+        }
+
+        .customizer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .customizer-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .customizer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .customizer-grid.collapsed {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            background: rgba(10, 11, 16, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--gold-bright);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+            background: rgba(15, 17, 24, 0.95);
+        }
+
+        /* ── Pestañas de Navegación ── */
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-dim) transparent;
+        }
+
+        .tabs-nav::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tabs-nav::-webkit-scrollbar-thumb {
+            background: var(--gold-dim);
+            border-radius: 3px;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 14px 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg-card-hover);
+            color: var(--gold-bright);
+            border-color: var(--border-gold);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(59, 24, 95, 0.8) 0%, rgba(28, 32, 48, 0.9) 100%);
+            color: var(--gold-bright);
+            border-color: var(--gold-primary);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* ── Área de Contenido del Documento ── */
+        .document-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold-strong);
+            border-radius: 20px;
+            padding: 40px clamp(20px, 5vw, 60px);
+            backdrop-filter: blur(25px);
+            box-shadow: var(--shadow-premium);
+            position: relative;
+            min-height: 600px;
+        }
+
+        .doc-action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .doc-title-meta h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-bright);
+        }
+
+        .doc-title-meta span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-bright);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            background: var(--gold-primary);
+            color: #000;
+            border-color: var(--gold-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-action.highlight-toggle.active {
+            background: rgba(139, 0, 0, 0.4);
+            border-color: #ff6b6b;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.5);
+        }
+
+        /* ── Estilo del Texto Documental ── */
+        .doc-content {
+            display: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #f1f5f9;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .doc-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .doc-content h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--gold-bright);
+            text-align: center;
+            margin: 25px 0 35px;
+            line-height: 1.3;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            border-bottom: 2px solid var(--border-gold);
+            padding-bottom: 15px;
+        }
+
+        .doc-content h2, .doc-content h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            margin: 30px 0 15px;
+            letter-spacing: 1px;
+        }
+
+        .doc-content h2 { font-size: 1.5rem; border-left: 4px solid var(--gold-primary); padding-left: 12px; }
+        .doc-content h3 { font-size: 1.3rem; }
+
+        .doc-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .doc-content ul, .doc-content ol {
+            margin: 15px 0 25px 30px;
+        }
+
+        .doc-content li {
+            margin-bottom: 10px;
+        }
+
+        .doc-content hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+            margin: 35px 0;
+        }
+
+        .header-formula {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--gold-dim);
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .signatures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .signature-box {
+            border-top: 1px solid var(--text-muted);
+            padding-top: 15px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .signature-box strong {
+            color: var(--gold-bright);
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ── Cláusulas Resaltadas Canónicamente ── */
+        .canonical-highlight {
+            transition: all 0.3s ease;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .highlight-active .canonical-highlight {
+            background: rgba(220, 20, 60, 0.3);
+            border: 1px solid rgba(255, 107, 107, 0.6);
+            color: #ffe6e6;
+            text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+            font-weight: 700;
+        }
+
+        /* ── Toast de Notificación ── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dim));
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 9999;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        footer .gold {
+            color: var(--gold-dim);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        /* ── ESTILOS DE IMPPRESIÓN (@media print) ── */
+        @media print {
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-family: 'Cormorant Garamond', serif !important;
+                padding: 0 !important;
+            }
+
+            header, .customizer-panel, .tabs-nav, .doc-action-bar, footer, .toast {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .document-wrapper {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+
+            .doc-content {
+                display: none !important;
+            }
+
+            .doc-content.active {
+                display: block !important;
+                color: #000 !important;
+                font-size: 13pt !important;
+                line-height: 1.6 !important;
+            }
+
+            .doc-content h1 {
+                color: #000 !important;
+                font-size: 20pt !important;
+                border-bottom: 2px solid #000 !important;
+                text-shadow: none !important;
+            }
+
+            .doc-content h2, .doc-content h3 {
+                color: #000 !important;
+            }
+
+            .header-formula {
+                color: #333 !important;
+            }
+
+            .signature-box {
+                border-top: 1px solid #000 !important;
+                color: #000 !important;
+            }
+
+            .signature-box strong {
+                color: #000 !important;
+            }
+
+            .canonical-highlight {
+                background: transparent !important;
+                border: none !important;
+                color: #000 !important;
+                font-weight: bold !important;
+                text-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Header Esotérico ── -->
+    <header>
+        <div class="masonic-symbol">🏛️ 👁️ 🔱</div>
+        <h1>Expediente Canónico de Salida Ordenada</h1>
+        <p class="subtitle">Documentación oficial de desvinculación, Quit-Placet bajo protesta y puesta a cubierto con el Tesoro, redactada según las Grandes Constituciones y Antiguos Límites del Rito Antiguo y Primitivo de Menfis-Misraïm.</p>
+        
+        <div class="badges-wrapper">
+            <div class="badge">⚖️ Jurispruencia Masónica Regular</div>
+            <div class="badge">📜 Paz y Salvo Financiero</div>
+            <div class="badge">🛡️ Resguardo del Linaje</div>
+            <div class="badge alert">🚨 Denuncia: Aumento Irregular de Obreras</div>
+        </div>
+    </header>
+
+    <!-- ── Contenedor Principal ── -->
+    <main class="container">
+
+        <!-- ── Panel de Personalización en Tiempo Real ── -->
+        <section class="customizer-panel">
+            <div class="customizer-header" onclick="toggleCustomizer()">
+                <h2>✨ Wizard de Personalización en Tiempo Real <span style="font-size:0.8rem; font-family:'Inter',sans-serif; color:var(--text-muted); font-weight:normal;">(Haz clic para colapsar/desplegar)</span></h2>
+                <span class="toggle-icon" id="toggleIcon">▲</span>
+            </div>
+            <div class="customizer-grid" id="customizerGrid">
+                <div class="form-group">
+                    <label for="inputTaller">Nombre y N.º de Logia / Taller</label>
+                    <input type="text" id="inputTaller" value="Luxor N.º 1" placeholder="Ej. Luxor N.º 1 / Thot N.º 2">
+                </div>
+                <div class="form-group">
+                    <label for="inputNombre">Nombre del Obrero/a o Dignatario/a</label>
+                    <input type="text" id="inputNombre" value="Rubén González" placeholder="Ej. Rubén González">
+                </div>
+                <div class="form-group">
+                    <label for="inputGrado">Grado Masónico Actual</label>
+                    <input type="text" id="inputGrado" value="Maestro Masón (Grado 3.º)" placeholder="Ej. Compañero / Maestro Masón">
+                </div>
+                <div class="form-group">
+                    <label for="inputMatricula">N.º de Matrícula General</label>
+                    <input type="text" id="inputMatricula" value="PY-MM-0892" placeholder="Ej. PY-MM-0892">
+                </div>
+                <div class="form-group">
+                    <label for="inputFecha">Fecha de Presentación</label>
+                    <input type="text" id="inputFecha" value="05 de julio de 2026 E∴ V∴" placeholder="Ej. 05 de julio de 2026 E∴ V∴">
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Pestañas de Navegación ── -->
+        <nav class="tabs-nav" role="tablist">
+            <button class="tab-btn active" onclick="switchTab('guia', this)" role="tab">📘 Guía y Protocolo Maestro</button>
+            <button class="tab-btn" onclick="switchTab('manifiesto', this)" role="tab">📜 Manifiesto de Ruptura</button>
+            <button class="tab-btn" onclick="switchTab('quite', this)" role="tab">✍️ Plancha de Quite (Demisión)</button>
+            <button class="tab-btn" onclick="switchTab('pazysalvo', this)" role="tab">🪙 Certificado Paz y Salvo</button>
+            <button class="tab-btn" onclick="switchTab('devolucion', this)" role="tab">🏛️ Acta Devolución de Patente</button>
+        </nav>
+
+        <!-- ── Contenedor del Documento Activo ── -->
+        <section class="document-wrapper" id="docContainer">
+            
+            <div class="doc-action-bar">
+                <div class="doc-title-meta">
+                    <h3 id="currentDocTitle">Guía y Protocolo Canónico de Salida Ordenada</h3>
+                    <span>Documento oficial apto para impresión, firma y archivo institucional.</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-action highlight-toggle" id="btnHighlight" onclick="toggleHighlights()">
+                        🔍 Resaltar Cláusulas Clave
+                    </button>
+                    <button class="btn-action" onclick="copyCurrentDoc()">
+                        📋 Copiar Texto
+                    </button>
+                    <button class="btn-action" onclick="window.print()">
+                        🖨️ Imprimir / Exportar PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── TAB 1: GUÍA Y PROTOCOLO ── -->
+            <article id="doc-guia" class="doc-content active">
+                <div class="header-formula">A∴ L∴ G∴ D∴ A∴ D∴ U∴<br>PAX – AMOR – IMPERIUM</div>
+                <h1>Guía y Protocolo Canónico para la Desvinculación y Salida Ordenada de la Orden</h1>
+                
+                <p>El presente manual establece el procedimiento canónico, jurídico y administrativo exigido por las <strong>Grandes Constituciones de la Orden</strong> y los <strong>Antiguos Límites (Landmarks)</strong> para formalizar el retiro, la demisión o el abatimiento de columnas de un Obrero, un grupo de Hermanos o una Logia completa, ante la <span class="canonical-highlight">pérdida de institucionalidad</span> y la transgresión de los preceptos fundamentales del Rito.</p>
+
+                <h2>🏛️ I. Fundamentación Constitucional y Causa del Retiro</h2>
+                <p>Cuando una Obediencia, Gran Logia Simbólica o cuerpo de dirección desatiende sus normas constitucionales, viola sus reglamentos generales o incurre en profanación litúrgica, los Maestros Masones y Obreros regulares tienen el deber ético e iniciático de salvaguardar su regularidad y el honor de su Carta Patente.</p>
+
+                <h3>1. Causas Denunciadas para la Desvinculación:</h3>
+                <ul>
+                    <li><strong>Pérdida de las Condiciones de Institucionalidad:</strong> Colapso de la gestión administrativa, falta de rendición de cuentas en la Gran Tesorería, desatención territorial y suscripción de pactos o tratados espurios con potencias "salvajes" o irregulares (como los denunciados en las <em>Actas de Registro de Incumplimiento N.º 01/2025 al N.º 05/2025</em> y el <em>Gran Balustre N.º 01/2025</em>).</li>
+                    <li><strong>Ruptura de los Principios Fundamentales:</strong> Usurpación de atribuciones entre el Simbolismo y el Supremo Consejo / Soberano Santuario, alteración arbitraria de las normas y desacato a las directivas superiores.</li>
+                    <li><strong>Irregularidad Litúrgica en Aumentos de Grado:</strong> El conferimiento anticanónico de <span class="canonical-highlight">Aumentos de Salario (Compañero) y Exaltaciones (Maestro Masón) a Obreras</span> sin cumplir con:
+                        <ul>
+                            <li>Los tiempos mínimos de permanencia reglamentaria en las columnas.</li>
+                            <li>La presentación y defensa del Trabajo de Arquitectura correspondiente.</li>
+                            <li>La plomada de escrutinio, interrogatorio litúrgico y votación de la Cámara.</li>
+                            <li>La legitimidad de la autoridad conferente viciada por desobediencia o rebeldía constitucional.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>🛡️ II. Estrategia Jurídica Masónica: La "Salida Ordenada"</h2>
+                <p>Para que el retiro sea <span class="canonical-highlight">intachable, inobjetable y no deje margen a represalias políticas o falsas sanciones de expulsión (ex post facto)</span>, el Obrero o Taller no debe simplemente "abandonar" o dejar de asistir (paso a sueño informal), sino que debe ejecutar un <strong>Retiro Formal, Ordenado y A Cubierto con el Tesoro</strong>, fundamentado en cuatro documentos canónicos que han sido redactados e incorporados al archivo normativo de la Obediencia.</p>
+
+                <h2>📑 III. Kit Documental de Desvinculación</h2>
+                <ol>
+                    <li><strong>Manifiesto de Ruptura Institucional y Retiro de la Orden:</strong> Proclama ante el Mundo Masónico la separación irrevocable de la jurisdicción por pérdida de institucionalidad y por el irregular aumento de grado de Obreras. Fija la postura ética y salvaguarda el honor de los firmantes.</li>
+                    <li><strong>Plancha de Quite y Desafiliación Formal bajo Protesta:</strong> Ejercita el derecho masónico inalienable a retirarse de una obediencia. Al presentarse bajo protesta y al día con el Tesoro, obliga legalmente a la Secretaría a emitir la baja formal y prohíbe el inicio de sumarios o sanciones espurias posteriores.</li>
+                    <li><strong>Certificado de Paz y Salvo con el Tesoro para Desvinculación:</strong> Certifica que el/los Hermano/s no adeudan capitaciones, cuotas mensuales ni retienen fondos o metales de la Logia. Bajo la legislación masónica (Art. 29.º del Reglamento General), <span class="canonical-highlight">estar a cubierto con el Tesoro imposibilita a cualquier autoridad rechazar el Quit-Placet</span> o acusar al miembro de morosidad.</li>
+                    <li><strong>Acta de Devolución de Carta Patente y Bienes Litúrgicos:</strong> Si quienes se retiran conforman una Logia completa (ej. la <span class="tpl-taller">Luxor N.º 1</span>) o son Dignatarios en ejercicio, este documento formaliza la entrega de la Carta Patente, los Rituales, los Malletes y los libros de actas bajo sello, cerrando ordenadamente la gestión y eximiendo a los oficiales salientes de toda responsabilidad futura.</li>
+                </ol>
+
+                <h2>⚙️ IV. Protocolo Paso a Paso para la Ejecución</h2>
+                <p>1. <strong>Auditoría Interna Previa (Metales):</strong> Verificar que todas las cuotas ordinarias y capitaciones estén saldadas. Preparar el Certificado de Paz y Salvo en dos copias y hacerlo firmar/sellar por la Tesorería o dejar constancia de depósito/transferencia de saldo en cero.<br>
+                2. <strong>Inventario y Resguardo Patrimonial:</strong> Si se devuelve un Taller o cargos, realizar el conteo de patentes, malletes, libros y rituales. Completar y firmar el Acta de Devolución de Carta Patente y Bienes.<br>
+                3. <strong>Firma del Manifiesto y la Plancha de Quite:</strong> Los Hermanos salientes deben suscribir el Manifiesto de Ruptura Institucional y la Plancha de Quite bajo Protesta.<br>
+                4. <strong>Presentación y Notificación:</strong> Entregar el paquete documental completo mediante correo institucional certificado o en mesa de entrada física, exigiendo obligatoriamente <strong>copia sellada y firmada con fecha y hora de recepción</strong>. Remitir copia del Manifiesto a las autoridades garantes.<br>
+                5. <strong>Puesta a Cubierto y Silencio Litúrgico:</strong> Una vez presentados los documentos, cesa inmediatamente toda obligación de asistencia o subordinación a la conducción denunciada.</p>
+                
+                <hr>
+                <p style="text-align: center; font-style: italic; color: var(--text-muted);">Documento elaborado conforme a la Tradición, los Antiguos Límites y las Grandes Constituciones del Rito Antiguo y Primitivo de Menfis-Misraïm.</p>
+            </article>
+
+            <!-- ── TAB 2: MANIFIESTO DE RUPTURA ── -->
+            <article id="doc-manifiesto" class="doc-content">
+                <div class="header-formula">A∴ L∴ G∴ D∴ A∴ D∴ U∴<br>PAX – AMOR – IMPERIUM / LIBERTAD – IGUALDAD – FRATERNIDAD</div>
+                
+                <p><strong>A LA ATENCIÓN DE:</strong><br>
+                • <strong>Soberano Santuario Nacional y Autoridades del Rito Antiguo y Primitivo de Menfis-Misraïm</strong><br>
+                • <strong>Gran Logia Simbólica / Consejo Nacional de Logias Simbólicas</strong><br>
+                • <strong>Venerables Maestros, Oficiales y Columnas de los Talleres de la Jurisdicción</strong><br>
+                • <strong>A todas las Potencias Masónicas Regulares y al Mundo Masónico en General</strong></p>
+
+                <h1>MANIFIESTO DE RUPTURA INSTITUCIONAL Y RETIRO IRREVOCABLE DE LA ORDEN</h1>
+                <p style="text-align:center; font-weight:bold; color:var(--gold-bright);">Por pérdida de la regularidad iniciática, ruptura de los Principios Fundamentales y vulneración de los Antiguos Límites (Landmarks)</p>
+                <p style="text-align:center; font-style:italic;">Oriente de Asunción, República del Paraguay, a los <span class="tpl-fecha">05 de julio de 2026 E∴ V∴</span> (Año de la Verdadera Luz 6026).</p>
+
+                <hr>
+
+                <h3>PREÁMBULO Y DECLARACIÓN DE PRINCIPIOS</h3>
+                <p>Al Mundo Masónico, a nuestros Hermanos y Hermanas esparcidos por la faz de la Tierra:</p>
+                <p>Quienes suscriben el presente Manifiesto, Obreros y Maestros Masones libres y de buenas costumbres, trabajando hasta la fecha en la <span class="tpl-taller">Luxor N.º 1</span> bajo la bóveda celeste de la Jurisdicción paraguaya, nos dirigimos a la comunidad masónica con el más profundo dolor que puede albergar el corazón de un iniciado, pero con la firmeza inquebrantable de quien ha jurado ante el Ara sagrada defender la Verdad, la Luz y la Pureza Tradicional de nuestra Augusta Orden.</p>
+                <p>La Masonería, en su esencia inmutable, es una institución iniciática, ética y tradicional, sostenida por el estricto respeto a los Antiguos Límites (Landmarks), las Grandes Constituciones, la liturgia codificada y el orden jerárquico y moral que garantiza el auténtico progreso espiritual de sus miembros. Cuando una Obediencia pierde de vista estos pilares, cuando el capricho, la ilegalidad administrativa y la profanación ritual sustituyen al Derecho Masónico, la Orden deja de ser un templo de luz para convertirse en un cuerpo profano desprovisto de toda legitimidad iniciática.</p>
+
+                <h3>VISTO Y CONSIDERANDO: LA PÉRDIDA DE INSTITUCIONALIDAD</h3>
+                <p><strong>PRIMERO: Ruptura de las Condiciones de Institucionalidad y Gobierno</strong><br>
+                Que durante los últimos ciclos administrativos se ha constatado un colapso sistemático e irreversible del orden institucional en la conducción de la Obediencia. Se ha vulnerado la soberanía de los talleres, se ha incurrido en una total opacidad financiera, se han abandonado las funciones ejecutivas y de asistencia a las Logias fundadoras (como ha quedado fehacientemente registrado en las Actas de Registro de Incumplimiento N.º 01/2025 al N.º 05/2025), y se han suscrito pactos y tratados espurios con cuerpos masónicos irregulares y "salvajes" que carecen de Carta Patente legítima de origen.</p>
+
+                <p><strong>SEGUNDO: Ruptura de los Principios Fundamentales de la Orden</strong><br>
+                Que se ha subvertido el orden jerárquico y constitucional establecido en las Grandes Constituciones de Menfis-Misraïm, usurpando competencias exclusivas, ignorando los estatutos generales y usurpando la autoridad de las Cámaras Superiores y del Soberano Santuario. La tolerancia ante la indisciplina, la desobediencia y la falta de regularidad en las oficialías ha fracturado la Cadena de Unión y ha destruido el clima de paz, armonía y rigor esotérico indispensable para el trabajo en los templos.</p>
+
+                <p><strong>TERCERO: Irregularidad Grave en los Aumentos de Salario y Exaltaciones de Obreras</strong><br>
+                Que, como agravante litúrgico y tradicional supremo que rebasa todo límite de tolerancia masónica, se ha procedido a <span class="canonical-highlight">conferir de manera irregular, acelerada y anticanónica Aumentos de Salario (Grado de Compañero) y Exaltaciones (Sublime Grado de Maestro) a Obreras de las canteras simbólicas</span>, violando de forma flagrante y continuada:</p>
+                <ol>
+                    <li><strong>Los Plazos Constitucionales de Permanencia:</strong> Omitiendo el tiempo mínimo indispensable de maduración, asiduidad y trabajo silencioso en el grado inmediato anterior.</li>
+                    <li><strong>Las Plomadas y Escrutinios Litúrgicos:</strong> Eximiendo a las postulantes del examen riguroso de instrucción simbólica, la presentación y defensa de sus Trabajos de Arquitectura ante las respectivas Cámaras, y la aprobación unánime de las columnas según manda el Reglamento General.</li>
+                    <li><strong>La Legitimidad de la Autoridad Conferente:</strong> Siendo otorgados o avalados por autoridades en desobediencia administrativa, mediante decretos viciados de nulidad absoluta y en contravención al Estatuto del Simbolismo.</li>
+                </ol>
+                <p>Este otorgamiento espurio de grados no solo engaña espiritualmente a quienes los reciben, sino que destruye la equidad meritocrática entre los obreros, prostituye los misterios del Rito Egipcio y mancilla el prestigio e linaje de nuestra Carta Patente ante las Potencias hermanas del mundo.</p>
+
+                <h3>POR TANTO: DECLARAMOS Y RESOLVEMOS</h3>
+                <p><strong>ARTÍCULO 1.º (De la Desvinculación Definitiva e Irrevocable):</strong><br>
+                DECLARAR formalmente y con efecto inmediato nuestra <strong>DESVINCULACIÓN TOTAL, RETIRO E INDEPENDENCIA</strong> de la actual estructura directiva y de la jurisdicción administrativa en la que operábamos, por haber perdido esta su condición de institucionalidad regular y haber roto los principios fundamentales del Rito.</p>
+
+                <p><strong>ARTÍCULO 2.º (De la Salida Ordenada y Legalidad Masónica):</strong><br>
+                DEJAR EXPRESA CONSTANCIA de que este retiro se ejecuta <span class="canonical-highlight">de forma estrictamente ordenada y bajo los preceptos de las Grandes Constituciones</span>, encontrándonos todos los firmantes libres y de buenas costumbres, sin mancha moral alguna y <strong>completamente A CUBIERTO CON EL TESORO</strong> (en Paz y Salvo con los metales de la Logia y de la Gran Logia), despojando así a la conducción irregular de cualquier pretexto o artimaña administrativa para intentar mancillar nuestro buen nombre o simular sanciones expulsivas ex post facto.</p>
+
+                <p><strong>ARTÍCULO 3.º (De la Nulidad de los Grados Irregulares):</strong><br>
+                ADVERTIR a la comunidad masónica internacional y al Supremo Consejo que los aumentos de grado y exaltaciones concedidos a Obreras bajo estas condiciones de irregularidad carecen de toda validez tradicional, litúrgica e institucional, no pudiendo ser reconocidos por ningún Taller ni Potencia Masónica regular hasta tanto se regularice su situación mediante un tribunal litúrgico legítimo.</p>
+
+                <p><strong>ARTÍCULO 4.º (Puesta a Cubierto y Custodia Tradicional):</strong><br>
+                RETIRAR nuestras herramientas de las canteras profanadas, abatir temporalmente nuestras columnas si correspondiere a cuerpos completos, y llamar a un periodo de silencio, estudio y reconstrucción bajo la protección de los verdaderos garantes de la regularidad y la memoria histórica del Rito Antiguo y Primitivo de Menfis-Misraïm.</p>
+
+                <p><strong>ARTÍCULO 5.º (Publicación y Notificación):</strong><br>
+                NOTIFÍQUESE el presente Manifiesto mediante Plancha Oficial a la Gran Cancillería del Soberano Santuario, insértese en los archivos históricos de la Masonería paraguaya y remítase copia a las Potencias garantes de la regularidad en el Zenit Mundial.</p>
+
+                <hr>
+                <p style="text-align:center; font-style:italic;">Que la Suprema Sabiduría del Gran Arquitecto del Universo y del Sublime Arquitecto de los Mundos juzgue la rectitud de nuestras intenciones y guarde la pureza de la verdadera Masonería.</p>
+                <p style="text-align:center;">Dado, sellado y firmado en el Oriente de Asunción, República del Paraguay, a los <span class="tpl-fecha">05 de julio de 2026 E∴ V∴</span></p>
+
+                <div class="signatures-grid">
+                    <div class="signature-box">
+                        <strong><span class="tpl-nombre">Rubén González</span></strong>
+                        <span class="tpl-grado">Maestro Masón (Grado 3.º)</span><br>
+                        Matrícula N.º: <span class="tpl-matricula">PY-MM-0892</span><br>
+                        <em>Obrero Regular en Paz y Salvo</em>
+                    </div>
+                    <div class="signature-box">
+                        <strong>[Firma del Dignatario / Obrero]</strong>
+                        Oficial / Maestro Masón Regular<br>
+                        Respetable Logia <span class="tpl-taller">Luxor N.º 1</span><br>
+                        <em>Obrero Regular en Paz y Salvo</em>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── TAB 3: PLANCHA DE QUITE ── -->
+            <article id="doc-quite" class="doc-content">
+                <div class="header-formula">A∴ L∴ G∴ D∴ A∴ D∴ U∴<br>LIBERTAD – IGUALDAD – FRATERNIDAD / PAX – AMOR – IMPERIUM</div>
+                
+                <p><strong>A LA AUGUSTA Y RESPETABLE LOGIA SIMBÓLICA <span class="tpl-taller">Luxor N.º 1</span></strong><br>
+                <strong>AL CONSEJO NACIONAL DE LOGIAS SIMBÓLICAS / GRAN LOGIA SIMBÓLICA</strong><br>
+                <strong>AL SOBERANO SANTUARIO DEL RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM</strong></p>
+                <p><em>Oriente de Asunción, República del Paraguay.</em></p>
+
+                <h1>PLANCHA DE QUITE Y DESAFILIACIÓN FORMAL BAJO PROTESTA INSTITUCIONAL</h1>
+                <p style="text-align:center; font-weight:bold; color:var(--gold-bright);">(Solicitud Canónica de Demisión por Pérdida de Regularidad e Irregularidad Litúrgica)</p>
+                <p style="text-align:center; font-style:italic;">Fecha: <span class="tpl-fecha">05 de julio de 2026 E∴ V∴</span> (Año de la Verdadera Luz 6026)</p>
+
+                <hr>
+
+                <p>Venerable Maestro/a, Dignas y Respetables Autoridades y Queridos Hermanos todos:</p>
+                <p>Quien suscribe esta Plancha, <strong><span class="tpl-nombre">Rubén González</span></strong>, ostentando el Grado de <strong><span class="tpl-grado">Maestro Masón (Grado 3.º)</span></strong> con Matrícula N.º <strong><span class="tpl-matricula">PY-MM-0892</span></strong>, miembro activo y regular de los registros de este Respetable Taller y de la Gran Matrícula de la Orden, nos dirigimos a Vosotros por la batería y los signos que nos son conocidos, con el propósito de presentar formalmente nuestra <strong>SOLICITUD DE QUIT-PLACET (PLANCHA DE QUITE) Y DESAFILIACIÓN DEFINITIVA</strong> de las columnas de esta Obediencia.</p>
+
+                <h3>I. FUNDAMENTACIÓN CANÓNICA Y DERECHO MASÓNICO</h3>
+                <p>De conformidad con el Derecho Masónico Universal, los Antiguos Límites (Landmarks) de la Francmasonería y las Grandes Constituciones que rigen nuestro Rito, es un derecho sagrado, imprescriptible e inalienable de todo Masón libre y de buenas costumbres, que se encuentre al día con el Tesoro, solicitar su retiro voluntario y obtener su certificado de Quit-Placet (Paz y Salvo) cuando su conciencia se lo dicte o cuando las condiciones operativas de la Obediencia entren en conflicto con sus juramentos iniciáticos.</p>
+
+                <h3>II. MOTIVOS DE LA DESAFILIACIÓN BAJO PROTESTA</h3>
+                <p>Dejamos expresa y solemne constancia ante el Libro de Arquitectura y los Archivos Históricos de la Orden que la presente demisión <strong>NO es un retiro ordinario</strong>, sino una <span class="canonical-highlight">DESAFILIACIÓN FORMAL BAJO PROTESTA</span>, motivada por el grave colapso institucional y moral que atraviesa la actual conducción, sustentada en los siguientes hechos irrefutables:</p>
+                <ol>
+                    <li><strong>Inexistencia de Condiciones de Institucionalidad:</strong> La conducción administrativa y legislativa de la Obediencia ha incurrido en violaciones sistemáticas al Estatuto y al Reglamento General, provocando la desatención de los Talleres, el desorden en la Gran Secretaría y Gran Tesorería, y la suscripción de relaciones ilegítimas con potencias "salvajes" y espurias carentes de reconocimiento regular.</li>
+                    <li><strong>Ruptura de los Principios Fundamentales del Rito:</strong> Se ha socavado el principio de autoridad litúrgica, desobedeciendo los decretos del Soberano Santuario y fracturando la armonía y la seriedad que deben regir en un templo masónico.</li>
+                    <li><strong>Otorgamiento Irregular de Grados a Obreras:</strong> Declaramos nuestro más absoluto rechazo al <span class="canonical-highlight">aumento de salario y exaltación de grado de Obreras realizado de forma arbitraria, acelerada y fuera de toda norma litúrgica y constitucional</span>. El conferimiento de grados de Compañero y Maestro Masón sin el cumplimiento de los tiempos reglamentarios, sin la aprobación de las plomadas de escrutinio, sin la presentación de los Trabajos de Arquitectura obligatorios y por autoridades en rebeldía, constituye una profanación de los misterios y destruye la equidad y la legitimidad iniciática del Taller.</li>
+                </ol>
+
+                <h3>III. PETICIÓN Y EMPLAZAMIENTO</h3>
+                <p>Por todo lo expuesto, en salvaguarda de nuestro linaje iniciático y nuestra regularidad masónica personal, <strong>SOLICITAMOS Y EMPLAZAMOS A LA SECRETARÍA DEL TALLER Y A LA GRAN SECRETARÍA GENERAL:</strong></p>
+                <ol>
+                    <li><strong>Aceptación Inmediata:</strong> Que se tome razón de la presente Plancha de Quite con efecto inmediato a partir de la fecha de su presentación, procediendo a dar nuestra baja oficial en el Libro de Matrícula del Taller <span class="tpl-taller">Luxor N.º 1</span> y en el Libro de Oro de la Gran Matrícula.</li>
+                    <li><strong>Emisión de Certificado de Quit-Placet:</strong> Que se nos extienda en un plazo no mayor a cinco (5) días hábiles el correspondiente documento oficial de <strong>Quit-Placet (Carta de Paz y Salvo)</strong>, certificando que nos retiramos libres de toda falta moral o masónica y completamente <strong>A CUBIERTO CON LOS METALES</strong> y capitaciones pecuniarias hasta la fecha.</li>
+                    <li><strong>Inhibición de Sanciones Espurias:</strong> Habiendo cumplido con todos los requisitos para una salida ordenada y legal bajo las Grandes Constituciones, declaramos que cualquier intento posterior de apertura de proceso disciplinario o sanción administrativa en nuestra contra será considerado nulo de toda nulidad, un acto de persecución política y una demostración más de la falta de institucionalidad que aquí denunciamos.</li>
+                </ol>
+
+                <hr>
+                <p>Al despedirnos de las columnas que nos cobijaron, reiteramos nuestro afecto fraternal a todos los obreros sinceros y regulares que aún trabajan en la búsqueda de la Luz, deseando que el Gran Arquitecto del Universo ilumine el camino para la pronta restauración de la Verdad y la Justicia en las canteras del Rito.</p>
+                <p><em>En nombre de la Verdad, la Tradición y la Regularidad.</em><br>
+                Dado en el Oriente de Asunción, República del Paraguay, a los <span class="tpl-fecha">05 de julio de 2026 E∴ V∴</span></p>
+
+                <div class="signatures-grid">
+                    <div class="signature-box">
+                        <strong><span class="tpl-nombre">Rubén González</span></strong>
+                        Grado: <span class="tpl-grado">Maestro Masón (Grado 3.º)</span><br>
+                        Matrícula N.º: <span class="tpl-matricula">PY-MM-0892</span><br>
+                        <em>Obrero Solicitante en Paz y Salvo</em>
+                    </div>
+                    <div class="signature-box" style="border-top: 1px dashed var(--gold-primary);">
+                        <strong>RECIBIDO EN SECRETARÍA DE LOGIA</strong>
+                        Fecha de recepción: ______ / ______ / 2026<br>
+                        Firma y Sello del Secretario/a: ___________________________<br>
+                        <em>Acuso de Recibo Oficial</em>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── TAB 4: CERTIFICADO DE PAZ Y SALVO ── -->
+            <article id="doc-pazysalvo" class="doc-content">
+                <div class="header-formula">A∴ L∴ G∴ D∴ A∴ D∴ U∴<br>LIBERTAD – IGUALDAD – FRATERNIDAD / PAX – AMOR – IMPERIUM</div>
+                
+                <p><strong>GRAN LOGIA SIMBÓLICA / CONSEJO NACIONAL DE LOGIAS SIMBÓLICAS</strong><br>
+                <strong>RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM PARA LA REPÚBLICA DEL PARAGUAY</strong><br>
+                <strong>AUGUSTA Y RESPETABLE LOGIA SIMBÓLICA <span class="tpl-taller">Luxor N.º 1</span></strong></p>
+                <p><em>Valle de Asunción, República del Paraguay.</em></p>
+
+                <h1>CERTIFICADO DE PAZ Y SALVO CON EL TESORO Y SOLVENCIA MASÓNICA</h1>
+                <p style="text-align:center; font-weight:bold; color:var(--gold-bright);">(Constancia Oficial de Estar a Cubierto con los Metales para Trámite de Desvinculación Regular)</p>
+
+                <hr>
+
+                <h3>DECLARACIÓN Y CERTIFICACIÓN OFICIAL</h3>
+                <p>Por medio del presente documento oficial, y a los efectos canónicos establecidos en las Grandes Constituciones y en los Reglamentos Generales del Rito Antiguo y Primitivo de Menfis-Misraïm, se emite la presente <strong>CONSTANCIA DE PAZ Y SALVO (ESTAR A CUBIERTO CON EL TESORO)</strong> a favor del/los Querido/s Hermano/s y/o Querida/s Hermana/s:</p>
+
+                <div style="background: rgba(212,175,55,0.08); border-left: 4px solid var(--gold-primary); padding: 15px 20px; margin: 20px 0; border-radius: 8px;">
+                    <p style="margin: 0; font-size: 1.3rem;">• <strong><span class="tpl-nombre">Rubén González</span></strong> — Grado: <strong><span class="tpl-grado">Maestro Masón (Grado 3.º)</span></strong> — Matrícula N.º: <strong><span class="tpl-matricula">PY-MM-0892</span></strong><br>
+                    • Respetable Taller de Origen: <strong><span class="tpl-taller">Luxor N.º 1</span></strong></p>
+                </div>
+
+                <h3>I. CERTIFICACIÓN DE ESTADO FINANCIERO (METALES)</h3>
+                <p>Se hace constar fehacientemente y bajo fe masónica que el citado Obrero, al momento de la presentación de su Plancha de Quite y retiro formal de la Obediencia con fecha <span class="tpl-fecha">05 de julio de 2026 E∴ V∴</span>, se encuentra:</p>
+                <ul>
+                    <li><strong>100% AL DÍA Y A CUBIERTO</strong> en el pago de sus cuotas mensuales ordinarias de Logia (Tronco de Beneficencia y Gastos Operativos) hasta el ejercicio fiscal corriente.</li>
+                    <li><strong>100% AL DÍA Y A CUBIERTO</strong> en el pago de sus capitaciones nacionales, derechos de registro, diplomas y credenciales ante la Gran Tesorería de la Gran Logia Simbólica y el Soberano Santuario.</li>
+                    <li><strong>LIBRE DE TODO ADEUDO</strong> pecuniario, compromiso financiero, préstamo de metales o fianza pendiente con la Tesorería de su Taller, con la Gran Tesorería Nacional o con cualquier hermano de la jurisdicción.</li>
+                </ul>
+
+                <h3>II. DEVOLUCIÓN DE BIENES Y PATRIMONIO LITÚRGICO</h3>
+                <p>Asimismo, se certifica y hace constar que el citado Obrero <span class="canonical-highlight">no retiene en su poder ningún bien material, mallete, joya del cargo, mandil de oficialía, estandarte, archivo administrativo, sello físico ni fondo de caja chica</span> perteneciente a la Logia o a las Cámaras Superiores del Rito. Todo elemento ritualístico de propiedad colectiva ha sido depositado y entregado en perfecto orden al Hospitalero / Guardatemplo o ante la Mesa del Venerable Maestro.</p>
+
+                <h3>III. VALIDEZ CANÓNICA Y EFECTO JURÍDICO MASÓNICO</h3>
+                <p>De conformidad con el Artículo 29.º y concordantes del Reglamento General de la Obediencia y la tradición masónica universal:</p>
+                <ol>
+                    <li><strong>Impedimento de Retención:</strong> Al estar plenamente a cubierto con los metales del Tesoro y en solvencia material, <span class="canonical-highlight">ninguna autoridad de la Logia ni de la Gran Logia Simbólica podrá retener, dilatar, negar ni condicionar el otorgamiento del QUIT-PLACET (Carta de Paz y Salvo)</span> al hermano solicitante.</li>
+                    <li><strong>Nulidad de Acusaciones Financieras:</strong> El presente certificado es prueba plena e irrefutable de solvencia y rectitud administrativa, invalidando desde su origen cualquier acusación posterior de morosidad, abandono de obligaciones o malversación que pudiera intentarse como represalia por su desvinculación institucional bajo protesta.</li>
+                </ol>
+
+                <hr>
+                <p style="text-align:center;">En fe de lo cual y para que surta todos los efectos legales y masónicos correspondientes ante cualquier Potencia, Taller o Jurisdicción del globo, se expide, firma y sella la presente Certificación de Paz y Salvo en el Oriente de Asunción, República del Paraguay, a los <span class="tpl-fecha">05 de julio de 2026 E∴ V∴</span></p>
+
+                <div class="signatures-grid">
+                    <div class="signature-box">
+                        <strong>[Firma y Sello de Tesorería]</strong>
+                        Tesorero/a de Logia / Gran Tesorero/a<br>
+                        Respetable Logia <span class="tpl-taller">Luxor N.º 1</span><br>
+                        <em>Certificación Contable Oficial</em>
+                    </div>
+                    <div class="signature-box">
+                        <strong>[Firma del Venerable Maestro/a o Fiscal]</strong>
+                        Venerable Maestro/a / Gran Orador/a<br>
+                        Respetable Logia <span class="tpl-taller">Luxor N.º 1</span><br>
+                        <em>Visto Bueno Institucional</em>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── TAB 5: ACTA DE DEVOLUCIÓN DE PATENTE ── -->
+            <article id="doc-devolucion" class="doc-content">
+                <div class="header-formula">A∴ L∴ G∴ D∴ A∴ D∴ U∴<br>PAX – AMOR – IMPERIUM / LIBERTAD – IGUALDAD – FRATERNIDAD</div>
+                
+                <p><strong>SOBERANO SANTUARIO DEL RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM PARA LA REPÚBLICA DEL PARAGUAY</strong><br>
+                <strong>GRAN LOGIA SIMBÓLICA / CONSEJO NACIONAL DE LOGIAS SIMBÓLICAS</strong><br>
+                <strong>AUGUSTA Y RESPETABLE LOGIA SIMBÓLICA <span class="tpl-taller">Luxor N.º 1</span></strong></p>
+                <p><em>Valle de Asunción, República del Paraguay.</em></p>
+
+                <h1>ACTA DE DEVOLUCIÓN DE CARTA PATENTE, RITUALES Y BIENES LITÚRGICOS</h1>
+                <p style="text-align:center; font-weight:bold; color:var(--gold-bright);">(Puesta a Cubierto, Inventario de Retiro y Abatimiento Temporal de Columnas por Pérdida de Regularidad de la Potencia)</p>
+
+                <hr>
+
+                <p>En el Valle de Asunción, República del Paraguay, a los <span class="tpl-fecha">05 de julio de 2026 E∴ V∴</span>, siendo las 20:00 horas, se reúnen los Dignatarios, Oficiales y Maestros Masones de la <strong>Augusta y Respetable Logia Simbólica <span class="tpl-taller">Luxor N.º 1</span></strong> (y/o Dignatarios salientes de las Cámaras Superiores, entre ellos <strong><span class="tpl-nombre">Rubén González</span></strong>, Grado: <strong><span class="tpl-grado">Maestro Masón (Grado 3.º)</span></strong>), con el objeto de labrar la presente <strong>ACTA FORMAL DE DEVOLUCIÓN DE PATENTES, INVENTARIO Y PUESTA A CUBIERTO DE BIENES LITÚRGICOS</strong>, en atención a la desvinculación institucional y retiro irrevocable notificado mediante Manifiesto Oficial de la misma fecha.</p>
+
+                <h3>I. ANTECEDENTES Y MOTIVACIÓN</h3>
+                <p>Ante la pérdida de las condiciones de institucionalidad de la actual conducción, la ruptura de los principios fundamentales de la Orden y la ejecución anticanónica de <span class="canonical-highlight">aumentos de grado de Obreras fuera de toda liturgia regular</span>, los miembros del Taller han resuelto de manera unánime y soberana cesar sus trabajos bajo la actual cobertura administrativa viciada de irregularidad, procediendo al retiro de sus columnas y a la entrega formal del acervo documental y material para salvaguardar su honor y responsabilidad masónica.</p>
+
+                <h3>II. INVENTARIO Y DETALLE DE ELEMENTOS ENTREGADOS / PUESTOS EN CUSTODIA</h3>
+                <p>Se procede en este acto al inventario físico y verificación exhaustiva de los bienes ritualísticos, administrativos y documentales que se ponen a disposición y/o se devuelven bajo sello a la autoridad receptora y al archivo histórico de la Orden:</p>
+                <ol>
+                    <li><strong>CARTA PATENTE Y DISPENSAS:</strong>
+                        <ul>
+                            <li><strong>[ 01 ]</strong> Carta Patente Original de Constitución de la R∴ L∴ S∴ <span class="tpl-taller">Luxor N.º 1</span>, emitida por la Gran Logia Simbólica / Soberano Santuario.</li>
+                            <li><strong>[ 01 ]</strong> Carta de Dispensa o autorización temporal de levantamiento de columnas.</li>
+                        </ul>
+                    </li>
+                    <li><strong>LIBROS OFICIALES Y REGISTROS:</strong>
+                        <ul>
+                            <li><strong>[ 01 ]</strong> Libro de Actas / Arquitectura de la Cámara de Aprendices (al día y cerrado con acta de clausura).</li>
+                            <li><strong>[ 01 ]</strong> Libro de Actas / Arquitectura de la Cámara de Compañeros (al día y cerrado).</li>
+                            <li><strong>[ 01 ]</strong> Libro de Actas / Arquitectura de la Cámara de Maestros (al día y cerrado).</li>
+                            <li><strong>[ 01 ]</strong> Libro de Matrícula Interna y Registro de Asistencia del Taller.</li>
+                            <li><strong>[ 01 ]</strong> Libro de Tesorería y Balance General (aprobado con saldo cero y sin deudas pendientes).</li>
+                        </ul>
+                    </li>
+                    <li><strong>LITURGIAS Y RITUALES CODIFICADOS:</strong>
+                        <ul>
+                            <li><strong>[ X ]</strong> Ejemplares completos del Ritual del 1.er Grado (Aprendiz Masón) del Rito de Menfis-Misraïm.</li>
+                            <li><strong>[ X ]</strong> Ejemplares completos del Ritual del 2.º Grado (Compañero Masón).</li>
+                            <li><strong>[ X ]</strong> Ejemplares completos del Ritual del 3.er Grado (Maestro Masón).</li>
+                            <li><strong>[ X ]</strong> Manuales de Instrucción Litúrgica y Catecismos del Rito.</li>
+                        </ul>
+                    </li>
+                    <li><strong>ELEMENTOS Y JOYAS DE LA LOGIA:</strong>
+                        <ul>
+                            <li><strong>[ 03 ]</strong> Malletes de Mando (Venerable Maestro, 1.er Vigilante y 2.º Vigilante).</li>
+                            <li><strong>[ 01 ]</strong> Sello físico oficial (cuño o sello de goma) del Taller.</li>
+                            <li><strong>[ X ]</strong> Collarines y Joyas de los Oficiales del Taller (Venerable, Vigilantes, Orador, Secretario, Tesorero, Experto, Maestro de Ceremonias, Guardatemplo, Hospitalero).</li>
+                            <li><strong>[ X ]</strong> Mandiles de Oficialía y de Logia.</li>
+                            <li><strong>[ X ]</strong> Estandarte físico del Taller depositado en custodia neutral.</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>III. DECLARACIÓN DE CIERRE Y ABATIMIENTO TEMPORAL</h3>
+                <ol>
+                    <li><strong>Clausura del Templo:</strong> A partir de la firma de esta Acta, los trabajos de la Logia quedan temporalmente suspendidos y sus columnas abatidas en esta jurisdicción irregular, <span class="canonical-highlight">no pudiendo ninguna autoridad ilegítima utilizar el nombre, número, estandarte ni símbolos del Taller</span> para amparar reuniones profanas, tenidas espurias o elevaciones irregulares de grados.</li>
+                    <li><strong>Descargo de Responsabilidad:</strong> Quienes fueron dignatarios y oficiales del Taller quedan, a partir de este segundo, plenamente liberados de toda responsabilidad civil, administrativa o masónica sobre la custodia futura de los elementos aquí inventariados y entregados.</li>
+                    <li><strong>Destino de los Bienes:</strong> Los elementos quedan formalmente depositados y bajo resguardo en los archivos del <strong>Soberano Santuario Nacional</strong> (o en custodia de la comisión liquidadora designada), hasta tanto se restablezca la regularidad y el estricto cumplimiento de los Antiguos Límites y las Grandes Constituciones.</li>
+                </ol>
+
+                <hr>
+                <p>No habiendo para más, se cierra la presente Acta a las 21:30 horas del día de la fecha, firmando al pie los Dignatarios salientes y la autoridad receptora o testigos de fe masónica para eterna constancia.</p>
+
+                <div class="signatures-grid">
+                    <div class="signature-box">
+                        <strong><span class="tpl-nombre">Rubén González</span> / Venerable Maestro saliente</strong>
+                        Dignatario / Oficial Saliente<br>
+                        Logia <span class="tpl-taller">Luxor N.º 1</span><br>
+                        <em>Entrega de Patrimonio bajo Sello</em>
+                    </div>
+                    <div class="signature-box">
+                        <strong>[Firma del Interventor / Gran Secretario]</strong>
+                        Recepción Oficial / Testigo de Fe Masónica<br>
+                        Soberano Santuario / Gran Logia Simbólica<br>
+                        <em>Custodia Tradicional y Archivo</em>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- ── Toast de Notificación ── -->
+    <div class="toast" id="toast">
+        <span>✨</span> <span id="toastMsg">Texto copiado al portapapeles</span>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer>
+        <p class="gold">A∴ L∴ G∴ D∴ A∴ D∴ U∴ — RITO ANTIGUO Y PRIMITIVO DE MENFIS-MISRAÏM</p>
+        <p>Soberano Santuario y Gran Logia Simbólica para la República del Paraguay | Archivo Histórico y Jurídico de Salida Ordenada</p>
+        <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 10px;">Documentos elaborados bajo estricto respeto a las Grandes Constituciones de la Orden y la preservación del linaje masónico regular.</p>
+    </footer>
+
+    <!-- ── Lógica JavaScript Vanilla ── -->
+    <script>
+        // Cambiar entre pestañas
+        function switchTab(docId, btnElement) {
+            // Desactivar todos los botones y contenidos
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.doc-content').forEach(doc => doc.classList.remove('active'));
+
+            // Activar el seleccionado
+            btnElement.classList.add('active');
+            const targetDoc = document.getElementById('doc-' + docId);
+            if (targetDoc) {
+                targetDoc.classList.add('active');
+            }
+
+            // Actualizar título en barra de acción
+            const titles = {
+                'guia': 'Guía y Protocolo Canónico de Salida Ordenada',
+                'manifiesto': 'Manifiesto de Ruptura Institucional y Retiro de la Orden',
+                'quite': 'Plancha de Quite y Desafiliación Formal bajo Protesta',
+                'pazysalvo': 'Certificado de Paz y Salvo con el Tesoro y Solvencia',
+                'devolucion': 'Acta de Devolución de Carta Patente y Bienes Litúrgicos'
+            };
+            document.getElementById('currentDocTitle').innerText = titles[docId] || 'Documento Oficial Masónico';
+        }
+
+        // Colapsar / Desplegar panel de personalización
+        function toggleCustomizer() {
+            const grid = document.getElementById('customizerGrid');
+            const icon = document.getElementById('toggleIcon');
+            grid.classList.toggle('collapsed');
+            icon.style.transform = grid.classList.contains('collapsed') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        // Vinculación en Tiempo Real de variables del Wizard
+        const inputs = {
+            'inputTaller': '.tpl-taller',
+            'inputNombre': '.tpl-nombre',
+            'inputGrado': '.tpl-grado',
+            'inputMatricula': '.tpl-matricula',
+            'inputFecha': '.tpl-fecha'
+        };
+
+        Object.keys(inputs).forEach(inputId => {
+            const inputEl = document.getElementById(inputId);
+            if (inputEl) {
+                inputEl.addEventListener('input', (e) => {
+                    const val = e.target.value || e.target.placeholder;
+                    document.querySelectorAll(inputs[inputId]).forEach(span => {
+                        span.innerText = val;
+                    });
+                });
+            }
+        });
+
+        // Resaltador Canónico de Cláusulas Clave
+        function toggleHighlights() {
+            const container = document.getElementById('docContainer');
+            const btn = document.getElementById('btnHighlight');
+            container.classList.toggle('highlight-active');
+            btn.classList.toggle('active');
+            
+            if (container.classList.contains('highlight-active')) {
+                showToast('🚨 Cláusulas canónicas clave resaltadas en rojo');
+            } else {
+                showToast('👁️ Resaltador canónico desactivado');
+            }
+        }
+
+        // Copiar texto del documento activo al portapapeles
+        function copyCurrentDoc() {
+            const activeDoc = document.querySelector('.doc-content.active');
+            if (!activeDoc) return;
+
+            // Extraer texto limpio
+            const textToCopy = activeDoc.innerText;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast('📋 Documento copiado al portapapeles con éxito');
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+                showToast('⚠️ No se pudo copiar el texto');
+            });
+        }
+
+        // Mostrar Toast de Notificación
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMsg');
+            msgEl.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

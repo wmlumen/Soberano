@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritual y Instrucción del 3er Grado – Maestro</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: #3a3226;
+  color: #1a1a1a;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #faf8f2;
+  min-height: 100vh;
+}
+
+.page {
+  padding: 80px 100px 60px;
+  page-break-after: always;
+  border-bottom: 1px solid #d4c9b0;
+}
+
+.page-marker {
+  text-align: center;
+  margin: 0 0 30px;
+  padding: 4px 0;
+  font-size: 10px;
+  color: #c4b69a;
+  letter-spacing: 6px;
+}
+.page-marker::before { content: "~ ~ ~"; }
+
+.gloria {
+  font-size: 13px;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+  color: #8b7355;
+  margin: 30px 0;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.rito {
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 20px 0;
+  text-align: center;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.orden {
+  font-size: 12px;
+  font-style: italic;
+  color: #555;
+  margin: 20px 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.granlogia {
+  font-size: 12px;
+  font-weight: bold;
+  color: #8b7355;
+  margin: 15px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.reunificados {
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  margin: 15px 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.text-block {
+  margin: 6px 0;
+  line-height: 1.7;
+  text-align: justify;
+  font-size: 12pt;
+}
+
+/* Headers */
+.proclamation {
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  margin: 25px 0 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.chapter {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 30px 0 15px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.title-header {
+  font-size: 13px;
+  font-weight: bold;
+  font-variant: small-caps;
+  margin: 20px 0 10px;
+  letter-spacing: 1px;
+}
+
+.article {
+  margin: 5px 0 5px 15px;
+  line-height: 1.6;
+}
+
+.catecismo {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px 0 20px;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+}
+
+.indice {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0 25px;
+  letter-spacing: 5px;
+}
+
+.question {
+  margin: 18px 0 4px;
+  font-style: italic;
+  color: #2c2c2c;
+  line-height: 1.6;
+}
+
+.answer {
+  margin: 0 0 18px 25px;
+  padding-left: 12px;
+  border-left: 2px solid #c4b69a;
+  color: #333;
+  line-height: 1.6;
+}
+
+.stage {
+  font-style: italic;
+  color: #666;
+  margin: 12px 0;
+  padding-left: 25px;
+  line-height: 1.6;
+}
+
+.aclamacion {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.oracion {
+  text-align: center;
+  font-style: italic;
+  margin: 15px 0;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Decorative separator for section pages */
+.section-sep {
+  text-align: center;
+  margin: 30px 0;
+  color: #8b7355;
+  font-size: 18px;
+  letter-spacing: 10px;
+}
+
+@media print {
+  body { background: white; }
+  .container { max-width: none; }
+  .page { padding: 60px 80px; border: none; }
+}
+
+.cover-image { width: 100%; max-width: 100%; display: block; margin: 0 auto; }
+.toc-image { width: 100%; max-width: 100%; display: block; margin: 0 auto; }
+.diagram-image { max-width: 90%; display: block; margin: 15px auto; }
+
+.dialog-table { width: 100%; border: none; border-collapse: collapse; margin: 4px 0; }
+.dialog-table td { vertical-align: top; padding: 2px 6px; }
+.speaker { width: 22%; font-weight: bold; white-space: nowrap; text-align: left; padding-left: 0 !important; }
+.speech { width: 78%; text-align: justify; line-height: 1.6; }
+.speech br { content: ''; display: block; margin: 4px 0; }
+
+/* Navigable Index Styles */
+.nav-index {
+  padding: 60px 80px;
+  background: #faf8f2;
+}
+
+.indice-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #1a1a1a;
+  letter-spacing: 4px;
+  font-variant: small-caps;
+}
+
+.index-section {
+  margin-bottom: 30px;
+}
+
+.index-section h3 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #8b7355;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #c4b69a;
+  padding-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.index-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.index-section li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.index-section a {
+  color: #2c2c2c;
+  text-decoration: none;
+  font-size: 11pt;
+  transition: color 0.2s;
+}
+
+.index-section a:hover {
+  color: #8b7355;
+  text-decoration: underline;
+}
+
+.index-section a::before {
+  content: "▸ ";
+  color: #c4b69a;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="page" id="page137">
+<div class="rito"><strong>RITO</strong> <strong>ANTIGUO</strong> Y <strong>PRIMITIVO</strong> DE <strong>MENFIS-MIZRAIM</strong> <strong>ORDEN</strong> DE LOS <strong>RITOS</strong> <strong>UNIDOS</strong> DE <strong>MENFIS</strong> & <strong>MIZRAIM</strong></div>
+<div class="reunificados">Ritos reunificados por José <strong>GARIBALDI</strong> en 1881</div>
+<div class="text-block">Gran Logia Simbólica</div>
+<div class="text-block"><strong>RITUAL</strong> E <strong>INSTRUCCIONES</strong> DEL 3er <strong>GRADO</strong> <strong>SIMBÓLICO</strong> <strong>MAESTRO</strong></div>
+<div class="text-block"><strong>DISPOSICIÓN</strong> DEL <strong>TEMPLO</strong></div>
+<div class="text-block">1. El Templo debe estar tapizado por pañerías negras, salpicadas por cráneos y por tibias entrelazadas, así como por lágrimas, todo en plata.</div>
+<div class="text-block">2. Cada una de las tres Columnitas lleva tres Estrellas de cera, es decir nueve Estrellas en total. El Candelabro del <strong>V∴M</strong>∴ lleva dos estrellas más, o sea, siete velas en total.</div>
+<div class="text-block">3. El Oriente se llama Devir o Santo de los Santos (“Kodesh HaKodashim”), el resto del Templo lleva el nombre de Hejal o Santo; una gran colgadura negra los separa. El</div>
+<div class="text-block">vestíbulo toma el nombre de Ulam.</div>
+<div class="text-block">4. Los Maestros (únicos presentes) van vestidos de negro, y deben estar cubiertos en la Cámara del Medio.</div>
+<div class="article">5. En el pebetero se quema la Mirra (incienso de los funerales).</div>
+<div class="text-block">6. En el centro del Templo, en el emplazamiento habitual del Cuadrado Largo, está dispuesto el Paño funerario, negro y con flecos de plata, recubriendo un esqueleto</div>
+<div class="text-block">alargado sobre una estera o un colchón.</div>
+<div class="article">7. Las Columnitas y sus nueve Estrellas flanquean la Tumba de Hiram.</div>
+<div class="text-block">8. El pequeño Altar central está ahora entre el Devir (u Oriente) y la representación de la Tumba de Hiram.</div>
+<div class="text-block">9. En el Hejal (o Templo), antes de la iluminación final, no hay más luces que las llamadas de Orden. Reina la penumbra.</div>
+<div class="article">10. La Estrella Flamígera está encendida en el noroeste del Hejal.</div>
+<div class="text-block">11. Todos los candelabros están encendidos antes de la apertura de los Trabajos en 3er grado.</div>
+</div>
+<div class="page" id="page138">
+<div class="text-block"><strong>PROMESA</strong> <strong>SOLEMNE</strong></div>
+<div class="text-block">Yo,…….……………………………, en presencia del <strong>S∴A∴D∴L∴M</strong>∴ y de esta <strong>R∴L</strong>∴</div>
+<div class="text-block">de Maestros Masones debidamente constituida, regularmente reunida y tradicionalmente consagrada, por mi propia voluntad y libre consentimiento, por esta Rama de Acacia, este</div>
+<div class="text-block">Compás, esta Escuadra y sobre este <strong>V∴L∴S</strong>∴</div>
+<div class="text-block">¡Muy solemnemente prometo y juro que siempre callaré, ocultaré y jamás revelaré ni a los profanos ni a ningún Aprendiz ni Compañero, los Signos, Palabras y Toques, Arcanos o</div>
+<div class="text-block">Secretos que pertenecen al Grado de Maestro Masón, excepto al o los que tengan realmente y legítimamente el derecho a conocerlos, y esto después de haberlos probado convenientemente</div>
+<div class="text-block">y cuidadosamente retejado!</div>
+<div class="text-block">También prometo defender a mis <strong>HH</strong>∴ tanto con mis actos como con mis palabras; que mi mano dada a un Maestro Masón sea una prueba sincera de Fraternidad; que mis pasos</div>
+<div class="text-block">atraviesen los peligros y los escollos para unirme a los míos y formar así una Columna destinada a defendernos y a sostenernos mutuamente; ¡y por último, defenderé el Honor de un</div>
+<div class="text-block">Maestro Masón y lo conservaré celosamente como mi propio bien!</div>
+<div class="text-block">¡No levantaré prejuicio alguno contra él, y no permitiré tampoco que alguien lo haga!</div>
+<div class="text-block">¡Todo lo anterior, juro observarlo sin evasivas, equívocos o restricciones mentales de ningún tipo, so pena, si violo alguno de ellos, que no pueda ser encontrado entre los Hombres ningún</div>
+<div class="text-block">rastro ni ningún recuerdo de un ser tan vil, y sobre todo entre los Masones!</div>
+<div class="text-block">¡Qué el <strong>S∴A∴D∴L∴M</strong>∴ me asista y me arme de constancia para cumplir fielmente la Solemne Promesa que acabo de proferir!</div>
+</div>
+<div class="page" id="page139">
+<div class="text-block"><strong>APERTURA</strong> DE LOS <strong>TRABAJOS</strong> EN 3er <strong>GRADO</strong> <strong>SIMBÓLICO</strong></div>
+<div class="text-block">→ (Hierofante: (Antigüedad griega y egipcia). En particular el Venerable Sacerdote que presidía las Iniciaciones a los Misterios de</div>
+<div class="text-block">Eleusis e Isis. (Por extensión) Sacerdote que explica los misterios de lo sagrado).</div>
+<div class="text-block">→ (Todos los candelabros de la Cámara del Medio deben estar encendidos antes de la apertura de los Trabajos en 3er grado).</div>
+<div class="text-block">→ (Todos los (las) Venerables <strong>HH</strong>∴ están sentados(as) y cubiertos(as)).</div>
+<div class="text-block">V∴Hierofante → (El Venerable Hierofante da un golpe de Mallete):</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">→ (Golpe de Mallete):</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">→ (Golpe de Mallete):<br>→ (El Venerable Hierofante, y los <strong>VV</strong>∴ 1er y 2º Vigilantes se levantan).<br>V∴Hierofante Venerable H∴ 1er Vigilante, ¿cuál es el Primer Deber de un Vigilante en<br>Cámara del Medio?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Venerable Hierofante, asegurarse que el Templo está a cubierto!<br>V∴Hierofante Venerable H∴ 2º Vigilante, ¡aseguraos por el Venerable Guardatemplo!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">Venerable H∴ Guardatemplo, ¡aseguraos que el Templo está a cubierto exteriormente!<br>→ (El <strong>V∴H∴G∴T</strong>∴ sale, inspecciona el Nártex, cierra la Puerta, se pone al Orden de su Oficio y rinde cuentas):</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker"><strong>V∴G∴T</strong>∴</td><td class="speech">Venerable H∴ 2º Vigilante, ¡el Nártex está desierto, los CComp∴ y los AAp∴ están alejados!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡Venerable Hierofante, el Templo está a cubierto exteriormente!<br>V∴Hierofante Venerable H∴ 1er Vigilante, ¿cuál es el Segundo Deber de un Vigilante<br>en Cámara del Medio?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Venerable Hierofante, ¡asegurarse que todos los <strong>HH</strong>∴ y las <strong>HH</strong>∴<br>presentes en las Columnas del Mediodía y del Septentrión son Maestros Masones regulares, miembros de este Taller o Visitantes conocidos!<br>V∴Hierofante → (Golpe de Mallete):</td></tr></table>
+</div>
+<div class="page" id="page140">
+<div class="text-block">¡En pie y al Orden, <strong>HH</strong>∴, cara al Devir!</div>
+<div class="text-block">→ (Todos los <strong>HH</strong>∴ y las <strong>HH</strong>∴ lo hacen con prontitud).</div>
+<div class="text-block">V∴Hierofante Venerables <strong>HH</strong>∴ 1er y 2º Vigilantes, ¡aseguraos de que todos los <strong>HH</strong>∴ y</div>
+<div class="text-block">las <strong>HH</strong>∴ que decoran vuestras Columnas son Maestros Masones regulares, miembros de este Taller o Visitantes conocidos!</div>
+<div class="text-block">→ (Los <strong>VV</strong>∴ 1er y 2º Vigilantes recorren sus Columnas, Mallete en Banda y retejando, (Signo y Palabra de Paso), a cada H∴ que no</div>
+<div class="text-block">conocen. Luego vuelven a sus respectivos Escaños).</div>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">→ (Golpe de Mallete):<br>Venerable H∴ 1er Vigilante, ¡los(as) <strong>HH</strong>∴ de la Columna del Septentrión son todos(as) Maestros Masones regulares o Visitantes<br>conocidos!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">→ (Golpe de Mallete):<br>Venerable Hierofante, ¡los(as) <strong>HH</strong>∴ que decoran las Columnas del Mediodía y del Septentrión son todos Maestros Masones regulares,<br>miembros de este Taller o Visitantes conocidos!<br>V∴Hierofante ¡Igual ocurre en el Devir!<br><strong>VV∴HH</strong>∴, ¡tomad asiento!<br>Venerable H∴ 1er Vigilante, ¿sois Francmasón?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Mis Hermanos y mis Hermanas me reconocen como tal, V∴ Hierofante!<br>V∴Hierofante Venerable H∴ 1er Vigilante, ¿qué edad tenéis?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Tres años, Venerable Hierofante!<br>V∴Hierofante ¿Vais más lejos?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Venerable Hierofante, ¡interrogadme, conozco la letra “<strong>G</strong>”!<br>V∴Hierofante Venerable H∴ 1er Vigilante, ¿tenéis otros conocimientos de Masonería?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Venerable Hierofante, ¡probadme, conozco la Acacia!<br>V∴Hierofante Venerable H∴ 2º Vigilante, ¿qué edad tenéis?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡Siete años y más, Venerable Hierofante!</td></tr></table>
+</div>
+<div class="page" id="page141">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">Venerable H∴ 1er Vigilante, ¿a qué hora se abren los Trabajos en Cámara del Medio?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡A Mediodía, Venerable Hierofante!<br>V∴Hierofante Venerable H∴ 2º Vigilante, ¿qué hora es?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">Es Mediodía, Venerable Hierofante. El Sol resplandece en el Cénit de nuestro Templo, entre los dos Sicomoros que limitan los Horizontes. ¡La<br>Estrella de la Mañana (el Lucero del Alba, Venus), tras la que el Sol se levanta cada día, se detiene para saludarlo una vez más, y en el Campo de<br>los Juncos se regocijan los Glorificados!<br>V∴Hierofante ¡Masones de la Tierra de Menfis, ya que la Luz resplandece una vez más<br>sobre el Antiguo Egipto, ya que la Estrella de la Mañana se detiene para saludar a Aquel de quien es la Anunciadora, y ya que los Glorificados se<br>regocijan en el Campo de los Juncos, es hora de abrir nuestros Trabajos!<br>¡Así, en virtud de la Hora y de la Edad, Venerables 1er y 2º Vigilantes, invitad a los Venerables <strong>HH</strong>∴ que decoran nuestras Columnas a unirse a<br>nosotros!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡<strong>VV</strong>∴ <strong>MM</strong>∴ que decoráis la Columna del Mediodía, estáis invitados por el Venerable Hierofante y por mí mismo a uniros a nosotros para abrir los<br>Trabajos en la Cámara del Medio!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡<strong>VV</strong>∴ <strong>MM</strong>∴ que decoráis la Columna del Septentrión, estáis invitados por el Venerable Hierofante y por mí mismo a uniros a nosotros para<br>abrir los Trabajos en la Cámara del Medio!<br>V∴Hierofante ¡<strong>VV</strong>∴ <strong>MM</strong>∴ que decoráis el Devir, os invito a uniros a nosotros para<br>abrir los Trabajos en la Cámara del Medio!<br>¡Venerables <strong>HH</strong>∴ 1er y 2º Vigilantes uníos a mí, para ofrecer al <strong>S∴A∴D∴L∴M</strong>∴, el homenaje de nuestro amor, y para pedirle su<br>ayuda en los difíciles Trabajos a los que vamos a entregarnos!<br>→ (El Venerable Hierofante se descubre, desciende del Altar con su Mallete, y se coloca en el centro de la Logia, el 1er y el 2º Vigilantes a su<br>lado; los tres frente al Altar. El Venerable Hierofante se inclina y dice):<br>V∴Hierofante ¡Soberano Maestro de los Mundos, Fuente del Movimiento de la Luz y<br>de la Fertilidad, Sagrado Regulador de la Armonía Universal, Tú llenas el Templo! ¡El Espacio y los Elementos obedecen tu voz, y siguen el<br>camino que les trazas! ¡A pesar de la inconstancia y la diferencia de su naturaleza, es por Ti que todo vive y que nada muere!</td></tr></table>
+</div>
+<div class="page" id="page142">
+<div class="text-block">¡Eterno Regenerador de la naturaleza física, permite a los Obreros de este</div>
+<div class="text-block">Templo regenerar en ellos la naturaleza moral; dígnate sonreír a sus Trabajos y bendecirlos con tu Protección todopoderosa!</div>
+<div class="text-block">¡Acepta el culto sencillo y sincero que te rinden; bendice los materiales de su Templo, y haz que su Obra sea imperecedera como Tú!</div>
+<div class="text-block">¡Amén! ¡Amén! ¡Amén!</div>
+<div class="text-block">→ (El Venerable Hierofante vuelve al Altar).</div>
+<div class="text-block">→ (Los Venerables 1er y 2º Vigilantes vuelven a sus Escaños).</div>
+<div class="text-block">V∴Hierofante → (Golpes de Mallete):</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">→ (Golpes de Mallete):</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">→ (Golpes de Mallete):<br>V∴Hierofante ¡<strong>VV∴MM</strong>∴, escuchad por mi boca las palabras de Thot!<br>¡Oh hombre!, escucha mis palabras de sabiduría, escucha la voz de <strong>THOT</strong>, el Atlante. Conquisté la Ley del espacio-tiempo. Adquirí el<br>conocimiento de los tiempos futuros. Sé que el hombre en su movimiento a través del espacio-tiempo será siempre <strong>UNO</strong> con el <strong>TODO</strong>.<br>Sabe, ¡oh hombre!, que el futuro es un libro abierto para el que puede leer. Cada efecto deja translucir sus causas y todos los efectos provienen<br>de la causa primera.<br>Sabe que el futuro no es fijo y predeterminado sino que puede variar.<br>Igual que una causa provoca un efecto. Comprueba bien la causa que quieres manifestar y verás su efecto.<br>Al principio de la creación, hubo una Causa primera que provocó la manifestación de <strong>TODO</strong> LO QUE ES. Tú mismo, eres el efecto de una<br>causa y también la causa de otros efectos.<br>Por eso, ¡oh hombre!, asegúrate de que los efectos que tú provoques sean las causas de efectos perfectos. El futuro jamás está fijado sino que está<br>determinado por la libre voluntad del hombre a medida que se desplaza a través del espacio-tiempo hasta el <strong>MOMENTO</strong> EN QUE <strong>COMIENZA</strong><br>UN <strong>TIEMPO</strong> <strong>NUEVO</strong>.<br>“<strong>EL</strong> <strong>FIN</strong> DE LOS <strong>TIEMPOS</strong> ES EL <strong>PRINCIPIO</strong> DE UN <strong>TIEMPO</strong> <strong>NUEVO</strong>”</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">El hombre puede leer el futuro examinando atentamente las causas y sus efectos.</td></tr></table>
+</div>
+<div class="page" id="page143">
+<div class="text-block">Busca a través de la causalidad y encontrarás seguramente los efectos.</div>
+<div class="text-block">(¿<strong>PERO</strong> <strong>QUÉ</strong> <strong>HACER</strong> <strong>CUANDO</strong> LAS <strong>CAUSAS</strong> SON <strong>TAN</strong> <strong>COMPLEJAS</strong> Y <strong>NUMEROSAS</strong> QUE ES <strong>IMPOSIBLE</strong> <strong>ESTABLECER</strong></div>
+<div class="text-block">UNA <strong>LÍNEA</strong> <strong>DIRECTRIZ</strong>?)</div>
+<div class="text-block">EN <strong>ESE</strong> <strong>CASO</strong> <strong>SIMPLIFICA</strong> TU <strong>VIDA</strong>.</div>
+<div class="text-block">Escucha, ¡oh hombre!, te hablo del futuro y de los efectos que siguen a una causa.</div>
+<div class="text-block">Sabe que el hombre en su viaje hacia la luz trate de escapar de las tinieblas de noche que le rodean como las sombras que rodean las</div>
+<div class="text-block">estrellas en el cielo. Como estas estrellas en el espacio también brillará él a través de las sombras de noche.</div>
+<div class="text-block">Su grandioso destino siempre lo conducirá adelante hasta llegar a ser <strong>UNO</strong> CON LA <strong>LUZ</strong>. Aunque el camino por el que deba pasar esté en</div>
+<div class="text-block">medio de las sombras, delante de él siempre brillará la Gran Luz.</div>
+<div class="text-block">Aunque el camino por el que deba pasar esté en medio de las sombras, delante de él siempre brillará la Gran Luz.</div>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">Su vía es oscura pero debe conquistar las sombras que fluyen, a su alrededor, como la noche. El gran río de noche por el cual la barca solar<br>navega para siempre.<br>Lejos, en el futuro, veo a los hombres de la luz, libres de las garras de las tinieblas que encadenan su Alma. Viven en la Luz, libres de las cadenas<br>de la oscuridad que cubren esa luz que no es otra que la luz de su Alma.<br>Sabe, ¡oh! hombre, que antes de alcanzar este estado habrá varias sombras oscuras que ocultarán tu luz e intentarán ahogar en las tinieblas<br>la luz del Alma que se quiere liberar.<br>Este combate entre la luz y la oscuridad es titánico, muy antiguo y sin embargo siempre nuevo.<br>No obstante, sabe que hará un tiempo, lejos en el futuro, en que LA <strong>LUZ</strong> <strong>SERÁ</strong> <strong>TODO</strong> y dónde la oscuridad se desvanecerá.<br>Está atento a mis palabras de sabiduría, ¡oh! hombre. Está listo y vigilante, y jamás tu luz se oscurecerá.<br>El hombre sube y baja a medida que las nuevas olas de conciencia llegan del gran abismo para dirigirse hacia el Sol de su destino.<br>V∴Hierofante Sí, hijo mío, provienes de un estado apenas superior al de la bestia y<br>ahora, ya, en este instante brillas por encima de los hombres.<br>En otro tiempo, hubo seres mucho más grandes y sin embargo también cayeron. Así es como llegarás a tu fin en este mundo. Y sobre el suelo<br>que pisas ahora se cogerán bárbaros que también subirán en su momento hacia la luz.</td></tr></table>
+</div>
+<div class="page" id="page144">
+<div class="text-block">La antigua sabiduría será olvidada, pero vivirá oculta de los hombres.</div>
+<div class="text-block">Sobre la tierra que llamas Kemet (Egipto) vendrán razas nuevas y otras desaparecerán para ser olvidadas por los hijos de los hombres. Pero tú</div>
+<div class="text-block">habrás reunido un espacio-estrella del más allá dejando tras de ti este lugar que has habitado.</div>
+<div class="text-block">El alma del hombre está siempre en movimiento, sin límite, es una estrella que navega en el infinito hacia ese gran destino en que se</div>
+<div class="text-block">fusionará con la <strong>LUZ</strong> DEL <strong>TODO</strong>. Una luz dentro de la luz.</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Si eres capaz de modificar tu forma de ver las cosas<br><strong>SIEMPRE</strong> <strong>AVANZARÁS</strong>, <strong>SOSTENIDO</strong> POR LA <strong>LEY</strong> DE LA <strong>CAUSA</strong> Y DEL <strong>EFECTO</strong> <strong>HASTA</strong> EL <strong>MOMENTO</strong> EN QUE LOS <strong>DOS</strong> SE<br><strong>HAGAN</strong> <strong>UNO</strong>.<br>LA <strong>CAUSA</strong> Y EL <strong>EFECTO</strong> SE <strong>FUSIONARÁN</strong> EN LA <strong>LUZ</strong>.<br>Sí, cuando hayas partido, otros ocuparán el territorio sobre el que vives.<br>Pero parte sin temor hacia la luz. El saber y la sabiduría serán olvidados y sólo la memoria de los Dioses sobrevivirá. Igual que soy un Dios por mi<br>saber, también tú serás un Dios del futuro porque tu saber es infinitamente superior. Sin embargo recuerda que en cada época, el<br>hombre puede tener acceso inmediato a la Ley si quiere.<br>En épocas venideras, veremos una caída de los valores y una alteración de la sabiduría entre los que ocupen tu lugar en esta estrella. Por lo que<br>deberán a su vez emprender la larga marcha hacia la sabiduría y aprender a alejar las tinieblas de la Luz. A su vuelta, deberán perseverar a través<br>del espacio-tiempo para elevarse en la libertad de la Luz.<br>Algunos que están encadenados a las tinieblas intentarán impedir que otros se eleven hacia la claridad. Lo que causará una gran guerra que hará<br>temblar a la Tierra y hacerla tambalear en su curso. Los Hermanos de la oscuridad provocarán un conflicto entre la luz y la noche.</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">Cuando el hombre haya conquistado los océanos y vuele en los aires con alas como las aves; cuando haya aprendido a dominar el poder de los<br>rayos; entonces el tiempo de la guerra habrá llegado. Tendrá lugar un combate titánico entre las fuerzas de la luz y las fuerzas de las tinieblas.<br>Las naciones se alzarán contra las naciones utilizando oscuras fuerzas para dominar la tierra. Armas temibles borrarán a la mitad de los<br>hombres de la superficie de la tierra. Hasta el día en que los hijos de la Aurora vengan entre los hombres y les digan: “Dejad de combatir a<br>vuestros hermanos. Sólo así podrá volver la luz. Dejad vuestras dudas, seguid el camino y sabed que todos sois Verdad”.</td></tr></table>
+</div>
+<div class="page" id="page145">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">Ese día, los combates cesarán entre el hermano contra su hermano y el padre contra su hijo. Entonces la Tierra se sublevará y del fondo de los<br>mares surgirán los vestigios de los templos y de las casas que mi pueblo habitó en otro tiempo.<br>La Edad de las Luces vendrá a continuación y todos los hombres perseguirán la Luz del destino. Los Hermanos de la Luz reinarán y<br>expulsarán a las tinieblas de la noche. Entonces los hijos de los hombres podrán progresar y elevarse hacia el gran objetivo para transformarse a su<br>vuelta en los Hijos de la Luz. Las almas serán para siempre una llama dentro de la gran llama.</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Durante la edad de oro, la sabiduría y el saber pertenecerán al hombre. Se acercará a la llama eterna, a la <strong>FUENTE</strong> de toda sabiduría, al origen de<br>todas las cosas que es al mismo tiempo <strong>UNO</strong> con el fin de todo.<br>Sí, en esta época próxima, <strong>TODO</strong> <strong>SERÁ</strong> <strong>UNO</strong> Y <strong>UNO</strong> <strong>SERÁ</strong> <strong>TODO</strong>.<br>Y el hombre, la perfecta llama del Cosmos, se sentará entre las estrellas.<br>Hasta podrá sobrepasar ese espacio-tiempo para ir a una dimensión más allá de las estrellas. Tú has estado muy atento a mis palabras y a mi<br>sabiduría, ¡oh! hijo mío.</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">Ahora debo irme a las tinieblas. Ahora voy adentro de las <strong>CÁMARAS</strong> DEL <strong>AMENTI</strong>, para abrir las puertas de ese futuro en que la Luz volverá<br>entre los hombres. Sabe que mi Espíritu estará siempre contigo para guiarte por la senda de la Luz. Guarda celosamente los secretos que te he<br>confiado y mi espíritu te protegerá a través de la vida. Guarda atención siempre en la senda de la sabiduría.<br>Qué la luz sea siempre tu objetivo. No dejes que tu alma sea invadida por las tinieblas; déjala volar libremente hacia las estrellas. Ahora debo<br>volver a vivir en el Amenti. Tú te quedas, hijo mío, en esta vida y en la próxima. Pero llegará el día en que tú tampoco conocerás a la muerte.<br>Serás una luz permanente entre los hombres entre épocas.<br>V∴Hierofante Protege la entrada que lleva a las <strong>CÁMARAS</strong> DEL <strong>AMENTI</strong>.<br>Protege los secretos que te confié. No dejes esta sabiduría en manos de los bárbaros. Conserva este secreto para los que buscan la Luz. Ahora me<br>voy. Recibe mi bendición. Soy mi propio camino que conduce hacia la Luz. Baña tu alma en La Gran Esencia. Qué tu conciencia se transforme<br>en UNA con la Gran Luz. Puedes llamarme cuando quieras. Pronuncia mí nombre tres veces seguidas:<br><strong>CHEQUETET</strong> – <strong>ARELICH</strong> – <strong>VOMALITES</strong>…<br>→ (Un instante)...</td></tr></table>
+</div>
+<div class="page" id="page146">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¡En pie y a la Orden, Venerables Maestros!<br>¡A <strong>L∴G∴D∴S∴A∴D∴L∴M</strong>∴!<br>¡Señor de la Enéada Sagrada de Egipto!<br>En Nombre, y bajo los Auspicios de la Gran Logia Simbólica del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay.<br>En virtud de los Poderes que me han sido conferidos. ¡Declaro abiertos los Trabajos en Cámara del Medio de:…………… bajo el título<br>distintivo de:…………… en el punto geográfico secreto conocido sólo por los Hijos de la Luz! En un Lugar muy puro, muy santo y muy<br>iluminado por la Luz de Egipto, lugar donde reinan la Paz, la Alegría y la Armonía.<br>¡A mí <strong>VV∴HH</strong>∴ , por el Signo, el Signo de Horror y la Aclamación!<br>Todos → (Hacen el Signo).<br>Todos → (Hacen el Signo de Horror).<br>Todos → (Lanzan la Batería y la Aclamación):<br>→ (3 veces a la vez): <strong>CHEQUETET</strong> – <strong>ARELICH</strong> – <strong>VOMALITES</strong>…<br>→ (Así se hace)...<br>Venerables Hermanos y Hermanas, tomad asiento.<br>→ (Todos los <strong>HH</strong>∴ y las <strong>HH</strong>∴ lo hacen con prontitud).<br>V∴Hierofante ¡<strong>VV∴MM</strong>∴, os ruego que prestéis atención a nuestro V∴ Secretario<br>para la lectura de la Plancha Trazada en nuestros Últimos Trabajos y del Plano Perfecto los Trabajos de este día!<br>V∴Secretario Venerable Hierofante, y todos vosotros mis Hermanos en vuestras<br>Calidades y Funciones…<br>→ (Da Lectura de Plancha Trazada de los Últimos Trabajos y del Plan Perfecto de los Trabajos).<br>V∴Hierofante <strong>VV∴MM</strong>∴, ¿tenéis observaciones que formular sobre la redacción de la<br>Plancha Trazada de nuestros Últimos Trabajos que acaba de sernos leída?</td></tr></table>
+</div>
+<div class="page" id="page147">
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Venerable Hierofante, ¡el silencio reina sobre ambas Columnas!<br>V∴Hierofante ¡Invito al V∴ H∴ Orador a dar sus conclusiones!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴Orador :</td><td class="speech">¡Venerable Hierofante, considerando que ninguno de los <strong>VV∴MM</strong>∴<br>presentes ha formulado observaciones en cuanto a la redacción de la Plancha Trazada en nuestros Últimos Trabajos que acaba de sernos leída,<br>que tenga a bien aprobarla esta Respetable Asamblea de <strong>VV∴MM</strong>∴!<br>V∴Hierofante <strong>VV∴MM</strong>∴, ¡que aquellos de entre vosotros que aprueben las<br>conclusiones del <strong>V∴H</strong>∴ Orador lo manifiesten a mi golpe de Mallete!<br>→ (Golpe de Mallete):<br>→ (Los <strong>VV</strong>∴ <strong>MM</strong>∴ levantan la mano derecha).<br>V∴Hierofante ¿Opiniones en contra?<br>→ (Silencio).<br>V∴Hierofante ¡La Plancha Trazada de nuestros Últimos Trabajos ha sido aprobada!<br>¡Se hará mención en la de hoy!<br>→ (Pausa).<br>V∴Hierofante <strong>VV∴MM</strong>∴, la orden del día nos llama…</td></tr></table>
+</div>
+<div class="page" id="page148">
+<div class="text-block"><strong>CIERRE</strong> DE LOS <strong>TRABAJOS</strong> EN EL 3er <strong>GRADO</strong> <strong>SIMBÓLICO</strong></div>
+<div class="text-block">→ (Los <strong>VV∴MM</strong>∴ de la Logia observan un profundo silencio).</div>
+<div class="text-block">V∴Hierofante La Orden de Día se ha agotado, ¿alguien desea tomar la palabra en el</div>
+<div class="text-block">interés de este Taller en particular, o en el interés de la Orden en general?</div>
+<div class="text-block">→ (Se concede la palabra a todos los <strong>VV</strong>∴ <strong>MM</strong>∴ que la soliciten, después cuando nadie más desee tomar la palabra).</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Venerable Hierofante, las Columnas están mudas!<br>V∴Hierofante ¡Puesto que nadie más pide la palabra, vamos a cerrar los Trabajos! ¡Pero<br>antes, voy a hacer circular el Saco de Proposiciones así como el Tronco de la Viuda! Venerables <strong>HH</strong>∴ Hospitalario y Maestro de Ceremonias,<br>¡cumplid con vuestros Oficios!<br>→ (Cuando los Troncos han acabado de circular, el Hospitalario y el Maestro de Ceremonias se colocan entre Columnas).</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Venerable Hierofante, el Saco de Proposiciones y el Tronco de la Viuda están a vuestra disposición entre Columnas!<br>V∴Hierofante ¡Que se me traigan!<br>→ (Se aportan y examinan los Troncos).<br>V∴Hierofante ¡El Saco de Proposiciones ha vuelto libre y sin ataduras!<br>→ (Si hay una o más proposiciones).<br>V∴Hierofante ¡El Saco de Proposiciones ha vuelto con <strong>X</strong>……………. Proposiciones<br>que serán examinadas posteriormente (o de las que daremos lectura inmediata en el Taller)!<br>V∴Hierofante ¡El Tronco de la Viuda ha producido <strong>X</strong>………..….. Trozos de Osiris, de<br>los que se ha responsabilizado el Venerable Hospitalario!<br>→ (El V∴ Maestro de Ceremonias y el Hospitalario vuelven a sus Escaños y toman asiento).<br>V∴Hierofante ¿Están contentos y satisfechos los <strong>MM</strong>∴?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Lo están, Venerable Hierofante!<br>V∴Hierofante Venerable H∴ 2º Vigilante, ¿qué edad tenéis?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡Siete años y más, Venerable Hierofante!<br>V∴Hierofante Venerable H∴ 1er Vigilante, ¿hasta qué hora se trabaja en la Cámara del<br>Medio?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Hasta Medianoche, Venerable Hierofante!</td></tr></table>
+</div>
+<div class="page" id="page149">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¿Por qué, Venerable H∴ 1er Vigilante?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Porque a esta hora, la noche reina sobre Egipto, Venerable Hierofante, los Templos vuelven a su secular silencio, y la Tierra de Menfis se<br>adormece de nuevo!<br>V∴Hierofante Venerable H∴ 2º Vigilante, ¿qué hora es?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡Es Medianoche, Venerable Hierofante!<br>V∴Hierofante ¡Puesto que es la hora del descanso, cuando la noche reina sobre Egipto,<br>cuando los Templos vuelven a su secular silencio, y cuando la Tierra de Menfis se adormece de nuevo, <strong>VV∴HH</strong>∴ 1er y 2º Vigilantes, invitad a<br>los <strong>VV∴MM</strong>∴ que decoran vuestras Columnas en la Cámara del Medio a que se unan a mí para cerrar los Trabajos!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡<strong>VV∴MM</strong>∴ que decoráis la Columna del Mediodía, estáis invitados por el Venerable Hierofante y por mí mismo a uniros a nosotros para cerrar<br>los Trabajos en la Cámara del Medio!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡<strong>VV∴MM</strong>∴ que decoráis la Columna del Septentrión, estáis invitados por el Venerable Hierofante y por mí mismo a uniros a nosotros para<br>cerrar los Trabajos en la Cámara del Medio!<br>V∴Hierofante ¡<strong>VV∴MM</strong>∴ que decoráis el Devir, os invito a uniros a nosotros…<br>→ (El Muy Respetable Maestro se levanta al pronunciar estas palabras).<br>V∴Hierofante …para cerrar los Trabajos en la Cámara del Medio!<br>→ (Golpe de Mallete):<br>¡En pie y al Orden, <strong>HH</strong>∴, cara al Oriente!<br>→ (Todos los <strong>VV∴MM</strong>∴ lo hacen con prontitud).<br>V∴Hierofante → (Golpes de Mallete):<br>¡En pie y al Orden, Venerables Maestros!<br>¡A mí mis <strong>VV∴HH</strong>∴, por el Signo, el Signo de Horror y la Aclamación!<br>Todos → (Hacen el Signo).<br>Todos → (Hacen el Signo de Horror).<br>Todos → Hacen el Signo<br>→ (Lanzan la Batería y la Aclamación):<br>→ (3 veces a la vez): <strong>CHEQUETET</strong> – <strong>ARELICH</strong> –<strong>VOMALITES</strong>…</td></tr></table>
+</div>
+<div class="page" id="page150">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¡A <strong>L∴G∴D∴S∴A∴D∴L∴M</strong>∴!<br>En Nombre, y bajo los Auspicios de la Gran Logia Simbólica del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay.<br>En virtud de los Poderes que me han sido conferidos. ¡Declaro cerrados los Trabajos en Cámara del Medio de:…………… bajo el título<br>distintivo de:…………… en el punto geográfico secreto conocido sólo por los Hijos de la Luz! En un Lugar muy puro, muy santo y muy<br>iluminado por la Luz de Egipto, lugar donde reinan la Paz, la Alegría y la Armonía.<br>→ (Todos los <strong>HH</strong>∴ se desenguantan, tienden la mano derecha hacia el altar y dicen):<br>Todos ¡Lo juramos!<br>→ (Todos los <strong>VV∴HH</strong>∴ y las <strong>V∴H</strong>∴ se enguantan y se sientan).<br>→ (A señalar: si los Trabajos han sido directamente abiertos en Cámara del Medio el V∴ Hierofante podrá incluirse la Cadena de Unión en estos<br>términos, lo que no es el caso si los Trabajos vuelven a bajar a 2º y a1er Grado).<br>V∴Hierofante Pero antes, mis <strong>VV∴HH</strong>∴, por favor, acercaos al Oriente para formar la<br>Cadena de Unión Fraternal.<br>→ (Todos los <strong>VV∴HH</strong>∴ se desenguantan y se acercan a la Naos cruzando el brazo derecho sobre el brazo izquierdo, palma derecha<br>hacia arriba y la izquierda hacia abajo y forman un amplio círculo alrededor del Cuadrilongo y de las Tres Columnitas y del Escaño de<br>Oriente).<br>→ (El V∴Hierofante propone una corta meditación)<br>V∴Hierofante Regocijémonos, <strong>HH</strong>∴, del Trabajo lealmente cumplido. Esforcémonos<br>por llevarlo hacia la Perfección cada día más. Fortifiquemos en nuestros corazones el amor a nuestro prójimo y el sentimiento de nuestros<br>deberes, como nos consagramos a los servicios de la Verdad, una e inmutable, de la Libertad, de la Igualdad, y de la Fraternidad... Que la<br>Cadena de Unión Fraternal sea tan fuerte entre nosotros a partir de ahora que nada pueda alterarla jamás. ¡<strong>VV∴HH</strong>∴, dejemos la Cadena sin<br>romperla jamás!<br>→ (Los <strong>VV∴HH</strong>∴ vuelven a su sitio sin estar al Orden y no se ponen los guantes).<br>→Y luego se procede a la salida Ritual.</td></tr></table>
+</div>
+<div class="page" id="page151">
+<div class="text-block"><strong>PRELIMINARES</strong> A LA <strong>CEREMONIA</strong> DE <strong>RECEPCIÓN</strong></div>
+<div class="text-block">AL 3er <strong>GRADO</strong> <strong>MAESTRO</strong></div>
+<div class="text-block">V∴Hierofante → (Golpe de Mallete):</div>
+<div class="text-block">Muy Venerables <strong>HH</strong>∴, debemos proceder a la Recepción del Compañero………………………………………………………………...</div>
+<div class="text-block">Venerables <strong>HH</strong>∴ 1er y 2º Vigilantes, proclamad en vuestras Columnas respectivas, ¿si los <strong>VV∴MM</strong>∴ que las componen tienen alguna</div>
+<div class="text-block">observación que formular, y si consienten en la Admisión al Tercer Grado del Perfecto Compañero que se les ha presentado?</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">→ (Golpe de Mallete):<br><strong>VV</strong>∴ <strong>MM</strong>∴ que decoráis la Columna del Mediodía, ¡haced vuestras observaciones, o dad a la Recepción del Candidato las señales<br>aprobatorias acostumbradas!<br>→ (Después que los <strong>VV</strong>∴ <strong>MM</strong>∴ de la Columna del Mediodía hayan presentado sus observaciones y/o dado su aprobación).</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">→ (Golpe de Mallete):<br><strong>VV</strong>∴ <strong>MM</strong>∴ que decoráis la Columna del Septentrión, ¡haced vuestras observaciones, o dad a la Recepción del Candidato las señales<br>aprobatorias acostumbradas!<br>→ (Después que los <strong>VV</strong>∴ <strong>MM</strong>∴ de la Columna del Septentrión hayan presentado sus observaciones y/o dado su aprobación).</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡El silencio reina en la Columna del Septentrión, <strong>V∴H</strong>∴ 1er Vigilante!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Venerable Hierofante, el silencio reina en ambas Columnas!<br>V∴Hierofante ¡Venerable Gran Experto, la Recepción del Candidato acaba de recibir la<br>aprobación unánime de los <strong>MM</strong>∴ de este Respetable Taller!<br>¡Id junto al Candidato y preparadlo para el Alto Favor que se le va a hacer!<br>→ (El V∴ Gran Experto sale y se va junto al Candidato).<br>→ (El Candidato debe estar sin zapatos, los brazos y el pecho desnudos).<br>→ (Debe tener una escuadra colgando del brazo derecho, así como una cuerda que le de tres vueltas por la cintura).<br>→ (Lleva su Mandil de Compañero).</td></tr></table>
+</div>
+<div class="page" id="page152">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¡Venerable Maestro de Ceremonias, haced en el Hejal los preparativos necesarios!<br>→ (Se coloca en medio de la Logia el Ataúd cubierto con un paño mortuorio, y en la cabeza del Ataúd una Escuadra y en los pies un<br>Compás).<br>→ (Tras ello, se coloca dentro del Ataúd al último Maestro recibido, los pies en el Devir, los talones en Escuadra, la mano derecha sobre el<br>corazón que tiene una rama de Acacia; el brazo izquierdo extendido a lo largo del cuerpo).<br>→ (Un sudario lo cubre desde los pies a la cintura, el Mandil subido hasta el labio inferior, el resto de la cara se le cubre con un trapo blanco<br>manchado de sangre).<br>→ (Terminadas estas disposiciones, se apagan las luces, a excepción de una tenue lámpara sobre el Altar del Venerable Hierofante).<br>→ (Todos los Venerables Maestros dan vuelta a sus Mandiles y Collares).</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴ M∴ de C∴</td><td class="speech">→ (El V∴ Maestro de Ceremonias vuelve a la Puerta del Hejal y espera que den entrada al Candidato).<br>→ Los seguirá, un paso atrás, durante toda la Ceremonia</td></tr></table>
+</div>
+<div class="page" id="page153">
+<div class="text-block"><strong>CEREMONIA</strong> DE <strong>RECEPCIÓN</strong> DE UN <strong>COMPAÑERO</strong></div>
+<div class="text-block">AL <strong>GRADO</strong> DE <strong>MAESTRO</strong></div>
+<div class="text-block">→ (Mientras que el Candidato se aproxima a la Cámara del Medio conducido por el V∴ Gran Experto, éste le dice sin afectación).</div>
+<div class="text-block">V∴Gran Experto ¡Parece que la consternación reina en la Logia!</div>
+<div class="text-block">¡No me enteré, hasta ahora, de las causas del gran dolor que se manifiesta por signos espantosos!</div>
+<div class="text-block">¡Supongo que una gran desgracia ha llegado, y en estas condiciones, la Recepción se podría se retrasar!</div>
+<div class="text-block">¡Pero hay que presentarse y tratar de proceder allí!</div>
+<div class="text-block">→ (Silencio, y algunos instantes de espera).</div>
+<div class="text-block">V∴Gran Experto → (Después el V∴ Gran Experto hace que el Candidato llame a la Puerta del Templo como Compañero, y lo coloca de espaldas a la</div>
+<div class="text-block">misma, de manera que el Candidato entre de espaldas en el Devir).</div>
+<div class="text-block">→ (El mayor silencio reina entre los Obreros, y nueve sonidos de cuerno responden a los cinco golpes dados por el Candidato):</div>
+<div class="text-block">Candidato</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡Venerable Hierofante, llaman como Compañero a la Puerta del Templo!<br>V∴Hierofante ¿Quién es el Compañero tan temerario que osa penetrar en este lugar<br>Sagrado? ¿Viene a insultarnos en nuestro dolor?<br>¿Venerable H∴ 1er Vigilante, preguntadle su nombre y lo que desea?</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Venerable H∴ Guardatemplo, ¡ved quién llama a la Puerta del Templo, y preguntadle lo que desea!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker"><strong>V∴G∴T</strong>∴</td><td class="speech">¿Quién llama así a la Puerta del Templo, y qué viene a buscar a este lugar?<br>V∴Gran Experto → (Entreabre la Puerta del Hejal y dice):<br>Venerable Hierofante, os traemos a un Compañero que hemos sorprendido en las inmediaciones del Templo. ¡Nos ha parecido sumido<br>en una profunda meditación, y es por lo que, en lugar de expulsarlo, os lo hemos traído!</td></tr></table>
+</div>
+<div class="page" id="page154">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¿No será uno de los culpables del asesinato que deploramos?<br>¿Cómo ha osado acercarse a este lugar, y con qué objeto?<br>V∴Gran Experto El Compañero…………..…, animado por los testimonios de satisfacción de sus <strong>MM</strong>∴, espera obtener un aumento de salario en recompensa por el<br>celo a su Trabajo.<br>¡Ha subido los dos primeros “Descansos o Tramos” de la Escalera de Caracol, el primero era de tres peldaños, y el segundo de cinco!<br>V∴Hierofante ¡Venerable Gran Experto, éntrelo en nuestro Hejal, y lo interrogaremos!<br>¡Ay de él, si ha tenido la audacia de mentiros!<br>→ (El Gran Experto introduce reculando al Candidato, dando la espalda al Devir).<br>V∴Hierofante <strong>H</strong>∴.………..…, ¡indicadnos vuestra edad, vuestra profesión así como el<br>lugar de vuestro trabajo!<br>V∴Gran Experto → (El V∴ Gran Experto soplará las respuestas al Candidato).<br>Candidato ¡Tengo cinco años Venerable Hierofante, soy Compañero Masón, entre<br>los Masones que erigen los Templos del Gran Egipto, y trabajo en Cámara de Compañero!<br>V∴Hierofante H∴ Compañero, ¿habéis reflexionado detenidamente acerca de la<br>demanda que habéis formulado?<br>¿Tenéis las manos y la conciencia limpias?<br>Candidato Venerable Hierofante, aquí tenéis mis manos, están limpias.<br>Sobre la palma de mi mano está mi corazón de mi Madre, y es puro.<br>Que sea pesado en la Balanza de la Verdad, pues está limpio.<br>Jamás he mancillado el Agua Viva.<br>Jamás he soplado a la Llama de la Inteligencia.<br>Jamás abolí las Energías.<br>Jamás he velado la Claridad.<br>Jamás he ocultado a la Divina Luz.<br>Jamás he ofendido a la Belleza, verdad de las formas.<br>Jamás he salvado Mi Vida a expensas de la del prójimo.<br>Nunca he capturado en mis redes a los Peces Divinos: los Símbolos, ni a las Aves de los Misterios: las Fórmulas.</td></tr></table>
+</div>
+<div class="page" id="page155">
+<div class="text-block">Fiel a mi Regente, la Dama de la Verdad, cuya Estrella flamea, ahora,</div>
+<div class="text-block">ante mis ojos, jamás he alterado la Verdad.</div>
+<div class="text-block">Pues soy puro, soy puro…</div>
+<div class="text-block">No he conocido nunca la dureza del corazón.</div>
+<div class="text-block">He dado Agua fresca al que tenía sed, Pan a quien le faltaba, y Lino a quien estaba desnudo.</div>
+<div class="text-block">Así que, en esta Sala de la Verdad, ante el Tribunal de lo Verídico, amparado por mi Patrona, la Señora de la Verdad cuya Estrella flamea</div>
+<div class="text-block">ante mis ojos.</div>
+<div class="text-block">¡Espero que mi Corazón sea ligero, ligero porque soy puro!</div>
+<div class="text-block">¡Yo soy puro!</div>
+<div class="text-block">V∴Hierofante H∴, un gran infortunio ha golpeado a la Masonería de Egipto, ¡y</div>
+<div class="text-block">sospechamos que los autores de esta cosa horrible son Masones! ¡Hemos sido traicionados por aquellos que habíamos colmado de favores! ¡Esta</div>
+<div class="text-block">es la razón por la que nuestra desconfianza hacia todos los Compañeros en general, persiste!</div>
+<div class="text-block">Candidato Venerable Hierofante, me presento con el Corazón sobre la palma de mi</div>
+<div class="text-block">mano. Mi fiador es el Guía de los Caminos, el Señor de la Montaña de Occidente, el Conductor de los Muertos hacia la Vida. Y mi Patrona es la</div>
+<div class="text-block">Señora de la Verdad, la Regente de Tebas.</div>
+<div class="text-block">Invoco al espíritu de mi Creador, de quien nací, al Estable, Hijo del Estable, al Oculto de los Ocultos, para que el Verbo habiéndose hecho</div>
+<div class="text-block">Realidad, por Virtud de la Justa Voz, transformado en Gavilán, haga que yo salga convertido en Fénix!</div>
+<div class="text-block">V∴Hierofante Venerable Gran Experto, ¡examinad las manos de este Compañero, y</div>
+<div class="text-block">traedme su Mandil, para que pueda asegurarme que está limpio y sin manchas!</div>
+<div class="text-block">→ (El V∴ Gran Experto examina las manos del Candidato, le retira su Mandil y lo lleva al Venerable Hierofante).</div>
+<div class="text-block">V∴Gran Experto Venerable Hierofante, ¡las manos del Compañero parecen limpias y sin mancha! ¡Aquí tenéis, además, su Mandil!</div>
+<div class="text-block">V∴Hierofante ¡Su Mandil no tiene, en efecto, ninguna traza de mancha! ¡Venerable</div>
+<div class="text-block">Gran Experto, sentad al Candidato cara al Occidente!</div>
+<div class="text-block">V∴Gran Experto → (El V∴ Gran Experto lo ejecuta, y el Candidato está sentado, con la espalda vuelta al Devir).</div>
+<div class="text-block">V∴Hierofante ¿H∴Compañero, sois Masón de Egipto?</div>
+<div class="text-block">Candidato Venerable Hierofante, ¡mis <strong>HH</strong>∴ me reconocen como tal!</div>
+</div>
+<div class="page" id="page156">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¿Qué edad tenéis?<br>Candidato ¡Tres años, Venerable Hierofante!<br>V∴Hierofante ¿Dónde fuisteis recibido Francmasón?<br>Candidato Venerable Hierofante, ¡en el seno de una Logia justa, perfecta y regular!<br>V∴Hierofante ¿Cómo fuisteis recibido Francmasón?<br>Candidato ¡Venerable Hierofante, no estaba ni vestido ni desnudo, fui privado de<br>todos los metales! ¡Con una soga alrededor del cuello, fui conducido a la Puerta del Templo de la mano de un amigo, que después reconocí como<br>mi H∴!<br>V∴Hierofante ¿Habéis recibido vuestro salario?<br>Candidato ¡Venerable Hierofante, estoy satisfecho!<br>V∴Hierofante ¿Dónde recibisteis vuestro salario?<br>Candidato ¡En la Columna “<strong>J</strong>”, Venerable Maestro!<br>V∴Hierofante ¿Sois Compañero?<br>Candidato ¡Venerable Hierofante, conozco la letra “<strong>G</strong>”!<br>V∴Hierofante ¿Qué edad tenéis?<br>Candidato ¡Cinco años, Venerable Hierofante!<br>V∴Hierofante ¿Cómo fuisteis recibido Compañero?<br>Candidato ¡Venerable Hierofante, pasando de la Columna del Septentrión a la del<br>Mediodía, después de haber hecho cinco Viajes!<br>V∴Hierofante ¿Cómo trabajáis bajo la dirección de los Maestros?<br>Candidato ¡Venerable Hierofante, con entusiasmo, alegría y libertad!<br>V∴Hierofante ¿Habéis recibido vuestro salario?<br>Candidato ¡Estoy contento, Venerable Hierofante!<br>V∴Hierofante ¿Dónde lo recibisteis?<br>Candidato ¡En la Columna “<strong>B</strong>” Venerable Hierofante!</td></tr></table>
+</div>
+<div class="page" id="page157">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¿No esperáis nada más de vuestros Hermanos?<br>Candidato ¡Venerable Hierofante Espero el momento en que, suficientemente<br>instruido en lo que debe saber un Compañero, seré admitido a participar en los Trabajos en la Cámara del Medio!<br>V∴Hierofante ¡Compañero, volved vuestro rostro hacia el Oriente!<br>→ (El Candidato lo hace).<br>V∴Hierofante Como podéis ver estamos sumidos en las lágrimas y en el duelo. Las<br>tinieblas cubren Egipto, la Luz ha desaparecido.<br>¡Uno de nuestros Hermanos, entre los más venerados ha caído bajo los golpes de infames asesinos, y tenemos la certeza de que son Compañeros<br>Masones los que han cometido este crimen! ¿Habéis tenido conocimiento, Hermano Compañero, entre los miembros de vuestra<br>clase, de un complot fomentado contra nuestra Orden?<br>Candidato ……..<br>V∴Hierofante ¡Puesto que os declaráis inocente de este crimen, dadnos una prueba de<br>ello! ¡Acercaos a este cadáver aún caliente! ¡Si sois el asesino que sospechamos, o si sois su cómplice tácito, las heridas sangrarán de<br>nuevo! ¡Pero si no sois nada de todo esto, no debéis temer que nuestro H∴ muerto se levante para gritar venganza! ¡Venerable Hermano<br>Experto, conducid a nuestro Compañero hacia el Oriente, y hacedle pasar sobre el Cadáver de nuestro Maestro!...<br>V∴Gran Experto → (El V∴ Gran Experto Hace avanzar al Candidato con los cinco Pasos del Compañero, después le hace pasar sobre el Cadáver a la manera de<br>los Maestros).<br>→ (Cuando ya ha pasado el ataúd y se encuentra frente al Devir, el Maestro tumbado, se levanta y vuelve a su sitio).<br>V∴Hierofante ¡Hermano Compañero, puesto que habéis pasado con éxito esta primera<br>prueba, nuestra confianza en vos empieza a recuperarse! Vamos, pues, a revelaros las circunstancias del crimen que nos tiene sumidos en la<br>aflicción. Pero antes, daréis vuestra palabra de Francmasón, de no revelar nada a nadie de todo lo que podáis ver u oír, comprender o adivinar,<br>salvo a los Maestros Masones, y guardar inviolable el secreto de los Maestros Masones respecto de los otros <strong>CC</strong>∴ y AAp∴!<br>V∴Hierofante ¿Lo prometéis?<br>Candidato ¡Lo prometo, Venerable Hierofante!<br>V∴Hierofante ¡Tomamos nota de vuestra solemne promesa!</td></tr></table>
+</div>
+<div class="page" id="page158">
+<div class="text-block">¡El Masón que lloramos es nuestro Maestro, llamado Imhotep en Egipto,</div>
+<div class="text-block">Hiram Abif de Tiro, y era quien dirigía nuestros Trabajos por el Mundo, nos asesoraba y nos iluminaba con sus sabios consejos! ¡Tan hábil en la</div>
+<div class="text-block">Arquitectura como en el Trabajo de los Metales, fue enviado por Hiram, Rey de Tiro, al Rey Salomón, para dirigir en Jerusalén la construcción</div>
+<div class="text-block">del Templo que el Pueblo de Israel deseaba erigir a la Gloria del Divino Arquitecto de Todos los Mundos!</div>
+<div class="text-block">Hiram dividió a sus obreros en tres categorías: los AAp∴, los <strong>CC</strong>∴ y los <strong>MM</strong>∴ ¡Para diferenciarlos y reconocerlos, les dio a cada una de estas</div>
+<div class="text-block">clases Palabras, Signos y Toques! ¡Estos Signos de Reconocimiento son de los que nos servimos todavía para los grados de AAp∴ y de <strong>CC</strong>∴</div>
+<div class="text-block">Tocando los Trabajos a su fin, tres malvados <strong>CC</strong>∴, cuyos nombres eran Hahemdath, Haghebouroth y Hakibouth, que no habían podido alcanzar</div>
+<div class="text-block">la Maestría, decidieron arrancar, por todos los medios, a Hiram Abif los Signos, Palabras y Toques de los <strong>MM</strong>∴!</div>
+<div class="text-block">El Maestro Arquitecto tenía la costumbre, cuando las obras estaban desiertas, tras la partida de los Obreros, de ir a inspeccionar los Trabajos.</div>
+<div class="text-block">Cada uno se escondió en cada una de las tres Puertas del Templo, Hakibouth en la Puerta del Mediodía, Hahemdath en la Puerta de</div>
+<div class="text-block">Occidente y Haghebouroth en la Puerta del Oriente. ¡Y esperaron!</div>
+<div class="text-block">¡Terminada su visita, Hiram salió de la Cámara del Medio y se dirigió hacia la Puerta del Mediodía!</div>
+<div class="text-block">→ (Mientras que el Muy Respetable Maestro pronuncia estas últimas palabras, el Gran Experto conduce al Candidato hacia la Puerta del</div>
+<div class="text-block">Mediodía, donde un H∴, o en su defecto el 2º Vigilante le espera armado con una Regla).</div>
+<div class="text-block">→ (Cuando el Candidato se encuentra en la Puerta del Mediodía).</div>
+<div class="text-block">V∴Hierofante ¡Hiram encontró en su camino a un Compañero armado con una Regla:</div>
+<div class="text-block">Hakibouth!</div>
+<div class="text-block">V∴Gran Experto ¿Qué quieres? ¿Por qué no saliste con los otros <strong>CC</strong>∴?</div>
+<div class="text-block">1er Compañero ¡Hace mucho tiempo que soy Compañero, y quiero ser Maestro, como tú!</div>
+<div class="text-block">¡Dame los Signos, Palabras y Toques de los <strong>MM</strong>∴!</div>
+<div class="text-block">V∴Hierofante ¡Insensato!</div>
+<div class="text-block">¡No es así como los he recibido, ni cómo deben ser solicitados! ¡Trabaja, persevera, y serás recompensado según tus méritos!</div>
+<div class="text-block">1er Compañero → (El 1er Compañero o quien esté en su lugar, asesta un golpe con la</div>
+<div class="text-block">Regla en el hombro derecho del Candidato).</div>
+<div class="text-block">V∴Hierofante Hiram, ligeramente herido, huye hacia la Puerta de Occidente, para</div>
+<div class="text-block">intentar escaparse. ¡Encuentra entonces a un Compañero armado con una Escuadra: Hahemdath!</div>
+</div>
+<div class="page" id="page159">
+<div class="text-block">V∴Gran Experto → (El Gran Experto conduce, tras estas palabras, al Candidato hacia la</div>
+<div class="text-block">Puerta de Occidente donde otro H∴, o en su defecto el 1er Vigilante lo espera armado de una Escuadra y le corta el paso).</div>
+<div class="text-block">V∴Gran Experto ¿Qué haces ahí?</div>
+<div class="text-block">¿Qué quieres de mí?</div>
+<div class="text-block">2º Compañero ¡Hace mucho tiempo que soy Compañero, y quiero ser Maestro, como tú!</div>
+<div class="text-block">¡Dame los Signos, Palabras y Toques de los Maestros!</div>
+<div class="text-block">V∴Gran Experto ¡Serás recibido entre los Maestros, cuando la traición y el crimen sean honorables!</div>
+<div class="text-block">2º Compañero → (El 2º Compañero, o quien esté en su lugar, da un golpe con la</div>
+<div class="text-block">Escuadra en la nuca del Candidato).</div>
+<div class="text-block">V∴Hierofante ¡Hiram, debilitado por sus dos heridas, trató de huir por la Puerta de</div>
+<div class="text-block">Oriente, donde le esperaba el tercer Compañero, Haghebouroth, armado con un Mallete!</div>
+<div class="text-block">V∴Gran Experto → (El V∴ Gran Experto conduce, tras estas palabras, al Candidato hacia la Puerta de Oriente).</div>
+<div class="text-block">V∴Hierofante → (El Venerable Hierofante le corta el paso, armado con un Mallete).</div>
+<div class="text-block">V∴Gran Experto ¿Y tú, qué haces ahí?</div>
+<div class="text-block">¿Para qué me quieres?</div>
+<div class="text-block">3er Compañero ¡Hace mucho tiempo que soy Compañero, y quiero ser Maestro, como tú!</div>
+<div class="text-block">¡Dame los Signos, Palabras y Toques de los Maestros!</div>
+<div class="text-block">V∴Gran Experto ¡Mejor la muerte que el perjurio!</div>
+<div class="text-block">¡Puedes asesinarme, pero no me convertirás en un traidor!</div>
+<div class="text-block">3er Compañero → (El 3er Compañero, o quien esté en su lugar, da un golpe con el</div>
+<div class="text-block">Mallete en medio de la frente del Candidato).</div>
+<div class="text-block">V∴Gran Experto ↓ V∴ M∴ de C∴</div>
+<div class="text-block">↓</div>
+<div class="text-block">Candidato → (En el mismo momento, el V∴ Gran Experto, asistido por el V∴</div>
+<div class="text-block">Maestro de Ceremonias, derriba hacia atrás al Candidato, lo tumba sobre el Cuadrado Largo y le recubre con un paño mortuorio, tras haber</div>
+<div class="text-block">cubierto su rostro con su Mandil. Sobre el paño mortuorio, depositan una rama de Acacia. Colocan también el Compás en la cabeza y la</div>
+<div class="text-block">Escuadra a los pies del Candidato. Colocan al Candidato a la Orden de Compañero, el brazo izquierdo alargado a lo largo del cuerpo, la rodilla</div>
+<div class="text-block">derecha flexionada, estando la pierna en Escuadra).</div>
+</div>
+<div class="page" id="page160">
+<table class="dialog-table"><tr><td class="speaker">V∴ M∴ de C∴</td><td class="speech">→ (El V∴ Maestro de Ceremonias y el V∴ Gran Experto vuelven a su Escaño y se sientan).<br>V∴Hierofante Así pereció Hiram, hombre justo y fiel a su deber hasta la muerte. ¡Desde<br>el fatal momento en que fuimos privados de nuestro Maestro, las Tinieblas cubren Egipto, y nuestros Trabajos están suspendidos!<br>¡Sin embargo, nos queda la esperanza, no perdamos el ánimo, y esforcémonos en proseguir la Obra inacabada!<br><strong>HH</strong>∴, ¡pongámonos a la búsqueda del Cuerpo de Hiram!<br>¡Venerable Gran Experto, haceos acompañar por dos <strong>MM</strong>∴, y proceded a la búsqueda por los cuatro puntos cardinales, comenzando por el<br>Septentrión!<br>→ (Se ejecuta el mandato por la Marcha ritual. De vuelta entre las Columnas…).<br>V∴Gran Experto ¡Venerable Hierofante, nuestras búsquedas han sido vanas!<br>V∴Hierofante ¡Venerable Gran Experto, tomad otros dos <strong>MM</strong>∴ con vos, y continuad<br>vuestra búsqueda comenzando por el Mediodía!<br>→ (Se ejecuta el mandato por la Marcha ritual. De vuelta entre las Columnas…).<br>V∴Gran Experto ¡Venerable Hierofante, nuestras búsquedas han sido de nuevo vanas!<br>V∴Hierofante ¡Venerable Gran Experto, tomad otros dos <strong>MM</strong>∴ más, y comenzad de<br>nuevo la búsqueda, más minuciosa, teniendo aún más cuidado, por el Septentrión!<br>→ (Se ejecuta el mandato. Llegado a los pies del Catafalco, la procesión se para).<br>V∴Gran Experto ¡Muy Respetable Maestro, percibo un túmulo en el que la tierra parece removida recientemente!<br>V∴Hierofante ¡Acercaos, por el Mediodía, al lugar que señaláis!<br>→ (Los siete <strong>MM</strong>∴ dan la vuelta al Hejal por cuarta vez, del Devir al Occidente, por el Mediodía. De vuelta al Devir, se paran…).<br>V∴Gran Experto ¡Venerable Hierofante, sobre el túmulo, percibo una Rama de Acacia!<br>V∴Hierofante ¡Esa Rama, probablemente, ha sido plantada por los asesinos de nuestro<br>Maestro para disimular la tumba de su víctima! ¡Arrancad esa Rama de Acacia! ¿No veis nada más?<br>V∴Gran Experto ¡Venerable Hierofante, al lado de la Rama de Acacia hay un Compás, y a tres codos de allí, una Escuadra!</td></tr></table>
+</div>
+<div class="page" id="page161">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">¡Es una prueba más de que nos encontramos ante la tumba escondida de nuestro deplorado Maestro Hiram-Abif! ¡Pero antes de llevar más lejos<br>nuestras investigaciones, y dado que la Palabra de los <strong>MM</strong>∴ y su Signo le han podido ser interceptados a Hiram, convengamos con anticipación<br>en que la primera Palabra que brote de nuestros labios, y el primer Signo que se nos escape, los consideraremos como si nos han sido inspirados<br>por lo Divino! ¡Así, el Signo y la Palabra se convertirán, desde ahora, en la Palabra Sagrada y en el Signo de Reconocimiento de los <strong>MM</strong>∴!<br>¡<strong>HH</strong>∴, escarbad en la tierra de este túmulo!<br>V∴Gran Experto ¡<strong>MAK-BENAH</strong>!<br>→ (La carne abandona los huesos).<br>V∴Hierofante <strong>HH</strong>∴, que dos de entre vosotros ayuden al Venerable H∴ Gran Experto<br>a levantar el cadáver de nuestro Venerado Maestro Hiram Abif!<br>→ (El Gran Experto, ayudado por dos <strong>HH</strong>∴, coge al Candidato por la mano derecha, le coloca la mano izquierda en el hombro derecho, y pie<br>derecho contra pie derecho, rodilla derecha contra rodilla derecha, pecho contra pecho, efectúa en su muñeca derecha la “garra” de los<br>Maestros, y le da el Triple Abrazo Fraterno: mejilla derecha, después la izquierda y por último la frente. El Gran Experto coloca luego la Rama<br>de Acacia sobre el Compás, la Escuadra y el Libro sobre el Escaño del Muy Respetable Maestro, luego se vuelve a colocar al lado del<br>Candidato entre las Columnas).<br>V∴Hierofante <strong>HH</strong>∴, pongamos término a nuestro dolor. ¡Nos queda la Acacia y será<br>para nosotros la Marca esencial de reconocimiento de los <strong>MM</strong>∴! Los Sacerdotes del Antiguo Egipto, en ciertas procesiones llevaban un Arca<br>Santa, de la que salía una Acacia. ¡Y en los flancos del Arca podía leerse esta inscripción: “Osiris se alza de nuevo”! Era la representación de la<br>Vida Eterna, simbolizada por la semilla, que muere en la tierra para renacer de nuevo, llevando en sí toda la gloria y la fortaleza del futuro<br>Árbol. Además, ¿no era de madera de Acacia, revestida de hojas oro, el Arca Santa del Pueblo de Israel? ¡Así la Luz triunfa finalmente sobre las<br>Tinieblas, la Vida triunfa sobre la Muerte, el Conocimiento triunfa sobre la Ignorancia y la Libertad triunfa sobre la Opresión! ¡Venerable Gran<br>Experto, conducir a nuestro(a) H∴ al sitio que será el suyo desde ahora en adelante, entre los <strong>MM</strong>∴ de la Cámara del Medio, y que la Luz del<br>Antiguo Egipto resplandezca por todo el Templo!<br>V∴Gran Experto → (El Gran Experto lo hace con prontitud, regresa a su Escaño y se sienta).<br>→ (Iluminación del Templo).<br>V∴Hierofante ¡Compañero, ha llegado el momento de explicaros el alto simbolismo que<br>se desprende de la Leyenda de Hiram, que se os ha hecho revivir, y de la Iniciación que en parte acabáis de recibir! ¡Hiram, en esta Tradición</td></tr></table>
+</div>
+<div class="page" id="page162">
+<div class="text-block">Esotérica, representa el Conocimiento representado por la letra “<strong>G</strong>”, que</div>
+<div class="text-block">os fue revelada en vuestra Recepción al Grado de Compañero, es decir, a la “Gnosis”, como instrumento esencial de la Salvación del Hombre y de</div>
+<div class="text-block">su inmortalidad! ¡Los Tres Malvados Compañeros que le asaltaron son el vehículo y la hipóstasis del Error, simbolizado por la inversión del</div>
+<div class="text-block">simbolismo de la Regla (Imagen de la Verdad), del Fanatismo, simbolizado por la Escuadra (Imagen de la Rectitud) y en fin del Orgullo,</div>
+<div class="text-block">expresando la autoridad del Mallete que se le intenta usurpar por ese mismo Orgullo! Esta triple advertencia contra los peligros que corre el</div>
+<div class="text-block">Iniciado que parte a la búsqueda de su Ideal y de la Verdad, os debe incitar a manifestar la máxima vigilancia hacia vos mismo, tanto como</div>
+<div class="text-block">con respecto a la muchedumbre ignorante, no apta todavía para recibir ciertas Verdades.</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">La primera parte de la Iniciación a la Maestría es la evocación del simbolismo de la Cámara de Reflexión. ¡Para llegar a la Maestría<br>absoluta, es necesario que todo lo que pueda quedar en vos de Profano muera definitivamente, para renacer a una nueva Vida, hecha de<br>abnegación y de devoción! ¡La continuación de la Ceremonia os ha mostrado como salir de vuestra Tumba para retomar una “Nueva Forma<br>de Vida”! Al principio, “tres” <strong>HH</strong>∴ partieron a vuestra búsqueda. ¿Por qué tres?<br>V∴Hierofante ¡Para recordaros vuestros primeros Pasos de Aprendiz en el camino<br>iniciático; para mostraros que las enseñanzas de la Iniciación del Primer Grado deben estar siempre presentes en vuestra memoria, y que, sin<br>ellos, nada podríais emprender! Estos “tres” <strong>HH</strong>∴, sobre todo, han debido de haceros recordar lo que vos habíais dicho al principio de<br>vuestra entrada en la Francmasonería, a saber, que iniciarse era ante todo aprender a morir, como decía Platón.<br>¡Porque la Marcha por los Tres Pasos del Aprendiz, es el recuerdo del tránsito, de la muerte del Viejo Hombre! ¡Pero estos tres <strong>HH</strong>∴ no<br>lograron encontrarle, y esto significa que la enseñanza dada al Aprendiz es incompleta, y que ella no debe contentaros! Luego “cinco” <strong>HH</strong>∴ se<br>pusieron a buscaros.<br>¡Cinco, el número que caracteriza el Grado de Compañero y sus simbólicos Viajes! Como anteriormente, es una invitación para que os<br>inspiréis en los conocimientos adquiridos en este Grado. Pero el último Compañero recibido comprenderá que esta segunda tentativa estaba<br>condenada al fracaso, pues nada de lo que sea sometido al binario está completo. ¡Además el fracaso, ha marcado esta segunda tentativa, para<br>haceros renacer a la Vida definitiva a la que aspiráis! Se han necesitado, por lo tanto, “siete” <strong>HH</strong>∴ para conseguir encontraros. ¡Siete es, en<br>efecto, el número que caracteriza a la Maestría, lo que os muestra que los conocimientos iniciáticos de un Maestro Masón deben incluir el conjunto<br>de todas las enseñanzas de los tres Grados, que constituyen un todo indivisible!</td></tr></table>
+</div>
+<div class="page" id="page163">
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Pero “tres” <strong>HH</strong>∴, de los “siete” requeridos, han concurrido para sacaros fuera de la Tumba, para haceros renacer. Lo que os enseña que, del<br>conjunto de los Iniciados, sólo algunos consiguen el máximo de resultados iniciáticos. ¡Igual que en el “septenario” de las virtudes<br>morales que os fueron reveladas en el momento de vuestras Iniciaciones precedentes, tres tienen más importancia que los otros! ¡Son: la Fe en<br>nuestra Orden y en sus Ideales; la Esperanza de que, pase lo que pase, estos Ideales, un día, se habrán realizado en su totalidad; y la Caridad, a<br>saber el Amor que une a los <strong>HH</strong>∴ los unos con los otros, lo que constituye el mejor cemento para ligar todas las Piedras de nuestro<br>Templo!<br>¡El Venerable Gran Experto, fue el encargado de levantaros con la ayuda de otros dos <strong>HH</strong>∴, y ha sido él quien os ha sacado de la Tumba mediante<br>los Cinco Puntos de la Perfección Magistral!<br>Dejo para vuestras meditaciones el cuidado de desentrañar el significado de este “detalle” de nuestro Ritual. ¡Acordaos, simplemente, que el<br>Venerable Gran Experto, en este “misterio iniciático”, desempeña el papel del “Hermes Conductor de los Muertos del Antiguo Egipto”, aquel<br>que conducía a las Almas al Soberano Tribunal del Dios Inefable!<br>V∴Hierofante Los Cinco Puntos de la Maestría tienen el siguiente significado:<br>¡El Primero, el Pedestre, indica que siempre debemos estar dispuestos para ir en ayuda de nuestros <strong>HH</strong>∴!<br>¡El Segundo, la Inflexión de las Rodillas, para incitarnos a la humildad, nos pone en guardia contra la ambición desmesurada e irreflexiva!<br>¡El Tercero la Unión de las Manos, para recordarnos que debemos asistir a nuestros <strong>HH</strong>∴ tanto en la necesidad como en la desgracia, y que es la<br>Estrella Flamígera, con sus “Cinco Puntas de Luz”, la que pone el Sello final a nuestra Fraternidad y este es el significado de la disposición de los<br>dedos de la mano en el Apretón de Manos de los Maestros!<br>¡El Cuarto, la Mano Izquierda sobre el Hombro, os muestra que debéis escuchar los consejos que os dicte vuestra prudencia, consejos que<br>vendrán siempre de vuestros mayores...!<br>¡El Quinto, el Beso Fraternal, anuncia la dulzura, la unión inalterable, que debe estar en la misma base de nuestra Orden!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">Sobre la Tumba en la que estuvisteis tendido, había una Rama de Acacia, un Compás sobre vuestra cabeza, y una Escuadra a vuestros pies. La<br>Acacia simboliza la renovación, el Compás sobre vuestra cabeza os recuerda la medida que jamás debéis abandonar en vuestros actos, la<br>Escuadra a vuestros pies es para que no os olvidéis nunca de asegurar vuestras bases, de apoyar vuestro razonamiento, en conocimientos serios<br>y reales. El Ritual nos enseña que cuando un Maestro está perdido, se le encuentra entre el Compás y la Escuadra ¡El primer sentido de este</td></tr></table>
+</div>
+<div class="page" id="page164">
+<div class="text-block">axioma es que el Maestro Masón, digno de así ser llamado no puede</div>
+<div class="text-block">perderse, ya que siempre se encuentra en el “Camino del Deber (la Escuadra) y de la Razón o de la Inteligencia (el Compás)”! El segundo</div>
+<div class="text-block">sentido, lo dejaremos a vuestra meditación, recordad sólo que el Compás, en el antiguo simbolismo de nuestra Orden, significaba el Cielo, y que la</div>
+<div class="text-block">Escuadra significaba la Tierra. Parece pues que el Maestro que se extravía, en el sentido “pneumatológico” del término, sea llevado a errar</div>
+<div class="text-block">entre dos Mundos. ¡Pero ahora se trata de arcanos esotéricos que responden a las más antiguas Tradiciones de nuestra Orden! En la</div>
+<div class="text-block">segunda parte de la Ceremonia tomasteis el lugar de Hiram, y debisteis comprender que el Arquitecto renace y vive en sus discípulos, pues está</div>
+<div class="text-block">llamado a proseguir su Obra para perfeccionarla, y legar a su vez, a los que le siguieron, los resultados de su labor…</div>
+<div class="text-block">V∴Hierofante ¡H∴ ahora que habéis vivido y comprendido la Iniciación Sublime que</div>
+<div class="text-block">completa las precedentes, vamos a asociaros a nuestros Trabajos en Cámara del Medio! ¿Aceptáis trabajar con nosotros para la terminación</div>
+<div class="text-block">de la Gran Obra común, para la realización de nuestro Objetivo secular?</div>
+<div class="text-block">Candidato ¡Acepto!</div>
+<div class="text-block">V∴Gran Experto → (El V∴ Gran Experto conduce al Candidato al Devir).</div>
+<div class="text-block">V∴Hierofante ¡En pie y a la Orden, cara al Devir, <strong>HH∴VV∴MM</strong>∴!</div>
+<div class="text-block">Todos → (Los <strong>VV</strong>∴ <strong>MM</strong>∴ lo hacen con prontitud).</div>
+<div class="text-block">V∴Hierofante ¡<strong>M∴Q∴H</strong>∴ Compañero, extended vuestra mano derecha desenguantada</div>
+<div class="text-block">sobre esta Rama de Acacia, este Compás y esta Escuadra, que cubren el Volumen de la Ley Sagrada!</div>
+<div class="text-block">¡Venerable Gran Experto, entregad al Recipiendario la Fórmula Sacramental de compromiso con la Maestría!</div>
+<div class="text-block">V∴Gran Experto → (El Gran Experto lo hace, mientras el Candidato sujeta con su mano izquierda un Compás con sus dos puntas dirigidas al corazón).</div>
+<div class="text-block">Candidato ¡Yo.………(nombre y apellidos del Candidato)………, en presencia del</div>
+<div class="text-block"><strong>S∴A∴D∴L∴M</strong>∴ y de esta R∴ L∴ de Maestros Masones, debidamente constituida, regularmente reunida y tradicionalmente</div>
+<div class="text-block">consagrada, por mi propia voluntad y libre consentimiento, por esta Rama de Acacia, este Compás, esta Escuadra y sobre este <strong>V∴L∴S</strong>∴,</div>
+<div class="text-block">muy solemnemente, prometo y juro que siempre callaré, ocultaré y jamás revelaré ni a los profanos, ni a ningún Aprendiz o Compañero, los</div>
+<div class="text-block">Signos, Palabras, Toques y Arcanos o Secretos que pertenecen al Grado de Maestro Masón, salvo al o a los que tengan real y legítimamente el</div>
+<div class="text-block">derecho de conocerlos, y sólo después de haberlos examinado convenientemente y retejado cuidadosamente!</div>
+<div class="text-block">Prometo igualmente defender a mis <strong>HH</strong>∴ tanto con mis palabras como con mis actos, que mi mano dada a un Maestro Masón será un testimonio</div>
+</div>
+<div class="page" id="page165">
+<div class="text-block">sincero de Fraternidad, que mis pasos atravesarán los peligros y los</div>
+<div class="text-block">escollos para unirse a los suyos y formar una Columna destinada a defendernos y a ampararnos mutuamente, y finalmente, defenderé el</div>
+<div class="text-block">Honor de un Maestro Masón y lo conservaré celosamente como si fuera el mío propio.</div>
+<div class="text-block">¡No incitaré a ningún prejuicio, y no permitiré que nadie lo haga intencionadamente!</div>
+<div class="text-block">¡Todo esto, juro cumplirlo sin evasivas, equívocos o restricciones mentales de ningún tipo, so pena, si violo alguno de ellos, que se borre</div>
+<div class="text-block">todo rastro o recuerdo que pueda ser encontrado entre los hombres de un ser tan vil, y sobre todo entre los Masones!</div>
+<div class="text-block">¡Que el <strong>S∴A∴D∴L∴M</strong>∴ me ayude y me arme con la constancia necesaria para cumplir fielmente esta Solemne Promesa que acabo de</div>
+<div class="text-block">proferir!</div>
+<div class="text-block">V∴Hierofante ¡Tomo nota de vuestra Promesa!</div>
+<div class="text-block">→ (El Venerable Hierofante desciende de su Escaño, toma la Espada Flamígera con la mano izquierda desenguantada y el Mallete con la</div>
+<div class="text-block">derecha enguantada, extiende la Espada Flamígera por encima de la cabeza del Candidato y dice:).</div>
+<div class="text-block">V∴Hierofante ¡A <strong>L∴G∴D∴S∴A∴D∴L∴M</strong>∴!</div>
+<div class="reunificados">En nombre y bajo los auspicios de la Gran Logia Simbólica del Rito Antiguo y Primitivo de Menfis Misraim de la República del Paraguay, Ritos unificados por José <strong>GARIBALDI</strong> en 1881.</div>
+<div class="text-block">En virtud de los poderes que me han sido conferidos,</div>
+<div class="text-block">Os recibo:</div>
+<div class="text-block">→ (Golpes de Mallete sobre la Espada Flamígera que reposa horizontalmente sobre el hombro derecho del Candidato).</div>
+<div class="text-block">Os constituyo:</div>
+<div class="text-block">→ (Golpes de Mallete sobre la Espada Flamígera que reposa horizontalmente sobre el hombro izquierdo del Candidato).</div>
+<div class="text-block">Y os creo:</div>
+<div class="text-block">→ (Golpes de Mallete sobre la Espada Flamígera que reposa horizontalmente sobre la cabeza del Candidato).</div>
+<div class="text-block">¡Maestro Masón del Antiguo Egipto, para gozar de la plenitud de vuestros derechos masónicos!</div>
+<div class="text-block">→ (El Venerable Hierofante vuelve a su Escaño).</div>
+</div>
+<div class="page" id="page166">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">Venerable H∴ Maestro de Ceremonias, revestid al nuevo Venerable Maestro...... (nombre y apellidos del nuevo Maestro).....con las insignias<br>de Maestro Masón.<br>¡Y vos Venerable Gran Experto, instruidlo bien en los Secretos del Grado de Maestro, ayudado por el Venerable Maestro de Ceremonias!<br>V∴Gran Experto ↓</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴ M∴de C∴</td><td class="speech">→→ (Conducen al nuevo Maestro entre Columnas. El Venerable Maestro de Ceremonias vuelve a su sitio. El Venerable Hermano Experto<br>se coloca a la Orden a la derecha del nuevo Maestro).<br>V∴Hierofante Venerable Experto, comunicad ahora a nuestro nuevo Venerable Maestro<br>los secretos del grado.<br>V∴Gran Experto Voy a confiaros ahora los secretos del Grado de Maestro Masón.<br>Vos ejecutaréis los signos conmigo.<br>Signo de Orden: Llevar la mano derecha horizontalmente al centro del abdomen, los dedos extendidos y próximos, el pulgar separado en<br>escuadra apoyado sobre el vientre.<br>Signo Penal: Estando a la Orden, desplazar horizontalmente la mano derecha, de izquierda a derecha, como si se cortara el cuerpo en dos<br>partes; después dejarla caer.<br>Signo de Horror: Retirar la pierna derecha hacia atrás, como para dar un paso hacia atrás, desviar la cabeza a la derecha, los ojos levantados hacia<br>el cielo como para evitar la vista de un objeto angustioso, alargar las dos manos, hacia lo alto y a la izquierda, como para rechazarlo.<br>Signo de Socorro: Si un Maestro se encuentra en grave peligro, llama a sus Hermanos en su ayuda mediante el signo siguiente: Llevar el pie<br>derecho hacia atrás, el busto hacia atrás, levantar las dos manos por encima de la cabeza con los dedos entrelazados y las palmas vueltas<br>hacia arriba y gritando:<br>“A mí los Hijos de la Viuda”<br>Toque: Darse mutuamente la mano derecha formando garra para abarcar la palma.<br>Palabra Sagrada: <strong>MAK</strong> - <strong>BENAH</strong> que se interpreta así:<br>“La carne abandona los huesos”<br>Marcha del Maestro: Estando a la orden de Aprendiz hacer primero los tres pasos de Aprendiz comenzando con el pie derecho; luego ponerse a<br>la orden de Compañero y ejecutar los dos pasos de Compañero comenzando, también, con el pie derecho.</td></tr></table>
+</div>
+<div class="page" id="page167">
+<div class="text-block">Nos ponemos entonces a la orden de Maestro y ejecutamos un paso a la</div>
+<div class="text-block">derecha, adelantando el pie derecho oblicuamente y llevando el izquierdo contra el derecho, en Escuadra; luego un paso a la izquierda, adelantando</div>
+<div class="text-block">oblicuamente y a la izquierda primero el pie izquierdo, que describe una curva como para salvar un cuerpo, luego el derecho, llevándolo en</div>
+<div class="text-block">escuadra contra el pie izquierdo.</div>
+<div class="text-block">Finalmente, nos colocamos de nuevo sobre la línea mediana, adelantando oblicuamente y a la derecha, primero el pie derecho y luego el izquierdo</div>
+<div class="text-block">y los reunimos en escuadra frente al Venerable Maestro.</div>
+<div class="text-block">Esta marcha se acaba con el Signo Penal.</div>
+<div class="text-block">Batería: Está formada por Tres golpes repetidos tres veces, o sea, por nueve golpes, es una Batería simple.</div>
+<div class="text-block">Aclamación: <strong>CHEQUETET</strong> – <strong>ARELICH</strong> – <strong>VOMALITES</strong>…</div>
+<div class="text-block">Edad: Siete años y más.</div>
+<div class="text-block">V∴ Hierofante, la instrucción ha terminado.</div>
+<div class="text-block">→ (El Experto vuelve a su sitio).</div>
+<div class="text-block">→ (Pausa).</div>
+<div class="text-block">V∴Gran Experto ¡Venerable Hierofante, la instrucción de nuestro nuevo Venerable Maestro ha terminado!</div>
+<div class="text-block">V∴Hierofante ¡Os lo agradezco Venerable Gran Experto! ¡Y junto con el Venerable</div>
+<div class="text-block">Maestro de Ceremonias, conducid a nuestro nuevo Venerable Maestro entre las Columnas de Occidente!</div>
+<div class="text-block">→ (El Gran Experto y el Maestro de Ceremonias cumplen la orden y conducen al nuevo Maestro entre Columnas).</div>
+<div class="text-block">V∴Hierofante ¡Venerables <strong>HH</strong>∴ 1er y 2º Vigilantes, en esta Cámara del Medio, queréis</div>
+<div class="text-block">invitar a los Venerables Maestros que decoran vuestras Columnas a reconocer desde ahora como legítimo y regular Maestro Masón de Egipto</div>
+<div class="text-block">al nuevo Venerable Maestro ... (nombre y apellidos) ..., y aplaudir su Aumento de Salario, con la Batería del Grado de Maestro!</div>
+<table class="dialog-table"><tr><td class="speaker">V∴1er Vig∴</td><td class="speech">¡<strong>VV</strong>∴ <strong>MM</strong>∴ que decoráis la Columna del Mediodía, estáis invitados por el Venerable Hierofante y por mí mismo a reconocer como Maestro<br>Masón de Egipto, al nuevo Venerable Maestro ... (nombre y apellidos) ..., y aplaudir con la Batería del Grado de Maestro!</td></tr></table>
+<table class="dialog-table"><tr><td class="speaker">V∴2º Vig∴</td><td class="speech">¡<strong>VV</strong>∴ <strong>MM</strong>∴ que decoráis la Columna del Septentrión, estáis invitados por el Venerable Hierofante y por mí mismo a reconocer como Maestro<br>Masón de Egipto, al nuevo Venerable Maestro ... (nombre y apellidos) ..., y aplaudir con la Batería del Grado de Maestro!</td></tr></table>
+</div>
+<div class="page" id="page168">
+<table class="dialog-table"><tr><td class="speaker">V∴Hierofante</td><td class="speech">→ (Golpe de Mallete):<br>¡En pie y a la Orden, Venerables Maestros!<br>V∴Hierofante ¡A mí <strong>VV</strong>∴ <strong>MM</strong>∴, por el Signo, el Signo de Horror y la Aclamación!<br>Todos → (Hacen el Signo).<br>Todos → (Hacen el Signo de Horror).<br>Todos → (Lanzan la Aclamación):<br><strong>CHEQUETET</strong> – <strong>ARELICH</strong> – <strong>VOMALITES</strong>…<br>→ (Así se hace)...<br>V∴Hierofante ¡Venerable Maestro...(nombre y apellidos)..., sentaos en la Cámara del<br>Medio para participar desde ahora en los Trabajos de los Maestros Masones!<br>→ (El Gran Experto y el Maestro de Ceremonias conducen al Nuevo Maestro a su plaza, luego vuelven a su Escaño y toman asiento).<br>V∴Hierofante ¡Venerable Orador tenéis la palabra!<br>V∴Orador → (Da la bienvenida al nuevo Venerable Maestro y le dice):<br>Mi <strong>M∴Q∴N∴V∴M</strong>∴, tomad nota de lo siguiente…<br>1. El Aprendiz debe tomar conciencia de sí mismo,<br>2. El Compañero debe tomar conciencia que hay algo mayor que él,<br>3. El Maestro debe tomar conciencia que hay algo mayor que él EN él...<br>→ (Luego el Orador desarrolla el esoterismo del Grado).<br>→ (Después del fragmento de arquitectura desarrollado por el Orador, el Venerable Hierofante dice):<br>V∴Hierofante <strong>VV</strong>∴ <strong>MM</strong>∴, vamos a proceder ahora al cierre de los trabajos de esta<br>Cámara del Medio.</td></tr></table>
+</div>
+<div class="page" id="page169">
+<div class="rito"><strong>RITO</strong> <strong>ANTIGUO</strong> Y <strong>PRIMITIVO</strong> DE <strong>MENFIS-MIZRAIM</strong> <strong>ORDEN</strong> DE LOS <strong>RITOS</strong> <strong>UNIDOS</strong> DE <strong>MENFIS</strong> & <strong>MIZRAIM</strong></div>
+<div class="reunificados">Ritos reunificados por José <strong>GARIBALDI</strong> en 1881</div>
+<div class="text-block">Gran Logia Simbólica</div>
+<div class="catecismo">INSTRUCCIÓN DEL MAESTRO MASÓN EN 3er GRADO MAESTRO</div>
+<div class="catecismo">CATECISMO</div>
+<div class="question"><strong>Pregunta</strong> ¿Sois Francmasón?</div>
+<div class="answer"><strong>Respuesta</strong> Mis <strong>HH</strong>∴ me reconocen como tal.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuáles son vuestros conocimientos en Francmasonería?</div>
+<div class="answer"><strong>Respuesta</strong> He visto la J∴ y la B∴ y luego he sido constituido Francmasón.</div>
+<div class="question"><strong>Pregunta</strong> ¿Entonces sois Maestro Masón?</div>
+<div class="answer"><strong>Respuesta</strong> La Acacia me es conocida.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo llegasteis a ser Maestro Masón?</div>
+<div class="answer"><strong>Respuesta</strong> Pasando de la Escuadra al Compás.</div>
+<div class="question"><strong>Pregunta</strong> ¿Dónde trabajáis?</div>
+<div class="answer"><strong>Respuesta</strong> En un Taller que se llama Cámara del Medio.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué se hace en la Cámara del Medio?</div>
+<div class="answer"><strong>Respuesta</strong> Allí se trazan los planos que deben seguir los AAp∴ y los CComp∴</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo llegasteis a la Cámara del Medio?</div>
+<div class="answer"><strong>Respuesta</strong> Subiendo una escalera de caracol, que tenía 3, 5 y 7 escalones, separados</div>
+<div class="text-block">por dos descansos.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significan los números de escalones que subisteis?</div>
+<div class="answer"><strong>Respuesta</strong> Simbolizan la instrucción que he recibido en cada grado.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué se os enseñó en el 1er grado?</div>
+</div>
+<div class="page" id="page170">
+<div class="answer"><strong>Respuesta</strong></div>
+<div class="text-block">A desbastar la piedra bruta y a comprobar la existencia de las leyes que rigen el Cosmos, es decir la obra del <strong>S∴A∴D∴L∴M</strong>∴, simbolizada por</div>
+<div class="text-block">el Delta Luminoso.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué habéis aprendido en el 2º grado?</div>
+<div class="answer"><strong>Respuesta</strong> Se me dieron los medios y los objetos del Conocimiento. Se me dirigió al</div>
+<div class="text-block">estudio de las Artes y de las Ciencias. Aprendí a Glorificar el Trabajo y a servirme de los Instrumentos Simbólicos, para erigir, con el concurso de</div>
+<div class="text-block">mis <strong>HH</strong>∴, el Templo A <strong>L∴G∴D∴S∴A∴D∴L∴M</strong>∴, por último, vi la Estrella Flamígera.</div>
+<div class="question"><strong>Pregunta</strong> ¿Que encontrasteis, en el momento de vuestra recepción al 3er grado?</div>
+<div class="answer"><strong>Respuesta</strong> Duelo, tristeza y postración.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué percibió en la cámara del Medio?</div>
+<div class="answer"><strong>Respuesta</strong> La Tumba de nuestro <strong>R∴M</strong>∴ Hiram, iluminada por una débil Luz.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuáles eran sus dimensiones?</div>
+<div class="answer"><strong>Respuesta</strong> Tres pies de anchura, cinco de profundidad y siete de longitud.</div>
+<div class="question"><strong>Pregunta</strong> ¿Quién era el <strong>R∴M</strong>∴ Hiram?</div>
+<div class="answer"><strong>Respuesta</strong> Un hombre célebre por su conocimiento de la Arquitectura y del arte de</div>
+<div class="text-block">fundir y dar forma a los metales, a quien Salomón había confiado la dirección de los obreros encargados de edificar el Templo</div>
+<div class="text-block"><strong>A∴L∴G∴D∴S∴A∴D∴L∴M</strong>∴</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuál fue su fin?</div>
+<div class="answer"><strong>Respuesta</strong> Nuestro <strong>R∴M</strong>∴ Hiram cayó bajo los golpes de tres malvados CComp∴</div>
+<div class="text-block">que querían obtener por la violencia las prerrogativas que sólo pueden ser concedidas por el mérito.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo fuisteis informado de este funesto acontecimiento?</div>
+<div class="answer"><strong>Respuesta</strong> Por la tradición de nuestros predecesores.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significado puede tener?</div>
+<div class="answer"><strong>Respuesta</strong> Enfocado como Rito Solar, el drama de Hiram puede referirse a la</div>
+<div class="text-block">marcha aparente del Sol: los tres asesinos serían entonces los tres últimos meses del año, durante los cuales el Sol desciende a los signos inferiores</div>
+<div class="text-block">y parece huir para siempre de nuestro hemisferio. Sin embargo, después del Solsticio de invierno, lo vemos alzarse y de pronto reaparece en todo</div>
+<div class="text-block">su esplendor. De manera análoga, vemos a nuestro <strong>R∴M</strong>∴ Hiram salir de su tumba y volver a una vida nueva.</div>
+</div>
+<div class="page" id="page171">
+<div class="question"><strong>Pregunta</strong></div>
+<div class="text-block">¿No pensáis que el fin de Hiram pueda también ser interpretado como una advertencia a los Maestros Masones?</div>
+<div class="answer"><strong>Respuesta</strong> En efecto, el hecho de que los tres malvados CComp∴ sean la</div>
+<div class="text-block">representación de los tres principales Oficiales de la Logia nos lleva a pensar en su falta de recursos para el ejercicio de sus funciones, lo que</div>
+<div class="text-block">causaría la ruina del Taller y debilitaría a toda la Orden Masónica. El 2º Vig∴, portador de la Plomada, que debería estar particularmente</div>
+<div class="text-block">instruido en el Simbolismo y la Tradición de la Francmasonería se encuentra a veces en un estado de absoluta ignorancia. El 1er Vig∴,</div>
+<div class="text-block">portador del Nivel, que debería ejercer un experto control sobre los TTrab∴ de sus <strong>HH</strong>∴, puede hacerles sufrir, en cambio, una agobiante</div>
+<div class="text-block">imposición, a causa de su Fanatismo. El Venerable Hierofante, por último, que debería dirigir los TTrab∴ con total devoción, puede estar, a</div>
+<div class="text-block">veces, preocupado por cuestiones personales, derivadas de su Ambición.</div>
+<div class="text-block">Su Mallete, símbolo de su autoridad fraternal, se transforma entonces en el instrumento con el que Hiram es asesinado. La Tumba de Hiram cierra</div>
+<div class="text-block">todas las tradiciones perdidas. ¡Pero Hiram resucitará! ¡La Iniciación, a pesar de todo, será preservada y su perennidad está simbolizada por la</div>
+<div class="text-block">Rama de Acacia que verdece sobre esta Tumba!</div>
+<div class="question"><strong>Pregunta</strong> ¿No podemos atribuir al Mito de Hiram un significado más general?</div>
+<div class="answer"><strong>Respuesta</strong> En efecto. Puede sugerir que los que trabajan por el progreso de la</div>
+<div class="text-block">Humanidad tienen adversarios y deben resistir a sus amenazas. Enseña a los Francmasones, que edifican el Templo de la Fraternidad Humana, que</div>
+<div class="text-block">su trabajo implica una lucha continua contra la Ignorancia, el Fanatismo y la Ambición, que representan las tres al malvado Comp∴</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo se produce la resurrección de Hiram, en nuestros Misterios?</div>
+<div class="answer"><strong>Respuesta</strong> Con el concurso de tres Maestros Masones instruidos y fieles.</div>
+<div class="question"><strong>Pregunta</strong> ¿Decidme cómo lo cogieron?</div>
+<div class="answer"><strong>Respuesta</strong> El Venerable Hierofante y los dos VV∴VVig∴ se pusieron cerca del</div>
+<div class="text-block">cadáver para levantarlo y retirarlo de la tumba. El 2º Vig∴, tomándole la mano con el toque de Aprendiz, siente que se le escapa, porque “La carne</div>
+<div class="text-block">abandona los huesos”. El 1er Vig∴, tomándole la mano con el toque de Aprendiz tampoco tiene éxito, porque “Todo se desune”. Pero, habiendo</div>
+<div class="text-block">reunido, los tres, sus esfuerzos, llegan a ponerlo en pie por “Los Cinco Puntos Perfectos de la Maestría” y saludan con alegría su vuelta a la vida.</div>
+<div class="question"><strong>Pregunta</strong> ¿Con qué intención pensáis que fue instituido el grado de Maestro?</div>
+<div class="answer"><strong>Respuesta</strong> Para combatir los prejuicios que se oponen al desarrollo de los</div>
+<div class="text-block">conocimientos humanos; para quebrantar el yugo de la Ignorancia, del Fanatismo y de la Ambición desordenada, y para establecer el reino de la</div>
+<div class="text-block">Libertad, de la Igualdad y de la Fraternidad.</div>
+</div>
+<div class="page" id="page172">
+<div class="question"><strong>Pregunta</strong></div>
+<div class="text-block">¿Los dos primeros grados de la Francmasonería no se proponen el mismo fin?</div>
+<div class="answer"><strong>Respuesta</strong> Sí, sin duda, pero están destinados más especialmente a instruir y a</div>
+<div class="text-block">preparar al Iniciado, para permitirle cumplir más tarde esta importante intención.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo viajan los Maestros Masones?</div>
+<div class="answer"><strong>Respuesta</strong> De Oriente a Occidente y de Occidente a Oriente y por toda la tierra.</div>
+<div class="question"><strong>Pregunta</strong> ¿Con qué fin?</div>
+<div class="answer"><strong>Respuesta</strong> Para Buscar lo que se perdió, reunir lo que está disperso y difundir por</div>
+<div class="text-block">todas partes la luz.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué es lo que se perdió?</div>
+<div class="answer"><strong>Respuesta</strong> Los verdaderos Secretos de los Maestros Masones.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo se perdieron?</div>
+<div class="answer"><strong>Respuesta</strong> Por "Tres Grandes Golpes", que causaron el fin trágico de nuestro</div>
+<div class="text-block"><strong>R∴M</strong>∴ <strong>HIRAM</strong>.</div>
+<div class="question"><strong>Pregunta</strong> ¿De qué manera fuisteis recibido Maestro Masón?</div>
+<div class="answer"><strong>Respuesta</strong> Por los “Los Cinco Puntos Perfectos de la Maestría” y por la “Palabra</div>
+<div class="text-block">Secreta” sustituta, que me comunicó el Venerable Hierofante.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué puede significar esta Palabra?</div>
+<div class="answer"><strong>Respuesta</strong> Los significados que habitualmente le son atribuidos son diversos. Si se</div>
+<div class="text-block">lo interpreta según el hebreo, igual que otras palabras de nuestros Rituales, “<strong>M∴B</strong>∴” (<strong>MAK</strong> - <strong>BENAH</strong>) tiene el sentido de “Instalador de</div>
+<div class="text-block">Piedras pulidas” y, por extensión, de “Constructor, u Ordenador”. La palabra “Benah” significa: “Jefe de los Constructores, o Arquitecto”.</div>
+<div class="text-block">Podemos deducir de ello que las dos versiones tienden al mismo significado. Según la leyenda del Grado, se había convenido que la</div>
+<div class="text-block">primera palabra que se hubiera escapado en el descubrimiento del cadáver de Hiram: “¡Es el <strong>ARQUITECTO</strong>!”, sería adoptada como</div>
+<div class="text-block">Palabra Sagrada, sustituyendo a la Palabra verdadera y conocida de Hiram y perdida con él.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuáles son los otros medios de reconocimiento de los Maestros?</div>
+<div class="answer"><strong>Respuesta</strong> El Toque, la Palabra Sagrada, el Signo de Orden, el Signo Penal, el Signo</div>
+<div class="text-block">de Horror y el Signo de Socorro.</div>
+</div>
+<div class="page" id="page173">
+<div class="question"><strong>Pregunta</strong></div>
+<div class="text-block">¿Qué pueden significar los pasos de la marcha del Maestro?</div>
+<div class="answer"><strong>Respuesta</strong> Mientras que los pasos del Aprendiz y del Compañero se hacen a nivel</div>
+<div class="text-block">del suelo, los del Maestro que salvan el cuerpo de Hiram, describen una curva que se traza con un Compás: es pues el paso de la Escuadra al</div>
+<div class="text-block">Compás, del dominio de lo tangible al de las ideas. Por fin, el paso del Maestro por encima de la Tumba hace alusión a los más grandes</div>
+<div class="text-block">Misterios, sobre los que conviene meditar en silencio.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué edad tenéis?</div>
+<div class="answer"><strong>Respuesta</strong> 7 años y más.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué quiere decir eso?</div>
+<div class="answer"><strong>Respuesta</strong> El número 7 simboliza el Conocimiento, “Y <strong>MÁS</strong>” indica que este</div>
+<div class="text-block">conocimiento debe crecer indefinidamente.</div>
+<div class="question"><strong>Pregunta</strong> ¿Por qué instrumentos de Arquitectura fuisteis probado en el momento de</div>
+<div class="text-block">vuestra elevación a la Maestría?</div>
+<div class="answer"><strong>Respuesta</strong> “<strong>POR</strong> LA <strong>ESCUADRA</strong> Y EL <strong>COMPÁS</strong>”</div>
+<div class="question"><strong>Pregunta</strong> ¿Si un Maestro se pierde, dónde le encontraríamos?</div>
+<div class="answer"><strong>Respuesta</strong> “<strong>ENTRE</strong> LA <strong>ESCUADRA</strong> Y EL <strong>COMPÁS</strong>” o bien “<strong>EN</strong> EL <strong>CENTRO</strong></div>
+<div class="text-block">DEL <strong>CÍRCULO</strong>”</div>
+<div class="question"><strong>Pregunta</strong> ¡Ejecutad la Batería del tercer grado!</div>
+<div class="answer"><strong>Respuesta</strong> Se ejecuta.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuál es la Aclamación?</div>
+<div class="answer"><strong>Respuesta</strong> Se ejecuta la Batería del Grado diciendo tres veces:</div>
+<div class="aclamacion">CHEQUETET – ARELICH – VOMALITES…</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuál es su significado?</div>
+<div class="answer"><strong>Respuesta</strong> <strong>THOT</strong>, dijo:</div>
+<div class="text-block">Escucha, ¡Oh hombre!, mis palabras de sabiduría, escucha la voz de <strong>THOT</strong>, el Atlante. Conquisté la Ley del espacio-tiempo. Adquirí el</div>
+<div class="text-block">conocimiento de los tiempos futuros.</div>
+<div class="text-block">Preserva la entrada que lleva a las <strong>CÁMARAS</strong> DEL <strong>AMENTI</strong>.</div>
+</div>
+<div class="page" id="page174">
+<div class="text-block">Preserva los secretos que te confié. No dejes esta sabiduría en manos de</div>
+<div class="text-block">los bárbaros.</div>
+<div class="text-block">Conserva este secreto para los que buscan la Luz. Ahora me voy.</div>
+<div class="text-block">Recibe mi bendición. Sigue mi vía que conducirá hacia la Luz. Baña tu alma en La Gran Esencia.</div>
+<div class="text-block">Qué tu conciencia se haga UNA con la Gran Luz.</div>
+<div class="text-block">Puedes llamarme cuando quieras. Pronuncia mí nombre tres veces:</div>
+<div class="aclamacion">CHEQUETET – ARELICH – VOMALITES…</div>
+<div class="question"><strong>Pregunta</strong> ¿Que haríais si, estando en gran peligro, reclamáis el socorro de vuestros</div>
+<div class="text-block">Hermanos?</div>
+<div class="answer"><strong>Respuesta</strong> → (Se ejecuta el Signo de Socorro, exclamando):</div>
+<div class="text-block">A <strong>M∴L∴H∴D∴L∴V</strong>∴, el Venerable Hierofante y vosotros <strong>HH</strong>∴</div>
+<div class="text-block">jamás dejarán de responder a vuestro llamamiento.</div>
+<div class="text-block">Pero también, <strong>CHEQUETET</strong> – <strong>ARELICH</strong> – <strong>VOMALITES</strong>…</div>
+<div class="text-block">y <strong>THOT</strong>, el Atlante nos traerá su ayuda…</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuál es el significado simbólico de la Acacia?</div>
+<div class="answer"><strong>Respuesta</strong> La Acacia simboliza el renacimiento. La leyenda de Hiram cuenta que</div>
+<div class="text-block">sobre el cerro que escondía los despojos del Maestro Hiram, los Maestros idos en su búsqueda descubrieron una rama de Acacia. Por consiguiente</div>
+<div class="text-block">la Acacia ha quedado como la marca de reconocimiento de los Maestros Masones. Los sacerdotes del antiguo Egipto, en ciertas procesiones,</div>
+<div class="text-block">llevaban un Arca santa, de donde salía una Acacia. Y sobre los costados de este Arca, se podía leer esta inscripción: “Osiris se alza de nuevo”.</div>
+<div class="text-block">Era pues allí la representación de la Vida Eterna, simbolizada por la semilla, que ha de morir en la tierra para renacer mejor, y que lleva toda</div>
+<div class="text-block">la potencia y toda la gloria del Árbol futuro. También, el Arca santa del pueblo de Israel era de madera de Acacia revestida de oro. Generalmente</div>
+<div class="text-block">hacemos derivar la palabra Acacia de griego akè, que significa “punta”, lo que parece una inexactitud: “aké designa el trozo agudo de un</div>
+<div class="text-block">instrumento de metal”. La forma antigua del pincho vegetal de la espina es akantha, palabra que, por extensión, significa la planta misma que</div>
+<div class="text-block">contiene espinas: el acanto, la acacia. Y lo mismo, más tarde, una variedad del árbol de la canela chino o falso canelero fue llamado con el</div>
+<div class="text-block">término de kasia o kassia. Detrás de las palabras concretas, los hombres pasaron a las palabras abstractas, las mismas palabras sirvieron para</div>
+<div class="text-block">designar también las calidades de los objetos y hasta las que les fueron atribuidas. Akakia significará pues la inocencia, la ingenuidad que</div>
+<div class="text-block">simboliza el arbusto.</div>
+</div>
+<div class="page" id="page175">
+<div class="text-block">El prefijo a es la negación, Kakia será el vicio, el deshonor, la disposición al mal. Y aunque se pueda retener de estas explicaciones</div>
+<div class="text-block">totalmente personales, un hecho queda: la palabra griega Akakia significa a la vez acacia e inocencia. Tomada por oposición a Kakia, es</div>
+<div class="text-block">el antídoto del vicio, de la disposición al mal, es la prueba de la buena fortuna; por sus virtudes protege al hombre.- (Fernand Chapuis - Boletín</div>
+<div class="text-block">de los Talleres Superiores, 1938, pp. 55-58) La acacia era, para los Antiguos, un emblema solar, como las hojas del loto y del heliotropo;</div>
+<div class="text-block">sus hojas se abren al sol naciente y se cierran cuando el sol desaparece del horizonte. Su flor, cubierta de pelusa, parece imitar el disco radiado</div>
+<div class="text-block">de este astro.</div>
+<div class="question"><strong>Pregunta</strong> ¿Os sugiere esto otra cosa?</div>
+<div class="answer"><strong>Respuesta</strong> Sí. Nos debemos esforzar constantemente por conciliar los opuestos, con</div>
+<div class="text-block">tolerancia y sagacidad pero sin ceder al laxismo, porque nuestro primer deber es cavar tumbas para los vicios y erigir altares a la virtud.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significa el número siete?</div>
+<div class="answer"><strong>Respuesta</strong> Siete es uno de los dos números del grado de Maestro, siendo el otro el</div>
+<div class="text-block">nueve. Es un número evocador, porque evoca otro número: el doce, reducido a siete según la proyección diametral de un polígono de doce</div>
+<div class="text-block">lados, este último representado por el número doce. Esta evocación del dodecágono recuerda al Maestro el Universo representado por el curso</div>
+<div class="text-block">aparente del Sol sobre la eclíptica y su descripción zodiacal. Indica así el carácter global del raciocinio del Maestro, que por su capacidad de ver el</div>
+<div class="text-block">conjunto debe rechazar con firmeza todo posicionamiento sectario y dogmático. En un sistema geocéntrico, en el cual el Maestro puede</div>
+<div class="text-block">establecer su análisis antes de abrirlo a otras dimensiones por otros conocimientos, el Siete simboliza, las dos luminarias, el Sol y la Luna y</div>
+<div class="text-block">los cinco planetas más próximos: Mercurio, Venus, Marte, Júpiter y Saturno, definen el plasma energético en el que se baña el Hombre. Otra</div>
+<div class="text-block">evocación del Siete es el conjunto de los Chacras, que constituyen los nudos energéticos principales del Hombre:</div>
+<div class="text-block">1º <strong>MULADHARA</strong>, 2º <strong>SVADHISTHANA</strong>,</div>
+<div class="text-block">3º <strong>MANIPURA</strong>,</div>
+<div class="text-block">4º <strong>ANAHATA</strong>, 5º <strong>VISHUDDHA</strong>,</div>
+<div class="text-block">6º <strong>AJNA</strong>,</div>
+<div class="text-block">7º <strong>SAHASRARA</strong>.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cuáles son las características del número nueve?</div>
+<div class="answer"><strong>Respuesta</strong> El número 9 representa, en su grafismo, una germinación hacia abajo, así</div>
+<div class="text-block">que material; mientras que la cifra 6 representa lo contrario una germinación hacia arriba, luego espiritual. Estos dos números son el</div>
+<div class="text-block">principio de una espiral. En el orden humano, el número 9 es el de los meses necesarios para la terminación del feto que, sin embargo, está</div>
+<div class="text-block">completamente formado desde el séptimo mes. Los números 7 y 9 son los factores de 63, edad climatérica del hombre y duración media de la vida.</div>
+</div>
+<div class="page" id="page176">
+<div class="text-block">El Juego de la Oca posee 63 casillas. La Oca o el Cisne es el símbolo</div>
+<div class="text-block">hindú de la liberación kármica y sólo podemos llegar a la casilla 63 después de un conjunto de peripecias en la que los dados, que representan</div>
+<div class="text-block">el destino, marcan las evoluciones. El número nueve es también un número figurativo, es decir que “figura” un polígono de nueve lados, que</div>
+<div class="text-block">es uno de los cinco polígonos primordiales en el sistema de los 22 polígonos. Este sistema es la llave del desciframiento de los escritos</div>
+<div class="text-block">bíblicos, como lo subraya San Jerónimo en el Prefacio Galeático de la Vulgata. El polígono de 9 lados sólo puede construirse localizando un</div>
+<div class="text-block">punto preciso exterior al círculo de base. En este sentido, el círculo simboliza</div>
+<div class="text-block">el perímetro</div>
+<div class="text-block">del espacio</div>
+<div class="text-block">de nuestro</div>
+<div class="text-block">conocimiento fenomenológico, el 9 representa la capacidad del Maestro para salir de</div>
+<div class="text-block">este círculo y para abordar el campo de la metafísica.</div>
+<div class="question"><strong>Pregunta</strong> ¿Cómo salisteis de vuestra tumba?</div>
+<div class="answer"><strong>Respuesta</strong> Por los cinco Puntos de la Perfección Magistral o los cinco Puntos de la</div>
+<div class="text-block">Maestría.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué significado tienen estos cinco puntos?</div>
+<div class="answer"><strong>Respuesta</strong> Los Cinco Puntos de la Maestría tienen el significado siguiente:</div>
+<div class="text-block">1. El primero, el pedestre, indica que siempre estamos dispuestos a acudir en socorro de nuestros Hermanos y Hermanas;</div>
+<div class="text-block">2. El segundo, la inflexión de las rodillas, está allí para incitarnos a la humildad, nos advierte contra la ambición desmesurada e irreflexiva;</div>
+<div class="text-block">3. El tercero, la unión de las manos, para recordarnos que debemos prestar asistencia a nuestros Hermanos y Hermanas, tanto en la</div>
+<div class="text-block">necesidad como en la desgracia, y que es la Estrella Flamígera, la de las cinco puntas de luz, quien pone el sello final en nuestra</div>
+<div class="text-block">fraternidad, de ahí la disposición de los dedos de la mano en el apretón de manos de los Maestros;</div>
+<div class="text-block">4. El cuarto, la mano izquierda sobre el hombro, os muestra que debéis escuchar los consejos que os dicta vuestra sabiduría, consejos que</div>
+<div class="text-block">siempre vendrán de vuestros mayores; 5. El quinto, el beso fraternal, anuncia la dulzura, la unión inalterable,</div>
+<div class="text-block">que debe estar en la base misma de nuestra Orden.</div>
+<div class="question"><strong>Pregunta</strong> ¿Dónde podemos encontrar a un Maestro Masón?</div>
+<div class="answer"><strong>Respuesta</strong> Cuando un Maestro está perdido, le encontramos entre el Compás y la</div>
+<div class="text-block">Escuadra.</div>
+<div class="question"><strong>Pregunta</strong> ¿Qué queréis decir con ello?</div>
+<div class="answer"><strong>Respuesta</strong> El Maestro Masón digno de ese nombre no puede extraviarse, ya que está</div>
+<div class="text-block">siempre en el camino del Deber (la Escuadra) y de la Razón o de la Inteligencia (el Compás).</div>
+</div>
+<div class="page" id="page177">
+<div class="question"><strong>Pregunta</strong></div>
+<div class="text-block">¿Esto os sugiere otra cosa?</div>
+<div class="answer"><strong>Respuesta</strong> El segundo sentido recuerda que el Compás, en la antigua simbología de</div>
+<div class="text-block">nuestra Orden, representaba el Cielo y la Escuadra la Tierra. Por lo que el Maestro que se extravía, en el sentido pneumatológico de la palabra, sea</div>
+<div class="text-block">llevado a errar entre dos mundos. Pero aquí se trata de arcanos esotéricos que realzan las más viejas Tradiciones de nuestra Orden. Esto debe</div>
+<div class="text-block">llevarlo a una profunda meditación, antes de comprometeros en la vía del Círculo Interior Magistral, si tenéis la fuerza y la voluntad.</div>
+<div class="question"><strong>Pregunta</strong> ¿Que os sugiere la segunda parte de la Ceremonia de elevación a la</div>
+<div class="text-block">Maestría?</div>
+<div class="answer"><strong>Respuesta</strong> Después de haberos colocado en el lugar de Hiram, debisteis comprender</div>
+<div class="text-block">que el Arquitecto renace y vive en sus discípulos, porque están llamados a proseguir su Obra para perfeccionarla, y legar a su vez, a los que le</div>
+<div class="text-block">sigan, los resultados de su trabajo.</div>
+</div>
+</div>
+</body>
+</html>
