@@ -217,7 +217,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, collection, getDocs, query, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, query, doc, getDoc, setDoc, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
@@ -280,7 +280,7 @@
             const tableBodyIniciacion = document.getElementById('iniciacionTableBody');
             const tableBodyAfiliacion = document.getElementById('afiliacionTableBody');
             try {
-                const q = query(collection(db, "solicitudes"));
+                const q = query(collection(db, "solicitudes"), orderBy("fecha", "desc"), limit(100));
                 const querySnapshot = await getDocs(q);
                 
                 tableBodyIniciacion.innerHTML = '';
