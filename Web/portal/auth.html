@@ -206,6 +206,9 @@
             <div class="form-group">
                 <label>Contraseña</label>
                 <input type="password" id="login-password" required placeholder="••••••••">
+                <div style="text-align: right; margin-top: 5px;">
+                    <a href="#" onclick="resetPassword(event)" style="font-size: 0.8rem; color: var(--accent-gold); text-decoration: none;">¿Olvidaste tu contraseña?</a>
+                </div>
             </div>
             <button type="submit" class="btn-submit" id="btn-login">Ingresar al Templo</button>
         </form>
@@ -250,7 +253,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { getFirestore, doc, setDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -281,6 +284,31 @@
         if(window.location.search.includes('mode=register')) {
             switchTab('register');
         }
+
+        // Recuperar Contraseña Logic
+        window.resetPassword = async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.style.display = 'none';
+
+            if(!email) {
+                errorEl.textContent = "Por favor, escribe tu correo electrónico en el campo superior y luego presiona '¿Olvidaste tu contraseña?'.";
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            try {
+                await sendPasswordResetEmail(auth, email);
+                alert("¡Te hemos enviado un correo con las instrucciones para restablecer tu contraseña! Por favor revisa tu bandeja de entrada o spam.");
+            } catch (error) {
+                console.error("Reset Password Error:", error);
+                errorEl.style.display = 'block';
+                if(error.code === 'auth/user-not-found') errorEl.textContent = "No hay ninguna cuenta registrada con ese correo.";
+                else if(error.code === 'auth/invalid-email') errorEl.textContent = "El correo electrónico no es válido.";
+                else errorEl.textContent = "Error al intentar restablecer la contraseña.";
+            }
+        };
 
         // Firebase Auth Logic
         window.handleAuth = async function(event, mode) {
