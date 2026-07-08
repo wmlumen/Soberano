@@ -368,10 +368,10 @@
                 console.error("Auth Error:", error);
                 errorEl.style.display = 'block';
                 if(error.code === 'auth/email-already-in-use') errorEl.textContent = "Este correo ya pertenece a un obrero registrado.";
-                else if(error.code === 'auth/wrong-password') errorEl.textContent = "Contraseña incorrecta. Intenta nuevamente.";
+                else if(error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') errorEl.textContent = "El correo o la contraseña son incorrectos. Verifica tus datos o crea una cuenta en 'Tocar la Puerta'.";
                 else if(error.code === 'auth/user-not-found') errorEl.textContent = "No hay ningún obrero registrado con este correo.";
                 else if(error.code === 'auth/weak-password') errorEl.textContent = "La contraseña debe tener al menos 6 caracteres.";
-                else errorEl.textContent = "Error: " + error.message + " (" + error.code + ")";
+                else errorEl.textContent = "Error inesperado al conectar. Por favor intenta de nuevo.";
             }
 
             btn.textContent = originalText;
