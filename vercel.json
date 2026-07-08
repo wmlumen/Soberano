@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "Web",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/portal/index.html",
+      "permanent": false
+    }
+  ]
+}
