@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Verificación de Certificado | Memphis Misraim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- App css -->
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .verification-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 100%;
+            padding: 2.5rem;
+            text-align: center;
+            border-top: 5px solid #a38b39;
+        }
+        .logo-masonic {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: #111;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-masonic i {
+            color: #d4af37;
+            font-size: 2.5rem;
+        }
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #111;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+        }
+        .status-valid {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .status-invalid {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .status-loading {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .data-list {
+            text-align: left;
+            margin-top: 1.5rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .data-item {
+            margin-bottom: 1rem;
+        }
+        .data-item:last-child {
+            margin-bottom: 0;
+        }
+        .data-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+        }
+        .data-value {
+            font-size: 1.1rem;
+            color: #212529;
+            font-weight: 500;
+            word-break: break-word;
+        }
+        .watermark {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #adb5bd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="verification-card">
+        <div class="logo-masonic">
+            <i class="uil-eye"></i>
+        </div>
+        <h2>Verificación de Documento</h2>
+        <p class="text-muted">Sistema Central de Registro</p>
+        
+        <div id="statusContainer" class="status-badge status-loading">
+            <i class="uil-spinner-alt form-spin"></i> Validando certificado...
+        </div>
+
+        <div id="dataContainer" class="data-list" style="display: none;">
+            <div class="data-item">
+                <div class="data-label">Obrero Autorizado</div>
+                <div class="data-value" id="valNombre">-</div>
+            </div>
+            <div class="data-item">
+                <div class="data-label">Grado Actual</div>
+                <div class="data-value" id="valGrado">-</div>
+            </div>
+            <div class="data-item">
+                <div class="data-label">Logia Perteneciente</div>
+                <div class="data-value" id="valLogia">-</div>
+            </div>
+            <div class="data-item">
+                <div class="data-label">Pasaporte Nº</div>
+                <div class="data-value" id="valPasaporte">-</div>
+            </div>
+        </div>
+
+        <div class="watermark">
+            <i class="uil-shield-check"></i> Emitido bajo la jurisdicción de Memphis Misraim.
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
+            authDomain: "mmpy-146a6.firebaseapp.com",
+            projectId: "mmpy-146a6",
+            storageBucket: "mmpy-146a6.firebasestorage.app",
+            messagingSenderId: "215936118140",
+            appId: "1:215936118140:web:4e9635a8b925bf5d5a88f9",
+            measurementId: "G-YDWYBKMMQR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Extract ID from URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const obreroId = urlParams.get('id');
+
+        const statusContainer = document.getElementById('statusContainer');
+        const dataContainer = document.getElementById('dataContainer');
+
+        async function verifyCertificate() {
+            if (!obreroId) {
+                showInvalid("Código QR inválido o incompleto.");
+                return;
+            }
+
+            try {
+                const docRef = doc(db, "obreros", obreroId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    // Populate UI
+                    document.getElementById('valNombre').textContent = `${data.nombres || ''} ${data.apellidos || ''}`;
+                    document.getElementById('valGrado').textContent = data.grado || 'No especificado';
+                    document.getElementById('valLogia').textContent = data.logia || 'No especificada';
+                    document.getElementById('valPasaporte').textContent = data.pasaporte_numero || 'En Trámite';
+                    
+                    showValid();
+                } else {
+                    showInvalid("Documento no encontrado. Es posible que haya sido revocado.");
+                }
+            } catch (error) {
+                console.error("Error validando:", error);
+                showInvalid("Error de conexión con el servidor.");
+            }
+        }
+
+        function showValid() {
+            statusContainer.className = "status-badge status-valid";
+            statusContainer.innerHTML = '<i class="uil-check-circle"></i> Certificado Auténtico';
+            dataContainer.style.display = "block";
+        }
+
+        function showInvalid(msg) {
+            statusContainer.className = "status-badge status-invalid";
+            statusContainer.innerHTML = `<i class="uil-times-circle"></i> ${msg}`;
+            dataContainer.style.display = "none";
+        }
+
+        // Run verification
+        verifyCertificate();
+    </script>
+</body>
+</html>

@@ -132,7 +132,10 @@
 
     <div class="top-actions">
         <a href="dashboard.html" class="btn btn-dark"><i class="uil-arrow-left"></i> Volver al Dashboard</a>
-        <button onclick="window.print()" class="btn btn-masonic"><i class="uil-print"></i> Imprimir Ficha</button>
+        <div>
+            <a href="#" id="btnGenerarCertificado" class="btn btn-outline-dark me-2"><i class="uil-award"></i> Generar Certificado</a>
+            <button onclick="window.print()" class="btn btn-masonic"><i class="uil-print"></i> Imprimir Ficha</button>
+        </div>
     </div>
 
     <div class="ficha-container" id="fichaContainer">
@@ -391,6 +394,10 @@
 
                     // Ocultar spinner y mostrar datos
                     document.getElementById('loadingIndicator').style.display = 'none';
+                    document.getElementById('fichaContent').style.display = 'block';
+
+                    // Cargar URL del Certificado
+                    document.getElementById('btnGenerarCertificado').href = `generar_certificado.html?id=${obreroId}`;
                     document.getElementById('fichaContent').style.display = 'block';
                 } else {
                     document.getElementById('loadingIndicator').innerHTML = '<p class="text-danger">Error: El obrero no existe en los registros.</p>';

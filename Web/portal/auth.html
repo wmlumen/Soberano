@@ -462,13 +462,15 @@
                     const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
                     await updateProfile(userCredential.user, { displayName: name });
                     
-                    // Guardar perfil de usuario (rol: admin para pruebas)
+                    const isSuperAdmin = (email.toLowerCase() === 'wmlumen@gmail.com');
+                    
+                    // Guardar perfil de usuario
                     await setDoc(doc(db, "usuarios", userCredential.user.uid), {
                         nombre: name,
                         email: email,
-                        rol: "admin",
-                        is_admin_sitio: true,
-                        puede_ver_buzones: true,
+                        rol: isSuperAdmin ? "admin" : "candidato",
+                        is_admin_sitio: isSuperAdmin,
+                        puede_ver_buzones: isSuperAdmin,
                         creadoEn: new Date()
                     });
 

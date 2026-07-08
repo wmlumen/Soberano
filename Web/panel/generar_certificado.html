@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Generador de Certificados | Memphis Misraim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
+    <!-- Fonts para diplomas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        
+        /* Layout del Editor */
+        .editor-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .editor-sidebar {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            z-index: 10;
+            overflow-y: auto;
+        }
+        .editor-canvas {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto;
+        }
+
+        /* Variables base del certificado */
+        :root {
+            --cert-bg: #fff;
+            --cert-border: #a38b39;
+            --cert-text: #333;
+            --cert-accent: #a38b39;
+        }
+
+        /* Temas */
+        .theme-gran-logia {
+            --cert-bg: #f8fbfd;
+            --cert-border: #1a4f8b;
+            --cert-text: #112a46;
+            --cert-accent: #d4af37;
+        }
+        .theme-supremo {
+            --cert-bg: #fdf8f8;
+            --cert-border: #8b1a1a;
+            --cert-text: #2a1111;
+            --cert-accent: #d4af37;
+        }
+        .theme-soberano {
+            --cert-bg: #faf8fd;
+            --cert-border: #4a1a8b;
+            --cert-text: #1d112a;
+            --cert-accent: #d4af37;
+        }
+
+        /* Contenedor del Certificado */
+        .certificado {
+            width: 1123px; /* A4 Landscape at 96DPI */
+            height: 794px;
+            background-color: var(--cert-bg);
+            border: 20px solid var(--cert-border);
+            padding: 40px;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            color: var(--cert-text);
+            text-align: center;
+            /* Inner border */
+            outline: 2px solid var(--cert-accent);
+            outline-offset: -10px;
+        }
+
+        .cert-header {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 30px;
+        }
+        .cert-org {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--cert-border);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .cert-suborg {
+            font-size: 16px;
+            letter-spacing: 4px;
+            color: var(--cert-text);
+        }
+
+        .cert-title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--cert-accent);
+            margin: 40px 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .cert-body {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            line-height: 1.6;
+            margin: 0 80px;
+        }
+
+        .cert-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 64px;
+            color: var(--cert-text);
+            margin: 20px 0;
+            border-bottom: 1px solid var(--cert-accent);
+            display: inline-block;
+            padding: 0 40px;
+        }
+
+        .cert-footer {
+            position: absolute;
+            bottom: 60px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .signature-line {
+            width: 250px;
+            border-top: 1px solid var(--cert-text);
+            padding-top: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .qr-container {
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+            background: #fff;
+            border: 1px solid var(--cert-accent);
+        }
+
+        .cert-seal {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px dashed var(--cert-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--cert-accent);
+            text-align: center;
+            line-height: 1.2;
+            opacity: 0.8;
+            margin: 0 auto;
+        }
+
+        @media print {
+            body {
+                background: none;
+                margin: 0;
+                padding: 0;
+            }
+            .editor-sidebar {
+                display: none !important;
+            }
+            .editor-layout {
+                display: block;
+                height: auto;
+            }
+            .editor-canvas {
+                padding: 0;
+                display: block;
+                overflow: visible;
+            }
+            .certificado {
+                box-shadow: none;
+                border-width: 15px; /* Adjust for print margins */
+                width: 297mm; /* Exact A4 landscape */
+                height: 209mm;
+                page-break-after: avoid;
+                margin: 0;
+            }
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="editor-layout">
+        <!-- Sidebar Controles -->
+        <div class="editor-sidebar">
+            <h4 class="mb-4"><a href="javascript:history.back()" class="text-dark"><i class="uil-arrow-left"></i> Volver</a></h4>
+            <h4 class="mb-3">Configurar Certificado</h4>
+            
+            <div class="mb-3">
+                <label class="form-label">Organización / Tema</label>
+                <select class="form-select" id="ctrlOrg" onchange="updateCert()">
+                    <option value="gran-logia">Gran Logia (Azul)</option>
+                    <option value="supremo">Supremo Consejo (Rojo)</option>
+                    <option value="soberano">Soberano Santuario (Púrpura)</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tipo de Certificado</label>
+                <select class="form-select" id="ctrlType" onchange="updateCert()">
+                    <option value="Participación">Participación</option>
+                    <option value="Iniciación">Iniciación</option>
+                    <option value="Aumento de Grado">Aumento de Grado</option>
+                    <option value="Exaltación">Exaltación</option>
+                    <option value="Por Capítulos">Por Capítulos</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fecha de Emisión</label>
+                <input type="date" class="form-control" id="ctrlDate" onchange="updateCert()">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Firma Izquierda</label>
+                <input type="text" class="form-control" id="ctrlFirma1" value="Gran Secretario" onkeyup="updateCert()">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Firma Derecha</label>
+                <input type="text" class="form-control" id="ctrlFirma2" value="Soberano Gran Comendador" onkeyup="updateCert()">
+            </div>
+
+            <hr>
+            <div class="d-grid gap-2">
+                <button class="btn btn-masonic" onclick="window.print()"><i class="uil-print"></i> Imprimir o Guardar PDF</button>
+            </div>
+            <p class="text-muted mt-2 small text-center">Para guardar en PDF, presiona Imprimir y selecciona "Guardar como PDF" en el destino.</p>
+        </div>
+
+        <!-- Canvas del Certificado -->
+        <div class="editor-canvas">
+            <div class="certificado theme-gran-logia" id="certificadoDiv">
+                
+                <div class="cert-header">
+                    <div class="cert-org" id="viewOrgTitle">Gran Logia</div>
+                    <div class="cert-suborg">Antiguo y Primitivo Rito de Memphis Misraim</div>
+                </div>
+
+                <div class="cert-title" id="viewCertTitle">
+                    Certificado de Participación
+                </div>
+
+                <div class="cert-body">
+                    A todos los que la presente vieren, hacemos saber que el Querido Hermano<br>
+                    <div class="cert-name" id="viewName">Cargando...</div><br>
+                    de la Respetable Logia <strong id="viewLogia">...</strong><br>
+                    ha cumplido con todos los requisitos para recibir el presente documento.<br>
+                    <br>
+                    Dado y sellado en el Valle el día <strong id="viewDate">...</strong>
+                </div>
+
+                <div class="cert-footer">
+                    <div class="signature-line" id="viewFirma1">Gran Secretario</div>
+                    
+                    <div>
+                        <div class="cert-seal">
+                            SELLO<br>OFICIAL
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <div class="qr-container" id="qrcode"></div>
+                        <span style="font-size: 10px; font-family: sans-serif;">Escanear para verificar</span>
+                    </div>
+                    
+                    <div class="signature-line" id="viewFirma2">Soberano Gran Comendador</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
+            authDomain: "mmpy-146a6.firebaseapp.com",
+            projectId: "mmpy-146a6",
+            storageBucket: "mmpy-146a6.firebasestorage.app",
+            messagingSenderId: "215936118140",
+            appId: "1:215936118140:web:4e9635a8b925bf5d5a88f9",
+            measurementId: "G-YDWYBKMMQR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const obreroId = urlParams.get('id');
+        let qrCodeInstance = null;
+
+        // Establecer fecha de hoy
+        document.getElementById('ctrlDate').valueAsDate = new Date();
+
+        async function loadObrero() {
+            if (!obreroId) {
+                alert("ID de obrero no proporcionado");
+                return;
+            }
+            try {
+                const docSnap = await getDoc(doc(db, "obreros", obreroId));
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById('viewName').textContent = `${data.nombres || ''} ${data.apellidos || ''}`;
+                    document.getElementById('viewLogia').textContent = data.logia || 'Logia Central';
+                    
+                    // Generar QR
+                    const verifyUrl = `https://soberano-ebon.vercel.app/portal/verificar.html?id=${obreroId}`;
+                    qrCodeInstance = new QRCode(document.getElementById("qrcode"), {
+                        text: verifyUrl,
+                        width: 90,
+                        height: 90,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+
+                    updateCert();
+                } else {
+                    alert("Obrero no encontrado");
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Error cargando base de datos");
+            }
+        }
+
+        window.updateCert = function() {
+            // Tema
+            const theme = document.getElementById('ctrlOrg').value;
+            const certDiv = document.getElementById('certificadoDiv');
+            const orgTitle = document.getElementById('viewOrgTitle');
+            
+            certDiv.className = `certificado theme-${theme}`;
+            
+            if (theme === 'gran-logia') orgTitle.textContent = "Gran Logia";
+            if (theme === 'supremo') orgTitle.textContent = "Supremo Consejo";
+            if (theme === 'soberano') orgTitle.textContent = "Soberano Santuario";
+
+            // Tipo
+            document.getElementById('viewCertTitle').textContent = `Certificado de ${document.getElementById('ctrlType').value}`;
+
+            // Fecha
+            const dateVal = document.getElementById('ctrlDate').value;
+            if (dateVal) {
+                const d = new Date(dateVal + 'T12:00:00'); // Evitar timezone shift
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('viewDate').textContent = d.toLocaleDateString('es-ES', options);
+            }
+
+            // Firmas
+            document.getElementById('viewFirma1').textContent = document.getElementById('ctrlFirma1').value;
+            document.getElementById('viewFirma2').textContent = document.getElementById('ctrlFirma2').value;
+        };
+
+        loadObrero();
+    </script>
+</body>
+</html>

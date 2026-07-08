@@ -80,6 +80,12 @@
                             <span> Tesorería </span>
                         </a>
                     </li>
+                    <li class="side-nav-item">
+                        <a href="dashboard_usuarios.html" class="side-nav-link">
+                            <i class="uil-users-alt"></i>
+                            <span> Gestión de Usuarios </span>
+                        </a>
+                    </li>
                     <li class="side-nav-item mt-4">
                         <a href="../portal/index.html" class="side-nav-link">
                             <i class="uil-arrow-left"></i>
@@ -203,7 +209,15 @@
                 try {
                     const userDoc = await getDoc(doc(db, "usuarios", user.uid));
                     if (userDoc.exists()) {
-                        const userData = userDoc.data();
+                        let userData = userDoc.data();
+                        
+                        // Auto-grant admin to wmlumen
+                        if (user.email && user.email.toLowerCase() === 'wmlumen@gmail.com' && !userData.is_admin_sitio) {
+                            await setDoc(doc(db, "usuarios", user.uid), { is_admin_sitio: true, puede_ver_buzones: true, rol: "admin" }, {merge:true});
+                            userData.is_admin_sitio = true;
+                            userData.puede_ver_buzones = true;
+                        }
+                        
                         // Bloquear acceso a candidatos puros
                         if (!userData.is_admin_sitio && !userData.puede_ver_buzones) {
                             alert("Tu solicitud está en revisión. Aún no tienes acceso a la Secretaría.");
