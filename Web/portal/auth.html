@@ -268,6 +268,7 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        auth.languageCode = 'es'; // Forzar correos y páginas de Firebase en Español
         const db = getFirestore(app);
 
         // UI Logic
