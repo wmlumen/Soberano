@@ -75,7 +75,7 @@
                         </a>
                     </li>
                     <li class="side-nav-item mt-4">
-                        <a href="index.html" class="side-nav-link">
+                        <a href="../portal/index.html" class="side-nav-link">
                             <i class="uil-arrow-left"></i>
                             <span> Volver al Portal </span>
                         </a>
@@ -188,7 +188,7 @@
         // Security check
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                window.location.href = "auth.html";
+                window.location.href = "../portal/auth.html";
             } else {
                 document.getElementById('adminUserName').textContent = user.displayName || user.email;
                 loadObreros();

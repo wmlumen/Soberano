@@ -184,6 +184,61 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px !important;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-muted);
+            user-select: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: var(--accent-gold);
+        }
+
+        .password-requirements {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: none;
+        }
+        .password-requirements.active {
+            display: block;
+        }
+        .password-requirements li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .password-requirements li::before {
+            content: '✖';
+            color: #ff4d4d;
+            margin-right: 5px;
+        }
+        .password-requirements li.valid::before {
+            content: '✔';
+            color: #4CAF50;
+        }
+        .password-requirements li.valid {
+            color: #4CAF50;
+        }
     </style>
 </head>
 <body>
@@ -205,7 +260,10 @@
             </div>
             <div class="form-group">
                 <label>Contraseña</label>
-                <input type="password" id="login-password" required placeholder="••••••••">
+                <div class="password-wrapper">
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                    <span class="toggle-password" onclick="togglePassword('login-password', this)" title="Mostrar contraseña">👁️</span>
+                </div>
                 <div style="text-align: right; margin-top: 5px;">
                     <a href="#" onclick="resetPassword(event)" style="font-size: 0.8rem; color: var(--accent-gold); text-decoration: none;">¿Olvidaste tu contraseña?</a>
                 </div>
@@ -237,7 +295,17 @@
             </div>
             <div class="form-group">
                 <label>Contraseña</label>
-                <input type="password" id="register-password" required placeholder="Mínimo 6 caracteres">
+                <div class="password-wrapper">
+                    <input type="password" id="register-password" required placeholder="Mínimo 7 caracteres">
+                    <span class="toggle-password" onclick="togglePassword('register-password', this)" title="Mostrar contraseña">👁️</span>
+                </div>
+                <ul id="register-password-reqs" class="password-requirements">
+                    <li class="req-length">7 caracteres en total</li>
+                    <li class="req-uppercase">1 Mayúscula</li>
+                    <li class="req-lowercase">1 Minúscula</li>
+                    <li class="req-number">1 Número</li>
+                    <li class="req-symbol">1 Símbolo (ej. @, #, $, !)</li>
+                </ul>
             </div>
             <div class="form-group">
                 <label>Mensaje / Carta de Intención</label>
@@ -311,6 +379,52 @@
             }
         };
 
+        // Mostrar / Ocultar contraseña
+        window.togglePassword = function(inputId, iconEl) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                iconEl.textContent = '🔒';
+                iconEl.title = 'Ocultar contraseña';
+            } else {
+                input.type = 'password';
+                iconEl.textContent = '👁️';
+                iconEl.title = 'Mostrar contraseña';
+            }
+        };
+
+        // Validación de contraseña en tiempo real
+        window.validatePasswordRequirements = function(password, reqsListId) {
+            const reqs = {
+                length: password.length >= 7,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /[0-9]/.test(password),
+                symbol: /[^A-Za-z0-9]/.test(password)
+            };
+            
+            const list = document.getElementById(reqsListId);
+            if (!list) return Object.values(reqs).every(Boolean);
+
+            if (password.length > 0) {
+                list.classList.add('active');
+            } else {
+                list.classList.remove('active');
+            }
+
+            list.querySelector('.req-length').classList.toggle('valid', reqs.length);
+            list.querySelector('.req-uppercase').classList.toggle('valid', reqs.uppercase);
+            list.querySelector('.req-lowercase').classList.toggle('valid', reqs.lowercase);
+            list.querySelector('.req-number').classList.toggle('valid', reqs.number);
+            list.querySelector('.req-symbol').classList.toggle('valid', reqs.symbol);
+
+            return Object.values(reqs).every(Boolean);
+        };
+
+        document.getElementById('register-password').addEventListener('input', function(e) {
+            window.validatePasswordRequirements(e.target.value, 'register-password-reqs');
+        });
+
         // Firebase Auth Logic
         window.handleAuth = async function(event, mode) {
             event.preventDefault();
@@ -330,11 +444,19 @@
                     // Redirigir al dashboard tras login exitoso
                     window.location.href = "../panel/dashboard.html"; 
                 } else {
+                    const pass = document.getElementById('register-password').value;
+                    if (!window.validatePasswordRequirements(pass, 'register-password-reqs')) {
+                        errorEl.style.display = 'block';
+                        errorEl.textContent = "La contraseña debe cumplir con todos los requisitos solicitados.";
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        return;
+                    }
+
                     const motivo = document.getElementById('register-motive').value;
                     const name = document.getElementById('register-name').value;
                     const email = document.getElementById('register-email').value;
                     const phone = document.getElementById('register-phone').value;
-                    const pass = document.getElementById('register-password').value;
                     const message = document.getElementById('register-message').value;
                     
                     const userCredential = await createUserWithEmailAndPassword(auth, email, pass);

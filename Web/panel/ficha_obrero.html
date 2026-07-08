@@ -312,10 +312,10 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Security Check
-        onAuthStateChanged(auth, (user) => {
+        // Security check
+        onAuthStateChanged(auth, async (user) => {
             if (!user) {
-                window.location.href = "auth.html";
+                window.location.href = "../portal/auth.html";
             } else {
                 loadObrero();
             }
