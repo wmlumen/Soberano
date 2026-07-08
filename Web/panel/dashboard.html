@@ -248,12 +248,13 @@
                     return;
                 }
 
+                let htmlContent = '';
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
                     const fechaRegistro = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleDateString() : 'N/A';
                     const passportNum = data.pasaporte_numero || 'En Trámite';
                     
-                    tableBody.innerHTML += `
+                    htmlContent += `
                         <tr>
                             <td><strong>${passportNum}</strong></td>
                             <td>${data.nombres || ''} ${data.apellidos || ''}</td>
@@ -268,6 +269,8 @@
                         </tr>
                     `;
                 });
+                
+                tableBody.innerHTML = htmlContent;
             } catch (error) {
                 console.error("Error cargando obreros:", error);
                 tableBody.innerHTML = '<tr><td colspan="6" class="text-center text-danger">Error de conexión al cargar datos.</td></tr>';
