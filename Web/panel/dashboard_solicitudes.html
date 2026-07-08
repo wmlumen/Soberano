@@ -136,28 +136,69 @@
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4 class="header-title mb-0">Solicitudes Recibidas</h4>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-centered table-masonic mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Fecha</th>
-                                                    <th>Motivo</th>
-                                                    <th>Nombre Completo</th>
-                                                    <th>Email</th>
-                                                    <th>Teléfono</th>
-                                                    <th>Estado</th>
-                                                    <th class="text-center">Mensaje</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="obrerosTableBody">
-                                                <tr>
-                                                    <td colspan="7" class="text-center py-4">
-                                                        <div class="spinner-border text-warning" role="status"></div>
-                                                        <p class="mt-2 text-muted">Cargando solicitudes desde la base de datos...</p>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <ul class="nav nav-tabs nav-bordered mb-3">
+                                        <li class="nav-item">
+                                            <a href="#iniciacion" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                Iniciación
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#afiliacion" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                                Afiliación
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="iniciacion">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-centered table-masonic mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Fecha</th>
+                                                            <th>Nombre Completo</th>
+                                                            <th>Email</th>
+                                                            <th>Teléfono</th>
+                                                            <th>Estado</th>
+                                                            <th class="text-center">Mensaje</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="iniciacionTableBody">
+                                                        <tr>
+                                                            <td colspan="6" class="text-center py-4">
+                                                                <div class="spinner-border text-warning" role="status"></div>
+                                                                <p class="mt-2 text-muted">Cargando solicitudes...</p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="tab-pane" id="afiliacion">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-centered table-masonic mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Fecha</th>
+                                                            <th>Nombre Completo</th>
+                                                            <th>Email</th>
+                                                            <th>Teléfono</th>
+                                                            <th>Estado</th>
+                                                            <th class="text-center">Mensaje</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="afiliacionTableBody">
+                                                        <tr>
+                                                            <td colspan="6" class="text-center py-4">
+                                                                <div class="spinner-border text-warning" role="status"></div>
+                                                                <p class="mt-2 text-muted">Cargando solicitudes...</p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -236,19 +277,26 @@
         });
 
         async function loadSolicitudes() {
-            const tableBody = document.getElementById('obrerosTableBody');
+            const tableBodyIniciacion = document.getElementById('iniciacionTableBody');
+            const tableBodyAfiliacion = document.getElementById('afiliacionTableBody');
             try {
                 const q = query(collection(db, "solicitudes"));
                 const querySnapshot = await getDocs(q);
                 
-                tableBody.innerHTML = '';
+                tableBodyIniciacion.innerHTML = '';
+                tableBodyAfiliacion.innerHTML = '';
                 
                 if (querySnapshot.empty) {
-                    tableBody.innerHTML = '<tr><td colspan="7" class="text-center">No hay solicitudes pendientes en el buzón.</td></tr>';
+                    tableBodyIniciacion.innerHTML = '<tr><td colspan="6" class="text-center">No hay solicitudes pendientes.</td></tr>';
+                    tableBodyAfiliacion.innerHTML = '<tr><td colspan="6" class="text-center">No hay solicitudes pendientes.</td></tr>';
                     return;
                 }
 
-                let htmlContent = '';
+                let htmlIniciacion = '';
+                let htmlAfiliacion = '';
+                let countIniciacion = 0;
+                let countAfiliacion = 0;
+
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
                     const fechaRegistro = data.fecha ? new Date(data.fecha.seconds * 1000).toLocaleDateString() : 'N/A';
@@ -257,10 +305,9 @@
                     if (data.estado === 'Aprobado') estadoBadge = '<span class="badge bg-success">Aprobado</span>';
                     if (data.estado === 'Rechazado') estadoBadge = '<span class="badge bg-danger">Rechazado</span>';
 
-                    htmlContent += `
+                    const rowHtml = `
                         <tr>
                             <td><strong>${fechaRegistro}</strong></td>
-                            <td>${data.motivo || ''}</td>
                             <td>${data.nombre || ''}</td>
                             <td><a href="mailto:${data.email || ''}">${data.email || ''}</a></td>
                             <td>${data.telefono || ''}</td>
@@ -272,12 +319,24 @@
                             </td>
                         </tr>
                     `;
+
+                    // Check motivo to filter
+                    if (data.motivo === 'Afiliacion' || data.motivo === 'Afiliación') {
+                        htmlAfiliacion += rowHtml;
+                        countAfiliacion++;
+                    } else {
+                        // Default to iniciacion
+                        htmlIniciacion += rowHtml;
+                        countIniciacion++;
+                    }
                 });
                 
-                tableBody.innerHTML = htmlContent;
+                tableBodyIniciacion.innerHTML = countIniciacion > 0 ? htmlIniciacion : '<tr><td colspan="6" class="text-center">No hay solicitudes de Iniciación.</td></tr>';
+                tableBodyAfiliacion.innerHTML = countAfiliacion > 0 ? htmlAfiliacion : '<tr><td colspan="6" class="text-center">No hay solicitudes de Afiliación.</td></tr>';
             } catch (error) {
                 console.error("Error cargando solicitudes:", error);
-                tableBody.innerHTML = '<tr><td colspan="7" class="text-center text-danger">Error de conexión al cargar datos.</td></tr>';
+                tableBodyIniciacion.innerHTML = '<tr><td colspan="6" class="text-center text-danger">Error de conexión al cargar datos.</td></tr>';
+                tableBodyAfiliacion.innerHTML = '<tr><td colspan="6" class="text-center text-danger">Error de conexión al cargar datos.</td></tr>';
             }
         }
     </script>
