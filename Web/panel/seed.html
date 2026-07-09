@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Inyectar Datos Ficticios</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 50px;">
+    
+    <h2>Inyectando Datos de Prueba...</h2>
+    <div id="status">Conectando a Firebase...</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
+            authDomain: "mmpy-146a6.firebaseapp.com",
+            projectId: "mmpy-146a6",
+            storageBucket: "mmpy-146a6.firebasestorage.app",
+            messagingSenderId: "215936118140",
+            appId: "1:215936118140:web:4e9635a8b925bf5d5a88f9",
+            measurementId: "G-YDWYBKMMQR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const statusEl = document.getElementById("status");
+
+        const nombresFalsos = [
+            { n: "Juan Carlos", a: "Pérez Gómez", g: "3° Maestro", l: "Luz y Verdad N°1" },
+            { n: "Roberto", a: "Sánchez", g: "1° Aprendiz", l: "Fraternidad N°2" },
+            { n: "Luis Miguel", a: "Rodríguez", g: "2° Compañero", l: "Luz y Verdad N°1" },
+            { n: "Alejandro", a: "Méndez", g: "14° Gran Elegido", l: "Capítulo Rosacruz N°4" },
+            { n: "Fernando", a: "Díaz", g: "33° Soberano Gran Inspector", l: "Supremo Consejo" },
+        ];
+
+        async function seedData() {
+            try {
+                statusEl.innerText = "Inyectando Obreros...";
+                for (let i = 0; i < nombresFalsos.length; i++) {
+                    const p = nombresFalsos[i];
+                    
+                    // Add Obrero
+                    const docRef = await addDoc(collection(db, "obreros"), {
+                        nombres: p.n,
+                        apellidos: p.a,
+                        grado: p.g,
+                        logia: p.l,
+                        pasaporte_numero: "PAS-" + Math.floor(Math.random() * 90000 + 10000),
+                        fechaIniciacion: "2020-05-15",
+                        cargos: (i % 2 === 0) ? ["Venerable Maestro (2022)", "Orador (2021)"] : [],
+                        timestamp: new Date()
+                    });
+
+                    // Add Plancha to the new obrero
+                    await addDoc(collection(db, "obreros", docRef.id, "planchas"), {
+                        titulo: "La Geometría Sagrada en el Rito de Memphis",
+                        fecha: "2023-11-20",
+                        grado: p.g,
+                        contenido: "En el presente trazado, busco exponer la relación de la Geometría Sagrada y las proporciones áureas en los antiguos misterios de Memphis, destacando la construcción de nuestras logias internas y su reflejo en el cosmos...",
+                        timestamp: new Date()
+                    });
+                }
+
+                statusEl.innerText = "Inyectando Solicitudes (Buzón)...";
+                const motivos = ["Afiliacion", "Iniciación", "Afiliación"];
+                for (let i = 0; i < 6; i++) {
+                    await addDoc(collection(db, "solicitudes"), {
+                        nombre: "Candidato Ficticio " + (i+1),
+                        email: `candidato${i}@test.com`,
+                        telefono: "+595 981 00000" + i,
+                        mensaje: "Me gustaría ser parte de la Orden y aprender de vuestros misterios.",
+                        motivo: motivos[i % 3],
+                        estado: "Pendiente",
+                        fecha: new Date()
+                    });
+                }
+
+                statusEl.innerHTML = "<h3 style='color: green;'>¡Datos inyectados con éxito!</h3><p>Ya puedes volver al panel a revisar cómo se ve.</p>";
+            } catch (error) {
+                console.error(error);
+                statusEl.innerHTML = "<h3 style='color: red;'>Error al inyectar datos</h3><p>" + error.message + "</p>";
+            }
+        }
+
+        seedData();
+    </script>
+</body>
+</html>
