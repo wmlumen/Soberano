@@ -1,28 +1,39 @@
-# Ignore large binaries / generated artifacts
+# Binarios/artefactos generados
 *.pdf
 *.zip
 *.tar
 *.gz
 *.7z
+*.docx
+*.xlsx
+*.pptx
 
-# Ignore large non-web artifacts if desired
-# Rituales/output/*
-# descargas/
-# Normativa/
-# Pasos/
+# Salidas locales generadas
+Rituales/output/
+descargas/
+Normativa/
+Pasos/
 
-# OS / editor junk
+# Legacy/web tools no críticos
+Web/tools/_legacy/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
 Thumbs.db
 desktop.ini
 .DS_Store
+*.swp
+*.tmp
 
-# Firebase local config if present
+# Firebase/Vercel local state
 .firebaserc
 .firebase/
+.vercel/
 
-# Node modules if any
+# Node modules
 node_modules/
-
-# Python folders that aren't part of the web app
-__pycache__/
-*.pyc
