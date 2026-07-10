@@ -489,8 +489,14 @@
                         fecha: new Date()
                     });
 
-                    alert("¡Tu solicitud ha sido enviada al Buzón de la Secretaría! Nos pondremos en contacto contigo pronto.");
-                    window.location.href = "index.html"; 
+                    alert("¡Tu solicitud ha sido enviada al Buzón de la Secretaría! Ahora serás redirigido a WhatsApp para notificar a la Logia.");
+                    
+                    const adminPhone = "595971779487";
+                    const waText = `Saludos Gran Logia, acabo de enviar mi solicitud de ${motivo} a través de la página web. Mi nombre es ${name}.`;
+                    const waUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(waText)}`;
+                    
+                    // Abrir WhatsApp en la misma pestaña para evitar bloqueadores de pop-ups
+                    window.location.href = waUrl;
                 }
             } catch (error) {
                 console.error("Auth Error:", error);

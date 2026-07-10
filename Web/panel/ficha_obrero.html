@@ -133,6 +133,7 @@
     <div class="top-actions">
         <a href="dashboard.html" class="btn btn-dark"><i class="uil-arrow-left"></i> Volver al Dashboard</a>
         <div>
+            <button class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalEditarObrero"><i class="uil-edit"></i> Actualizar Grado</button>
             <a href="#" id="btnGenerarCertificado" class="btn btn-outline-dark me-2"><i class="uil-award"></i> Generar Certificado</a>
             <button onclick="window.print()" class="btn btn-masonic"><i class="uil-print"></i> Imprimir Ficha</button>
         </div>
@@ -273,22 +274,76 @@
                         <input type="date" class="form-control" id="planchaFecha" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label class="form-label">Grado</label>
-                        <input type="text" class="form-control" id="planchaGrado" placeholder="Ej. 1° Aprendiz" required>
+    <!-- Modal Registrar Plancha -->
+    <div class="modal fade" id="modalPlancha" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" style="color:#d4af37;">Registrar Plancha Trazada</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label>Título de la Plancha</label>
+                            <input type="text" class="form-control" id="planchaTitulo" placeholder="Ej: Simbolismo de la Piedra Bruta">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Fecha de Presentación</label>
+                            <input type="date" class="form-control" id="planchaFecha">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Grado en el que se trazó</label>
+                        <select class="form-select" id="planchaGrado">
+                            <option value="1° Aprendiz">1° Aprendiz</option>
+                            <option value="2° Compañero">2° Compañero</option>
+                            <option value="3° Maestro">3° Maestro</option>
+                            <option value="4° Maestro Secreto">4° Maestro Secreto</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Contenido del Escrito (Plancha completa)</label>
+                        <textarea class="form-control" id="planchaContenido" rows="8" placeholder="Copie y pegue aquí el escrito completo de la plancha..."></textarea>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Contenido Escrito</label>
-                    <textarea class="form-control" id="planchaContenido" rows="10" placeholder="Escribe o pega aquí el contenido de la plancha..." required></textarea>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-masonic" id="btnGuardarPlancha">Guardar en el Legajo</button>
                 </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-masonic" id="btnGuardarPlancha">Guardar en el Legajo</button>
-          </div>
+            </div>
         </div>
-      </div>
+    </div>
+
+    <!-- Modal Editar Obrero -->
+    <div class="modal fade" id="modalEditarObrero" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" style="color:#d4af37;">Actualizar Datos del Obrero</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label>Grado Actual</label>
+                        <select class="form-select" id="editGrado">
+                            <option value="1° Aprendiz">1° Aprendiz</option>
+                            <option value="2° Compañero">2° Compañero</option>
+                            <option value="3° Maestro">3° Maestro</option>
+                            <option value="4° Maestro Secreto">4° Maestro Secreto</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Fecha de Exaltación</label>
+                        <input type="date" class="form-control" id="editExaltacion">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-masonic" id="btnGuardarEdicion">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
@@ -298,8 +353,8 @@
     <!-- Firebase Connection -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, getDoc, collection, addDoc, query, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc, collection, getDocs, query, orderBy, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
@@ -349,6 +404,10 @@
                     document.getElementById('valIniciacion').textContent = data.fechaIniciacion || '-';
                     document.getElementById('valAumento').textContent = data.fechaAumento || '-';
                     document.getElementById('valExaltacion').textContent = data.fechaExaltacion || '-';
+
+                    // Cargar al modal de edición
+                    document.getElementById('editGrado').value = data.grado;
+                    document.getElementById('editExaltacion').value = data.fechaExaltacion || '';
 
                     if (data.esAfiliado) {
                         document.getElementById('seccionAfiliacion').style.display = 'block';
@@ -440,6 +499,31 @@
                 alert("Ocurrió un error al guardar la plancha.");
                 document.getElementById('btnGuardarPlancha').disabled = false;
                 document.getElementById('btnGuardarPlancha').innerText = "Guardar en el Legajo";
+            }
+        });
+
+        // Guardar Edición de Grado
+        document.getElementById('btnGuardarEdicion').addEventListener('click', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const obreroId = urlParams.get('id');
+            const nuevoGrado = document.getElementById('editGrado').value;
+            const nuevaExaltacion = document.getElementById('editExaltacion').value;
+
+            try {
+                document.getElementById('btnGuardarEdicion').disabled = true;
+                document.getElementById('btnGuardarEdicion').innerText = "Guardando...";
+                
+                await updateDoc(doc(db, "obreros", obreroId), {
+                    grado: nuevoGrado,
+                    fechaExaltacion: nuevaExaltacion
+                });
+
+                window.location.reload();
+            } catch (error) {
+                console.error("Error actualizando obrero:", error);
+                alert("Ocurrió un error al actualizar los datos.");
+                document.getElementById('btnGuardarEdicion').disabled = false;
+                document.getElementById('btnGuardarEdicion').innerText = "Guardar Cambios";
             }
         });
 

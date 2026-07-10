@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento Oficial de Admisión - Memphis Misraim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0e17;
+            --secondary: #162032;
+            --accent-gold: #d4af37;
+            --text-light: #e0e6ed;
+            --danger: #dc3545;
+        }
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+        }
+        .header-banner {
+            background-color: var(--primary);
+            color: var(--accent-gold);
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-gold);
+            margin-bottom: 2rem;
+        }
+        .header-banner h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .header-banner p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+        .container-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .btn-masonic {
+            background-color: var(--primary);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-masonic:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary);
+        }
+        
+        /* Lock Screen */
+        #lockScreen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        #lockBox {
+            background: var(--secondary);
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 10px 40px rgba(212,175,55,0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+        .code-input {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--accent-gold);
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .code-input:focus {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            box-shadow: 0 0 10px rgba(212,175,55,0.5);
+            border-color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bloqueo de Seguridad -->
+    <div id="lockScreen">
+        <div id="lockBox">
+            <h2 style="font-family:'Cinzel', serif; color: var(--accent-gold);"><i class="uil-padlock"></i> Admisión Cerrada</h2>
+            <p class="mt-3 text-muted">Ingrese su Código Oficial de Admisión para acceder al formulario.</p>
+            <input type="text" id="codigoEntrada" class="form-control code-input mt-4 mb-3" placeholder="ADM-XXXX" maxlength="10">
+            <button id="btnValidarCodigo" class="btn btn-masonic w-100">Validar y Acceder</button>
+            <div id="lockError" class="text-danger mt-2" style="display: none; font-size: 0.9rem;">Código inválido o ya utilizado.</div>
+        </div>
+    </div>
+
+    <div class="header-banner">
+        <h1>Gran Logia de la Soberana Orden del Rito Antiguo y Primitivo de Memphis-Misraim</h1>
+        <p>Asunción 2026, Oriente de Paraguay</p>
+    </div>
+
+    <div class="container">
+        <div class="container-box">
+            
+            <div class="text-center mb-5">
+                <h2 style="font-family:'Cinzel', serif; color: var(--secondary);">DOCUMENTO DE ADMISIÓN</h2>
+            </div>
+
+            <div class="alert alert-secondary" role="alert">
+                <h5 class="alert-heading" style="font-family:'Cinzel', serif; color: var(--primary);">INFORMACIÓN PRELIMINAR</h5>
+                <p style="font-size: 0.9rem;">Antes de seguir este proceso queremos hacerle llegar una serie de puntualizaciones sobre el trabajo que realizamos en Logia:</p>
+                <ul style="font-size: 0.85rem;">
+                    <li>Somos una obediencia masónica soberana, MIXTA, vernácula, sin dependencia de Potencias, Orientes, Areópagos, Federaciones o Jurisdicciones de otros países. Promovemos el libre tránsito masónico universal y nuestra sede central es en Asunción, Paraguay.</li>
+                    <li>Dentro de nuestra Orden tienen cabida todos los que propendan a la creencia de la inmortalidad de la vida espiritual, puesto que nos orientamos por el respeto y la tolerancia hacia todo tipo de creencia y a la consciencia personal de cada miembro.</li>
+                    <li>Nos caracterizamos por la absoluta igualdad en el trabajo masónico.</li>
+                    <li>No somos una Orden con ánimo proselitista, por cuanto asumimos la discreción en el trabajo masónico, de introspección personal y colectiva de nuestros talleres, apoyándonos en el rito y en el ritual.</li>
+                    <li>Por último, recordarle que nuestra corriente masónica es:
+                        <ul>
+                            <li>Una orden iniciática, abierta al estudio y al trabajo en la mejora constante de la humanidad.</li>
+                            <li>Es independiente de toda religión, ideología o concepto metafísico, prohibiéndose la formulación de dogmas y fundamentalismos de todo tipo.</li>
+                            <li>Tiene como objeto la búsqueda constante de la verdad.</li>
+                            <li>Considera que toda persona es un ser libre y que sólo responde ante su conciencia, pero respetuoso de la Constitución Nacional Paraguaya y de la disciplina masónica.</li>
+                            <li>Enseña en sus Templos la Libertad-Igualdad-Fraternidad para aplicarlas fuera, en el mundo profano, en la ayuda constante al progreso de la humanidad.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="my-5">
+
+            <form id="formAdmision">
+                <input type="hidden" id="solicitudId">
+                <input type="hidden" id="codigoUsado">
+
+                <!-- Proponentes -->
+                <h3 class="section-title">Sólo para Proponentes</h3>
+                <p class="text-muted" style="font-size:0.85rem;">Habiendo asumido la responsabilidad de elevar la propuesta del profano cuyos datos constan más abajo dejo constancia que es hábil de mi conocimiento y el mismo es y será un fuerte eslabón de nuestra universal cadena de unión.</p>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre del Primer Maestro/a Proponente</label>
+                        <input type="text" class="form-control" id="proponente1" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre del Segundo Maestro/a Proponente (Opcional)</label>
+                        <input type="text" class="form-control" id="proponente2">
+                    </div>
+                </div>
+
+                <!-- Datos de Afiliación (Sólo si aplica) -->
+                <div id="seccionAfiliacion" style="display: none;">
+                    <h3 class="section-title">Datos Masónicos Anteriores (Para Afiliación)</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>Obediencia Masónica Anterior</label>
+                            <input type="text" class="form-control" id="obedienciaAnterior">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Último Grado Alcanzado</label>
+                            <input type="text" class="form-control" id="gradoAnterior">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Motivo de Retiro</label>
+                            <input type="text" class="form-control" id="motivoRetiro">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Datos del Aspirante -->
+                <h3 class="section-title">Datos del Aspirante</h3>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Nombres y Apellidos</label>
+                        <input type="text" class="form-control" id="nombres" required readonly>
+                        <small class="text-muted">Cargado automáticamente desde su solicitud previa.</small>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Género</label>
+                        <select class="form-select" id="genero" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Lugar de Nacimiento</label>
+                        <input type="text" class="form-control" id="lugarNacimiento" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Nacionalidad</label>
+                        <input type="text" class="form-control" id="nacionalidad" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Cédula de Identidad</label>
+                        <input type="text" class="form-control" id="cedula" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Estado Civil</label>
+                        <select class="form-select" id="estadoCivil" required>
+                            <option value="Soltero/a">Soltero/a</option>
+                            <option value="Casado/a">Casado/a</option>
+                            <option value="Divorciado/a">Divorciado/a</option>
+                            <option value="Viudo/a">Viudo/a</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label>Dirección Particular</label>
+                        <input type="text" class="form-control" id="direccion" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Barrio</label>
+                        <input type="text" class="form-control" id="barrio" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Ciudad</label>
+                        <input type="text" class="form-control" id="ciudad" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Teléfono Móvil</label>
+                        <input type="text" class="form-control" id="telefono" required readonly>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" required readonly>
+                    </div>
+                </div>
+
+                <!-- Datos Familiares -->
+                <h3 class="section-title">Datos Familiares</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre del cónyuge</label>
+                        <input type="text" class="form-control" id="conyugeNombre">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Ocupación del Cónyuge</label>
+                        <input type="text" class="form-control" id="conyugeOcupacion">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Hijos (Cantidad, Género, Edades)</label>
+                        <input type="text" class="form-control" id="hijos" placeholder="Ej: 2 Varones (10, 12 años), 1 Mujer (8 años)">
+                    </div>
+                </div>
+
+                <!-- Datos Progenitores y Hermanos -->
+                <h3 class="section-title">Datos de Progenitores y Hermanos</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Nombres del Padre</label>
+                        <input type="text" class="form-control" id="padreNombre">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Profesión / Ocupación (Padre)</label>
+                        <input type="text" class="form-control" id="padreOcupacion">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Nombres de la Madre</label>
+                        <input type="text" class="form-control" id="madreNombre">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Profesión / Ocupación (Madre)</label>
+                        <input type="text" class="form-control" id="madreOcupacion">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Hermanos (Nombres y Ocupación)</label>
+                        <textarea class="form-control" id="hermanos" rows="3" placeholder="1. Juan Pérez (Médico)..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Experiencia Laboral -->
+                <h3 class="section-title">Experiencia Laboral</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Profesión</label>
+                        <input type="text" class="form-control" id="profesion" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Ocupación Actual / Cargo</label>
+                        <input type="text" class="form-control" id="ocupacionActual" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Lugar de Trabajo</label>
+                        <input type="text" class="form-control" id="lugarTrabajo">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Responsabilidades</label>
+                        <input type="text" class="form-control" id="responsabilidadesLaborales">
+                    </div>
+                </div>
+
+                <!-- Formación Académica -->
+                <h3 class="section-title">Formación Académica</h3>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Estudios Terciarios / Universitarios (Título y Universidad)</label>
+                        <textarea class="form-control" id="universidad" rows="2"></textarea>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Postgrados / Doctorados</label>
+                        <textarea class="form-control" id="postgrados" rows="2"></textarea>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Idiomas (Nivel)</label>
+                        <input type="text" class="form-control" id="idiomas" placeholder="Ej: Inglés (Avanzado), Francés (Básico)">
+                    </div>
+                </div>
+
+                <!-- Perfil y Social -->
+                <h3 class="section-title">Datos Sociales y Perfil</h3>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Instituciones a las que pertenece (Sociales, Políticas, Deportivas, etc.)</label>
+                        <textarea class="form-control" id="instituciones" rows="2"></textarea>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Hobbies e Intereses</label>
+                        <input type="text" class="form-control" id="hobbies">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Libros Favoritos</label>
+                        <input type="text" class="form-control" id="libros">
+                    </div>
+                </div>
+
+                <!-- Declaraciones -->
+                <h3 class="section-title">Declaraciones Bajo Palabra de Honor</h3>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="dec1" required>
+                    <label class="form-check-label" for="dec1" id="lblDec1">Nunca fui admitido o expulsado de una obediencia masónica, en Paraguay o en algún país extranjero.</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="dec2" required>
+                    <label class="form-check-label" for="dec2">Habiéndome enterado de los principios fundamentales de la Francmasonería en general declaro mi voluntad de adherirme a dichos principios.</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="dec3" required>
+                    <label class="form-check-label" for="dec3">Acepto en caso de ser admitido/a que toda la información sobre mi situación Masónica pueda ser comunicada a las demás Obediencias Masónicas con las que nuestro Rito mantenga relaciones.</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="dec4" required>
+                    <label class="form-check-label" for="dec4">Prometo no estar adherido a ninguna asociación o grupo que incite a la discriminación, odio o violencia hacia una persona o grupo de personas, con el pretexto de origen, etnia, sexo, religión, o militancia política.</label>
+                </div>
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" id="dec5" required>
+                    <label class="form-check-label" for="dec5">Afirmo que toda la información y declaraciones recogidas en las documentaciones previas son ciertas y correctas.</label>
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>Importante:</strong> El cánon de ingreso a la orden es de tres millones de medallas nacionales, el cual, deberá ser depositado en el número de cuenta asignado, siempre y cuando el candidato/a logre ser admitido/a. El presente documento es absolutamente confidencial, no deberá ser compartido con nadie, bajo fe de juramento.
+                </div>
+
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-masonic btn-lg w-100" id="btnSubmitForm">Guardar y Remitir Documento Oficial</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase Connection -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyABX07keytsClNlr-93pxsljEVZAWo3Tpg",
+            authDomain: "mmpy-146a6.firebaseapp.com",
+            projectId: "mmpy-146a6",
+            storageBucket: "mmpy-146a6.firebasestorage.app",
+            messagingSenderId: "215936118140",
+            appId: "1:215936118140:web:4e9635a8b925bf5d5a88f9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Validar Código de Ingreso
+        document.getElementById('btnValidarCodigo').addEventListener('click', async () => {
+            const codeInput = document.getElementById('codigoEntrada').value.trim().toUpperCase();
+            if (!codeInput) return;
+
+            const btn = document.getElementById('btnValidarCodigo');
+            btn.disabled = true;
+            btn.innerText = "Verificando...";
+
+            try {
+                const q = query(collection(db, "solicitudes"), where("codigoAdmision", "==", codeInput));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    throw new Error("Invalid Code");
+                }
+
+                // Obtener datos
+                let docData = null;
+                let docId = null;
+                querySnapshot.forEach((d) => {
+                    docData = d.data();
+                    docId = d.id;
+                });
+
+                if (docData.estado === 'Expediente Completo') {
+                    alert("Este código ya fue utilizado y el expediente ya fue enviado.");
+                    btn.disabled = false;
+                    btn.innerText = "Validar y Acceder";
+                    return;
+                }
+
+                // Llenar campos automáticos
+                document.getElementById('solicitudId').value = docId;
+                document.getElementById('codigoUsado').value = codeInput;
+                document.getElementById('nombres').value = docData.nombre || "";
+                document.getElementById('telefono').value = docData.telefono || "";
+                document.getElementById('email').value = docData.email || "";
+
+                // Lógica de Afiliación vs Iniciación
+                if (docData.motivo === 'Afiliacion' || docData.motivo === 'Afiliación') {
+                    document.getElementById('seccionAfiliacion').style.display = 'block';
+                    document.getElementById('lblDec1').innerText = "Declaro que mi retiro de mi anterior obediencia masónica ha sido regular y me encuentro en plenos derechos masónicos.";
+                } else {
+                    document.getElementById('seccionAfiliacion').style.display = 'none';
+                    document.getElementById('lblDec1').innerText = "Nunca fui admitido o expulsado de una obediencia masónica, en Paraguay o en algún país extranjero.";
+                }
+
+                // Desbloquear pantalla
+                document.getElementById('lockScreen').style.display = 'none';
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('lockError').style.display = 'block';
+                btn.disabled = false;
+                btn.innerText = "Validar y Acceder";
+            }
+        });
+
+        // Guardar Formulario Completo
+        document.getElementById('formAdmision').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmitForm');
+            btn.disabled = true;
+            btn.innerText = "Procesando...";
+
+            const docId = document.getElementById('solicitudId').value;
+
+            // Recolectar toda la info
+            const expediente = {
+                estado: "Expediente Completo", // Cambia de Documentación Pendiente a Completo
+                proponente1: document.getElementById('proponente1').value,
+                proponente2: document.getElementById('proponente2').value,
+                obedienciaAnterior: document.getElementById('obedienciaAnterior') ? document.getElementById('obedienciaAnterior').value : '',
+                gradoAnterior: document.getElementById('gradoAnterior') ? document.getElementById('gradoAnterior').value : '',
+                motivoRetiro: document.getElementById('motivoRetiro') ? document.getElementById('motivoRetiro').value : '',
+                genero: document.getElementById('genero').value,
+                fechaNacimiento: document.getElementById('fechaNacimiento').value,
+                lugarNacimiento: document.getElementById('lugarNacimiento').value,
+                nacionalidad: document.getElementById('nacionalidad').value,
+                cedula: document.getElementById('cedula').value,
+                estadoCivil: document.getElementById('estadoCivil').value,
+                direccion: document.getElementById('direccion').value,
+                barrio: document.getElementById('barrio').value,
+                ciudad: document.getElementById('ciudad').value,
+                conyugeNombre: document.getElementById('conyugeNombre').value,
+                conyugeOcupacion: document.getElementById('conyugeOcupacion').value,
+                hijos: document.getElementById('hijos').value,
+                padreNombre: document.getElementById('padreNombre').value,
+                padreOcupacion: document.getElementById('padreOcupacion').value,
+                madreNombre: document.getElementById('madreNombre').value,
+                madreOcupacion: document.getElementById('madreOcupacion').value,
+                hermanos: document.getElementById('hermanos').value,
+                profesion: document.getElementById('profesion').value,
+                ocupacionActual: document.getElementById('ocupacionActual').value,
+                lugarTrabajo: document.getElementById('lugarTrabajo').value,
+                responsabilidadesLaborales: document.getElementById('responsabilidadesLaborales').value,
+                universidad: document.getElementById('universidad').value,
+                postgrados: document.getElementById('postgrados').value,
+                idiomas: document.getElementById('idiomas').value,
+                instituciones: document.getElementById('instituciones').value,
+                hobbies: document.getElementById('hobbies').value,
+                libros: document.getElementById('libros').value,
+                fechaEnvioExpediente: new Date()
+            };
+
+            try {
+                await updateDoc(doc(db, "solicitudes", docId), expediente);
+                alert("¡Expediente Oficial enviado con éxito! Ahora serás redirigido a WhatsApp para notificar a la Secretaría.");
+                
+                const adminPhone = "595971779487";
+                const nombresAspirante = document.getElementById('nombres').value;
+                const waText = `Saludos Gran Logia, he completado mi Expediente Oficial. Mi nombre es ${nombresAspirante}. Quedo a disposición.`;
+                const waUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(waText)}`;
+                
+                window.location.href = waUrl;
+            } catch(error) {
+                console.error("Error guardando expediente: ", error);
+                alert("Hubo un error al guardar el expediente.");
+                btn.disabled = false;
+                btn.innerText = "Guardar y Remitir Documento Oficial";
+            }
+        });
+    </script>
+</body>
+</html>

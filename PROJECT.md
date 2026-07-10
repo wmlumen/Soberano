@@ -43,8 +43,9 @@
   - Areópago No. 1
 - Gran Logia
   - Consolidado Gran Logia
-  - Logia Osiris No. 1
-  - Logia Isis No. 2
+  - Logia Luxor No. 1
+  - Logia Osiris No. 2
+  - Logia Horus No. 3
 
 ## Catálogo financiero provisional
 Ingresos: Capitación, Saco de la Viuda, Donaciones

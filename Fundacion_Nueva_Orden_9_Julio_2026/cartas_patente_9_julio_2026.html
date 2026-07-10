@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas Patente - Logias Simbólicas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #f9f9f9;
+            --text-main: #111;
+            --gold: #b8860b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'Playfair Display', serif;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .patente-container {
+            max-width: 900px;
+            margin: 0 auto 4rem auto;
+            background: #fff;
+            padding: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 15px solid transparent;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%23b8860b" stroke-width="10" /></svg>') 30 stretch;
+            position: relative;
+            page-break-after: always;
+            text-align: center;
+        }
+
+        .patente-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .patente-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+
+        .patente-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            margin: 2.5rem 0;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .content {
+            text-align: justify;
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: #000;
+        }
+
+        .logia-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--gold);
+            display: block;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5rem;
+        }
+
+        .signature-block {
+            width: 30%;
+            text-align: center;
+        }
+
+        .signature-line {
+            border-bottom: 1px solid #000;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .signature-name {
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .btn-print {
+            display: block;
+            margin: 2rem auto;
+            background: var(--gold);
+            color: #fff;
+            font-weight: bold;
+            font-family: 'Outfit', sans-serif;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        @media print {
+            .btn-print { display: none !important; }
+            body { background: #fff; padding: 0; }
+            .patente-container { box-shadow: none; padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir Cartas Patente</button>
+
+    <!-- PATENTE OSIRIS 2 -->
+    <div class="patente-container">
+        <div class="patente-header">
+            <h1>SOBERANA ORDEN DEL RITO MEMPHIS-MISRAIM DEL PARAGUAY</h1>
+            <h2 style="font-size: 1rem; margin-top: 10px;">(MÁXIMA AUTORIDAD)</h2>
+            <h2>GRAN LOGIA DE LA SOBERANA ORDEN DEL RITO MEMPHIS-MISRAIM DEL PARAGUAY</h2>
+        </div>
+
+        <div class="patente-title">CARTA PATENTE DE CONSTITUCIÓN</div>
+
+        <div class="content">
+            <p style="text-align: center; font-style: italic; font-weight: bold; margin-bottom: 2rem;">
+                A todos los Masones esparcidos por la faz de la Tierra: ¡Salud, Fuerza y Unión!
+            </p>
+            <p>
+                <strong>NOSOTROS</strong>, en virtud de los poderes y prerrogativas supremas que nos han sido conferidos por los antiguos límites, tratados y reglamentos de la Masonería Universal y del Antiguo y Primitivo Rito de Memphis-Misraim, por el presente documento oficial:
+            </p>
+            <p>
+                <strong>OTORGAMOS, CONCEDEMOS Y AUTORIZAMOS</strong> pleno poder, autoridad y fuero masónico a los Queridos Hermanos fundadores para congregarse, trabajar y levantar columnas de una Respetable Logia Simbólica, justa y perfecta, que llevará por título distintivo:
+            </p>
+            
+            <span class="logia-name">R∴ L∴ S∴ OSIRIS N.º 2</span>
+
+            <p>
+                Constituida en el Zenit del Valle de Asunción, República del Paraguay. Facultamos a este augusto taller a iniciar profanos, otorgar aumentos de salario y exaltar al sublime grado de Maestro Masón, administrando los Misterios de la Orden conforme a los Rituales aprobados, velando estrictamente por la conservación de la <span class="highlight">Tradición Primigenia</span>.
+            </p>
+            <p>
+                Exigimos a sus autoridades y obreros la lealtad absoluta a la <strong>Soberana Orden del Rito Memphis-Misraim del Paraguay</strong> y el fiel cumplimiento de su Reglamento General. En testimonio de lo cual, sellamos y firmamos esta Carta Patente.
+            </p>
+            <p style="text-align: right; margin-top: 2rem;">
+                Dada en el Valle de Asunción, a los Nueve (09) días del mes de Julio de 2026 E∴ V∴
+            </p>
+        </div>
+
+        <div class="signatures">
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-name">MSH EDGAR FAZIO (96º)</div>
+                <div style="font-size: 0.85rem; color: #555;">Soberano Gran Maestro</div>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line" style="border: none; margin-top: 30px;">
+                    <span style="border: 2px solid var(--gold); border-radius: 50%; display: inline-block; width: 60px; height: 60px; line-height: 60px; color: var(--gold); font-weight: bold;">SELLO</span>
+                </div>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-name">GRAN CANCILLERÍA</div>
+                <div style="font-size: 0.85rem; color: #555;">Registro Oficial</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PATENTE LUXOR 1 -->
+    <div class="patente-container">
+        <div class="patente-header">
+            <h1>SOBERANA ORDEN DEL RITO MEMPHIS-MISRAIM DEL PARAGUAY</h1>
+            <h2 style="font-size: 1rem; margin-top: 10px;">(MÁXIMA AUTORIDAD)</h2>
+            <h2>GRAN LOGIA DE LA SOBERANA ORDEN DEL RITO MEMPHIS-MISRAIM DEL PARAGUAY</h2>
+        </div>
+
+        <div class="patente-title">CARTA PATENTE DE CONSTITUCIÓN</div>
+
+        <div class="content">
+            <p style="text-align: center; font-style: italic; font-weight: bold; margin-bottom: 2rem;">
+                A todos los Masones esparcidos por la faz de la Tierra: ¡Salud, Fuerza y Unión!
+            </p>
+            <p>
+                <strong>NOSOTROS</strong>, en virtud de los poderes y prerrogativas supremas que nos han sido conferidos por los antiguos límites, tratados y reglamentos de la Masonería Universal y del Antiguo y Primitivo Rito de Memphis-Misraim, por el presente documento oficial:
+            </p>
+            <p>
+                <strong>OTORGAMOS, CONCEDEMOS Y AUTORIZAMOS</strong> pleno poder, autoridad y fuero masónico a los Queridos Hermanos fundadores para congregarse, trabajar y levantar columnas de una Respetable Logia Simbólica, justa y perfecta, que llevará por título distintivo:
+            </p>
+            
+            <span class="logia-name">R∴ L∴ S∴ LUXOR N.º 1</span>
+
+            <p>
+                Constituida en el Zenit del Valle de Asunción, República del Paraguay. Facultamos a este augusto taller a iniciar profanos, otorgar aumentos de salario y exaltar al sublime grado de Maestro Masón, administrando los Misterios de la Orden conforme a los Rituales aprobados, velando estrictamente por la conservación de la <span class="highlight">Tradición Primigenia</span>.
+            </p>
+            <p>
+                Exigimos a sus autoridades y obreros la lealtad absoluta a la <strong>Soberana Orden del Rito Memphis-Misraim del Paraguay</strong> y el fiel cumplimiento de su Reglamento General. En testimonio de lo cual, sellamos y firmamos esta Carta Patente.
+            </p>
+            <p style="text-align: right; margin-top: 2rem;">
+                Dada en el Valle de Asunción, a los Nueve (09) días del mes de Julio de 2026 E∴ V∴
+            </p>
+        </div>
+
+        <div class="signatures">
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-name">MSH EDGAR FAZIO (96º)</div>
+                <div style="font-size: 0.85rem; color: #555;">Soberano Gran Maestro</div>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line" style="border: none; margin-top: 30px;">
+                    <span style="border: 2px solid var(--gold); border-radius: 50%; display: inline-block; width: 60px; height: 60px; line-height: 60px; color: var(--gold); font-weight: bold;">SELLO</span>
+                </div>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-name">GRAN CANCILLERÍA</div>
+                <div style="font-size: 0.85rem; color: #555;">Registro Oficial</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PATENTE HORUS 3 -->
+    <div class="patente-container">
+        <div class="patente-header">
+            <h1>SOBERANA ORDEN DEL RITO MEMPHIS-MISRAIM DEL PARAGUAY</h1>
+            <h2 style="font-size: 1rem; margin-top: 10px;">(MÁXIMA AUTORIDAD)</h2>
+            <h2>GRAN LOGIA DE LA SOBERANA ORDEN DEL RITO MEMPHIS-MISRAIM DEL PARAGUAY</h2>
+        </div>
+
+        <div class="patente-title">CARTA PATENTE DE CONSTITUCIÓN</div>
+
+        <div class="content">
+            <p style="text-align: center; font-style: italic; font-weight: bold; margin-bottom: 2rem;">
+                A todos los Masones esparcidos por la faz de la Tierra: ¡Salud, Fuerza y Unión!
+            </p>
+            <p>
+                <strong>NOSOTROS</strong>, en virtud de los poderes y prerrogativas supremas que nos han sido conferidos por los antiguos límites, tratados y reglamentos de la Masonería Universal y del Antiguo y Primitivo Rito de Memphis-Misraim, por el presente documento oficial:
+            </p>
+            <p>
+                <strong>OTORGAMOS, CONCEDEMOS Y AUTORIZAMOS</strong> pleno poder, autoridad y fuero masónico a los Queridos Hermanos fundadores para congregarse, trabajar y levantar columnas de una Respetable Logia Simbólica, justa y perfecta, que llevará por título distintivo:
+            </p>
+            
+            <span class="logia-name">R∴ L∴ S∴ HORUS N.º 3</span>
+
+            <p>
+                Constituida en el Zenit del Valle de Asunción, República del Paraguay. Facultamos a este augusto taller a iniciar profanos, otorgar aumentos de salario y exaltar al sublime grado de Maestro Masón, administrando los Misterios de la Orden conforme a los Rituales aprobados, velando estrictamente por la conservación de la <span class="highlight">Tradición Primigenia</span>.
+            </p>
+            <p>
+                Exigimos a sus autoridades y obreros la lealtad absoluta a la <strong>Soberana Orden del Rito Memphis-Misraim del Paraguay</strong> y el fiel cumplimiento de su Reglamento General. En testimonio de lo cual, sellamos y firmamos esta Carta Patente.
+            </p>
+            <p style="text-align: right; margin-top: 2rem;">
+                Dada en el Valle de Asunción, a los Nueve (09) días del mes de Julio de 2026 E∴ V∴
+            </p>
+        </div>
+
+        <div class="signatures">
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-name">MSH EDGAR FAZIO (96º)</div>
+                <div style="font-size: 0.85rem; color: #555;">Soberano Gran Maestro</div>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line" style="border: none; margin-top: 30px;">
+                    <span style="border: 2px solid var(--gold); border-radius: 50%; display: inline-block; width: 60px; height: 60px; line-height: 60px; color: var(--gold); font-weight: bold;">SELLO</span>
+                </div>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-name">GRAN CANCILLERÍA</div>
+                <div style="font-size: 0.85rem; color: #555;">Registro Oficial</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
